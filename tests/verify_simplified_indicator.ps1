@@ -2,6 +2,7 @@ $ErrorActionPreference = "Stop"
 
 $root = Split-Path -Parent $PSScriptRoot
 $studyPath = Join-Path $root "MacroMicro_Simplified_v0.2.1.ts"
+$tosStudyPath = Join-Path $root "_dk_codex_macro_micro_v1.ts"
 
 function Assert-True {
     param(
@@ -25,10 +26,14 @@ function Assert-Contains {
 }
 
 Assert-True -Condition (Test-Path -LiteralPath $studyPath) -Message "Study file does not exist: $studyPath"
+Assert-True -Condition (Test-Path -LiteralPath $tosStudyPath) -Message "TOS import study file does not exist: $tosStudyPath"
 
 $text = Get-Content -LiteralPath $studyPath -Raw
+$tosText = Get-Content -LiteralPath $tosStudyPath -Raw
 
 Assert-Contains $text "# Version: v0.2.1" "v0.2.1 version header"
+Assert-Contains $text "# TOS Study: _dk_codex_macro_micro_v1" "TOS study name header"
+Assert-True -Condition ($tosText -eq $text) -Message "TOS import study file must match MacroMicro_Simplified_v0.2.1.ts exactly"
 Assert-Contains $text "Timeframe focus: 5m first, then 15m validation/tuning." "5m-first tuning note"
 Assert-Contains $text "def standbyThreshold = 4;" "4/6 standby threshold"
 Assert-Contains $text "def triggerThreshold = 5;" "5/6 trigger threshold"

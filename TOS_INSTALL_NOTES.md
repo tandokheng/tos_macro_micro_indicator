@@ -3,6 +3,7 @@
 ## Current Test Script
 
 - File: `MacroMicro_Simplified_v0.2.1.ts`
+- Import-ready file: `_dk_codex_macro_micro_v1.ts`
 - Thinkorswim study to replace: `_dk_codex_macro_micro_v1`
 - Primary chart for review: QQQ 5-minute, 20-day view
 
