@@ -11,7 +11,8 @@ Use an explicit version in every new indicator file and in the file header.
 ## Current Baseline
 
 - `MacroMicro_Simplified_5of6.ts` is the unversioned first simplified baseline.
-- The next generated copy should start at `v0.2.0` unless it is only a compile fix, in which case use `v0.1.1`.
+- `MacroMicro_Simplified_v0.2.0.ts` adds stronger risk gating, candle confirmation, compact signal bubbles, and `TRADE` dashboard state.
+- `MacroMicro_Simplified_v0.2.1.ts` adds entry/add/danger signal labeling and clearer target/stop display.
 
 ## Version Meaning
 
