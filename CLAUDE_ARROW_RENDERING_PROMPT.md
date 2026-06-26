@@ -35,6 +35,14 @@ Rule for future debugging:
 - Avoid hiding essential diagnostic visuals behind new saved inputs during diagnosis; saved Thinkorswim input values can drift.
 - After the visual route is proven, gate or remove noisy proof bubbles so the chart becomes usable again.
 
+General ThinkScript debugging rules:
+- Instrument first with on-chart state labels. If the study shows nothing, ask the human to read the bottom error line in the ThinkScript editor.
+- Same-day time windows use `afterStart and beforeEnd`; use `or` only for windows that cross midnight.
+- Use value-based arrow plots at `low/high +/- off`, not `PaintingStrategy.BOOLEAN_ARROW`.
+- Keep recursive self-references simple; avoid wrapping `x[1]` inside conditional expressions inside `Max()` / `Min()` calls.
+- Session times are in the chart timezone. Make times inputs and document ET/SGT presets when time logic is introduced.
+- Version every study, sync `_dk_codex_macro_micro_v1.ts`, and run an independent review pass because the assistant cannot execute thinkScript.
+
 Current next direction:
 - Build from the latest versioned file.
 - Keep the working-style arrows as the default visible marker path.

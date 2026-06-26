@@ -41,3 +41,12 @@
 - When chart labels/bubbles prove a ThinkScript boolean is true but arrows are missing, do not keep loosening signal logic first.
 - Thinkorswim can retain hidden/custom style state or behave poorly with inherited/multiplexed arrow plots.
 - Use fresh dedicated arrow plot names and the simple working primitive: direct condition, `low/high +/- off`, `PaintingStrategy.ARROW_UP/DOWN`, `AssignValueColor`, and `SetLineWeight(5)`.
+
+## General ThinkScript Debugging Lessons
+
+- Instrument first with on-chart state labels. If a study renders nothing, check the bottom error line in the ThinkScript editor.
+- Same-day time windows require `afterStart and beforeEnd`; reserve `or` for windows crossing midnight.
+- Use value-based arrow plots at price offsets instead of `PaintingStrategy.BOOLEAN_ARROW`.
+- Keep recursive state simple and avoid conditional self-references inside `Max()` / `Min()` calls.
+- Session times are in the chart timezone; make time presets explicit when time logic is added.
+- See `THINKSCRIPT_DEBUGGING_LESSONS.md` for the full checklist.

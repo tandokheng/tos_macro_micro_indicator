@@ -120,6 +120,8 @@ Assert-True -Condition ([regex]::Matches($text, "(?m)^\s*plot\s+LongArrow\b").Co
 Assert-True -Condition ([regex]::Matches($text, "(?m)^\s*plot\s+ShortArrow\b").Count -eq 0) -Message "Old ShortArrow plot name is still present and may inherit hidden TOS settings"
 Assert-True -Condition ([regex]::Matches($text, "PaintingStrategy\.ARROW_UP").Count -eq 2) -Message "Expected two up-arrow painting strategies: DebugBigUpArrow plus working-style raw setup arrow"
 Assert-True -Condition ([regex]::Matches($text, "PaintingStrategy\.ARROW_DOWN").Count -eq 2) -Message "Expected two down-arrow painting strategies: DebugBigArrow plus working-style raw setup arrow"
+Assert-True -Condition (-not $text.Contains("PaintingStrategy.BOOLEAN_ARROW")) -Message "Do not use BOOLEAN_ARROW; use value-based ARROW_UP/ARROW_DOWN plots at a price offset"
+Assert-NoRegex $text "(?m)^\s*rec\s+\w+\s*=\s*(Max|Min)\s*\(\s*if\b" "Risky recursive Max/Min self-reference pattern detected"
 Assert-Contains $text "def longCandleConfirm" "long candle confirmation"
 Assert-Contains $text "input allowCautionFourOfSix = yes;" "4/6 caution entry toggle"
 Assert-Contains $text "def microLongOK = microFast > microSlow;" "micro score decoupled from volume pressure"

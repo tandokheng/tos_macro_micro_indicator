@@ -90,3 +90,4 @@
 - Confirmed from user screenshot that v0.5.19 arrows render in Thinkorswim; documented the lesson in `CLAUDE_ARROW_RENDERING_PROMPT.md`.
 - Added `MacroMicro_Simplified_v0.5.20.ts` to keep working-style arrows default-on while hiding raw proof bubbles by default.
 - Updated `tests/verify_simplified_indicator.ps1` for v0.5.20 clean-arrow checks.
+- Added `THINKSCRIPT_DEBUGGING_LESSONS.md` and folded Claude's general ThinkScript debugging rules into the Claude handoff prompt.
