@@ -1,7 +1,7 @@
 $ErrorActionPreference = "Stop"
 
 $root = Split-Path -Parent $PSScriptRoot
-$studyPath = Join-Path $root "MacroMicro_Simplified_v0.5.11.ts"
+$studyPath = Join-Path $root "MacroMicro_Simplified_v0.5.12.ts"
 $tosStudyPath = Join-Path $root "_dk_codex_macro_micro_v1.ts"
 
 function Assert-True {
@@ -47,11 +47,11 @@ Assert-True -Condition (Test-Path -LiteralPath $tosStudyPath) -Message "TOS impo
 $text = Get-Content -LiteralPath $studyPath -Raw
 $tosText = Get-Content -LiteralPath $tosStudyPath -Raw
 
-Assert-Contains $text "# Version: v0.5.11" "v0.5.11 version header"
+Assert-Contains $text "# Version: v0.5.12" "v0.5.12 version header"
 Assert-Contains $text "# TOS Study: _dk_codex_macro_micro_v1" "TOS study name header"
 Assert-Contains $text "declare upper;" "upper price-chart declaration"
 Assert-Contains $text 'DefineGlobalColor("CautionAmber", CreateColor(180, 95, 0));' "readable caution amber color"
-Assert-True -Condition ($tosText -eq $text) -Message "TOS import study file must match MacroMicro_Simplified_v0.5.11.ts exactly"
+Assert-True -Condition ($tosText -eq $text) -Message "TOS import study file must match MacroMicro_Simplified_v0.5.12.ts exactly"
 Assert-Contains $text "Timeframe focus: 5m first, then 15m validation/tuning." "5m-first tuning note"
 Assert-Contains $text "input useFifteenMinuteProfile = no;" "5m profile remains default"
 Assert-Contains $text "input fifteenMinuteScoreTriggerFreshBars = 1;" "15m score freshness profile"
@@ -148,6 +148,13 @@ Assert-Contains $text '"S"' "compact short marker label"
 Assert-Contains $text "Color.MAGENTA" "compact long marker color"
 Assert-Contains $text "Color.CYAN" "compact short marker color"
 Assert-Contains $text '"MARKER: "' "dashboard marker state label"
+Assert-Contains $text 'AddLabel(yes, "BUILD: v0.5.12 DIAG", Color.BLACK);' "always-visible build version dashboard label"
+Assert-Contains $text 'AddLabel(yes, "MARKER: " + (if arrowMarkerLong then "L" else if arrowMarkerShort then "S" else "NONE"), if arrowMarkerLong then Color.MAGENTA else if arrowMarkerShort then Color.CYAN else Color.GRAY);' "always-visible marker state dashboard label"
+Assert-True -Condition (-not $text.Contains('AddLabel(dashOK, "MARKER: "')) -Message "Marker state label still depends on showDashboard"
+Assert-Contains $text "plot BuildProofDotV0512 =" "hardwired last-bar proof dot"
+Assert-Contains $text "if lastVisibleBar then high + liveArrowOff else Double.NaN;" "proof dot is independent of signal"
+Assert-Contains $text "BuildProofDotV0512.SetPaintingStrategy(PaintingStrategy.POINTS);" "proof dot uses point rendering"
+Assert-Contains $text '"v0.5.12 TEST"' "last-bar build bubble proves chart-bubble path"
 Assert-Contains $text '"FLIP SHORT"' "fast flip short dashboard trigger"
 Assert-Contains $text '"FLIP LONG"' "fast flip long dashboard trigger"
 Assert-Contains $text '"CONT SHORT"' "continuation short dashboard trigger"

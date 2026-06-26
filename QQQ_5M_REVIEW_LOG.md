@@ -243,3 +243,10 @@ Use this after importing `MacroMicro_Simplified_v0.3.1.ts` into Thinkorswim.
 - Observation: After v0.5.10, user still saw no marker bubbles while the dashboard showed `TRIGGER: CONT SHORT`, which means the visible short marker state should be true.
 - Root-cause hypothesis: the new `showArrowMarkerBubbles` input may have inherited or remapped an old saved Thinkorswim study input value, silently disabling the new marker layer on the existing study instance.
 - Change: v0.5.11 removes the marker input, hardwires compact `S` / `L` marker bubbles, adds fresh `MarkerShortDotV0511` / `MarkerLongDotV0511` point plots, and adds a `MARKER: S/L` dashboard label from the same marker boolean.
+
+
+## 2026-06-26 always-visible build/marker diagnostic
+
+- Observation: User again reported no marker while scrolling, but the screenshot showed `BIAS: NO TRADE`, `SETUP: 3/6`, `TRIGGER: WAIT`, and `NEXT: SCORE`, so the current bar correctly had no marker contract.
+- Root-cause conclusion: v0.5.11 still could not prove whether the active chart was running the latest pasted build when marker state was `NONE`.
+- Change: v0.5.12 adds always-visible `BUILD: v0.5.12 DIAG` and `MARKER: NONE/L/S` labels plus a last-loaded-bar `v0.5.12 TEST` bubble and `BuildProofDotV0512` point.
