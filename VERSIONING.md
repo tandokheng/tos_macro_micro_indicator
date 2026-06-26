@@ -50,6 +50,7 @@ Use an explicit version in every new indicator file and in the file header.
 - MacroMicro_Simplified_v0.5.14.ts fixes v0.5.13 ThinkScript parser errors by splitting diagnostic labels into static `AddLabel` calls.
 - MacroMicro_Simplified_v0.5.15.ts removes the `SPAM L/S` diagnostic bubbles and routes setup visibility through throttled setup-pulse markers for a cleaner QQQ 5m test build.
 - MacroMicro_Simplified_v0.5.16.ts replaces pulse-edge-only setup visibility with raw setup cadence markers: first setup bar, every `setupPulseBars` bars, and the live bar.
+- MacroMicro_Simplified_v0.5.17.ts adds direct raw setup proof bubbles (`RAW L/S`) using the v0.5.14-proven larger offset and moves compact `L/S` markers closer to candles.
 
 ## Version Meaning
 

@@ -72,3 +72,5 @@
 - Add v0.5.15 after v0.5.14 rendered many `SPAM L/S` bubbles: keep the raw setup/continuation dashboard diagnostics, remove hardwired spam bubbles, and route setup visibility through throttled setup-pulse markers so QQQ 5m can be tested without chart flooding.
 
 - Add v0.5.16 after v0.5.15 showed `RAW SETUP: L` and the last-bar test bubble/dot but no compact markers: keep spam removed, but route visible setup markers through direct raw setup cadence on the first setup bar, every `setupPulseBars` bars, and the live bar.
+
+- Add v0.5.17 after v0.5.16 showed `TRIGGER: SETUP LONG` and `NEXT: MARK READY` without visible markers: parallel agent review found the marker boolean path was true, so use direct raw setup proof bubbles with the v0.5.14-proven larger offset and move compact markers closer to candles.

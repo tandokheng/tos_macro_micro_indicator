@@ -278,3 +278,10 @@ Use this after importing `MacroMicro_Simplified_v0.3.1.ts` into Thinkorswim.
 - Observation: v0.5.15 screenshot showed `BUILD: v0.5.15 CLEAN RAW`, `RAW SETUP: L`, and the last-bar test bubble/dot, with old `SPAM L/S` bubbles gone, but no compact `L/S` markers even after scrolling.
 - Root-cause conclusion: the raw setup source and chart-bubble path were alive, but visible setup markers depended only on the setup-pulse edge/counter path, which could leave a valid raw setup visually silent.
 - Change: v0.5.16 adds direct raw setup cadence markers on the first setup bar, every `setupPulseBars` bars while raw setup persists, and the live last bar for immediate screenshot confirmation.
+
+
+## 2026-06-27 direct raw-bubble follow-up
+
+- Observation: v0.5.16 screenshot showed `BUILD: v0.5.16 RAW CADENCE`, `RAW SETUP: L`, `TRIGGER: SETUP LONG`, and `NEXT: MARK READY`, but no visible compact `L/S` marker after the study was removed and re-added.
+- Root-cause conclusion: parallel agent review confirmed the local boolean path is true; the remaining failure is the compact marker rendering route or placement, not raw setup gating.
+- Change: v0.5.17 keeps spam removed but adds direct `RAW L/S` proof bubbles using the v0.5.14-proven larger offset, and moves compact `L/S` marker dots/bubbles closer to candles for comparison.

@@ -24,6 +24,6 @@ Candidate hierarchy:
 ## Milestones
 
 - Done: Create `MacroMicro_Simplified_v0.2.0.ts` with stronger RVOL gating, candle confirmation, cleaner target/stop display, and compact signal bubbles.
-- Doing: Review/import `MacroMicro_Simplified_v0.5.16.ts`, a QQQ 5m raw-cadence marker build that keeps spam removed and prints compact setup markers on first setup, cadence bars, and the live bar.
+- Doing: Review/import `MacroMicro_Simplified_v0.5.17.ts`, a QQQ 5m raw-bubble build that keeps spam removed, prints direct `RAW L/S` proof bubbles on setup cadence, and keeps compact marker placement close to candles for comparison.
 - Todo: Decide whether a higher-timeframe context filter improves 5-minute entries.
 - Todo: Validate/tune the indicator on QQQ 15-minute charts after 5-minute behavior is acceptable.
