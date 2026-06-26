@@ -52,3 +52,5 @@
 - Add v0.5.5 after v0.5.4 still showed no visible arrows on a chart with `SETUP: 6/6` and `NEXT: SETUP PULSE`: use fresh v0.5.5 arrow plot names and set setup pulses dense by default so every valid 5/6 setup bar can paint `SETUP S/L`.
 
 - Add v0.5.6 after screenshot showed `TRIGGER: SETUP LONG` but still no visible arrow: treat the score/trigger path as working and move real entries onto the previously proven-visible `DebugBigArrow` / `DebugBigUpArrow` plots, with failsafe setup bubbles as a second visual route.
+
+- Add v0.5.7 after v0.5.6 screenshot showed the visibility path working but flooding the chart with `SETUP L/S` bubbles: keep known-visible arrows, turn failsafe bubbles off by default, and throttle setup pulses to every 8 bars.

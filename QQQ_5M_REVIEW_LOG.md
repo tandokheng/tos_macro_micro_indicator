@@ -208,3 +208,10 @@ Use this after importing `MacroMicro_Simplified_v0.3.1.ts` into Thinkorswim.
 - Observation: User screenshot showed `TRIGGER: SETUP LONG`, `SETUP: 5/6`, and `TRADE: CAUTION`, but still no visible arrow.
 - Root-cause conclusion: the signal condition is now firing; the remaining failure is the standard primary arrow rendering path or scrollback/dashboard mismatch, not the score trigger.
 - Change: v0.5.6 routes real entries through the known-visible `DebugBigArrow` / `DebugBigUpArrow` plots and adds short failsafe `SETUP L/S` bubbles on setup pulses.
+
+
+## 2026-06-26 setup bubble clutter follow-up
+
+- Observation: v0.5.6 screenshot showed many cyan/magenta `SETUP S/L` bubbles across the chart, proving the visual path but making the chart too noisy.
+- Root-cause conclusion: `setupPulseBars = 1` plus default-on failsafe bubbles was appropriate for proof, but not for trading review.
+- Change: v0.5.7 keeps the known-visible arrow route, restores `setupPulseBars` to 8, and defaults `showFailsafeSignalBubbles` to `no`.

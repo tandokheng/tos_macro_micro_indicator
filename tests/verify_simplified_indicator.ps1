@@ -1,7 +1,7 @@
 $ErrorActionPreference = "Stop"
 
 $root = Split-Path -Parent $PSScriptRoot
-$studyPath = Join-Path $root "MacroMicro_Simplified_v0.5.6.ts"
+$studyPath = Join-Path $root "MacroMicro_Simplified_v0.5.7.ts"
 $tosStudyPath = Join-Path $root "_dk_codex_macro_micro_v1.ts"
 
 function Assert-True {
@@ -47,11 +47,11 @@ Assert-True -Condition (Test-Path -LiteralPath $tosStudyPath) -Message "TOS impo
 $text = Get-Content -LiteralPath $studyPath -Raw
 $tosText = Get-Content -LiteralPath $tosStudyPath -Raw
 
-Assert-Contains $text "# Version: v0.5.6" "v0.5.6 version header"
+Assert-Contains $text "# Version: v0.5.7" "v0.5.7 version header"
 Assert-Contains $text "# TOS Study: _dk_codex_macro_micro_v1" "TOS study name header"
 Assert-Contains $text "declare upper;" "upper price-chart declaration"
 Assert-Contains $text 'DefineGlobalColor("CautionAmber", CreateColor(180, 95, 0));' "readable caution amber color"
-Assert-True -Condition ($tosText -eq $text) -Message "TOS import study file must match MacroMicro_Simplified_v0.5.6.ts exactly"
+Assert-True -Condition ($tosText -eq $text) -Message "TOS import study file must match MacroMicro_Simplified_v0.5.7.ts exactly"
 Assert-Contains $text "Timeframe focus: 5m first, then 15m validation/tuning." "5m-first tuning note"
 Assert-Contains $text "input useFifteenMinuteProfile = no;" "5m profile remains default"
 Assert-Contains $text "input fifteenMinuteScoreTriggerFreshBars = 1;" "15m score freshness profile"
@@ -68,7 +68,7 @@ Assert-Contains $text "input dangerDropFromPeak = 2;" "danger drop from peak"
 Assert-Contains $text "plot StandbyLongDot" "long standby dot plot"
 Assert-Contains $text "plot StandbyShortDot" "short standby dot plot"
 Assert-Contains $text "input useKnownVisibleSignalArrows = yes;" "known-visible signal arrow routing toggle"
-Assert-Contains $text "input showFailsafeSignalBubbles = yes;" "failsafe setup bubble toggle"
+Assert-Contains $text "input showFailsafeSignalBubbles = no;" "failsafe setup bubbles default off after v0.5.6 noise review"
 Assert-True -Condition ([regex]::Matches($text, "(?m)^\s*plot\s+SignalLongV055Arrow\b").Count -eq 0) -Message "Old v0.5.5 SignalLongV055Arrow plot is still present"
 Assert-True -Condition ([regex]::Matches($text, "(?m)^\s*plot\s+SignalShortV055Arrow\b").Count -eq 0) -Message "Old v0.5.5 SignalShortV055Arrow plot is still present"
 Assert-True -Condition ([regex]::Matches($text, "(?m)^\s*plot\s+VisibleLongArrow\b").Count -eq 0) -Message "Old VisibleLongArrow plot name is still present and may inherit hidden TOS settings"
@@ -92,7 +92,8 @@ Assert-Contains $text "input fastBreakTRFactor = 1.35;" "fast break range factor
 Assert-Contains $text "input fastBreakLookback = 3;" "fast break lookback"
 Assert-Contains $text "input continuationBreakLookback = 2;" "continuation break lookback"
 Assert-Contains $text "input continuationRangeFactor = 0.35;" "continuation pressure range factor"
-Assert-Contains $text "input setupPulseBars = 1;" "dense 5/6 setup pulse interval"
+Assert-Contains $text "input setupPulseBars = 8;" "throttled 5/6 setup pulse interval"
+Assert-True -Condition (-not $text.Contains("input setupPulseBars = 1;")) -Message "Setup pulse interval is still every bar and will spam the chart"
 Assert-Contains $text "def fastBreakVolumeOK" "fast break volume guard"
 Assert-Contains $text "def fastBreakoutConfirm" "fast upside breakout confirmation"
 Assert-Contains $text "def fastBreakdownConfirm" "fast downside breakdown confirmation"

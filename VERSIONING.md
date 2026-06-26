@@ -40,6 +40,7 @@ Use an explicit version in every new indicator file and in the file header.
 - MacroMicro_Simplified_v0.5.4.ts adds a 5/6 setup-pulse fallback so sustained qualified setups print caution arrows even when candle confirmation never opens the normal entry path.
 - MacroMicro_Simplified_v0.5.5.ts adds fresh v0.5.5 arrow plot names and dense 5/6 setup pulses so inherited hidden TOS plot settings or pulse spacing cannot make valid setups look arrowless.
 - MacroMicro_Simplified_v0.5.6.ts routes real entries through the known-visible big debug arrow plots and adds failsafe setup bubbles after `TRIGGER: SETUP LONG/SHORT` appeared without visible arrows.
+- MacroMicro_Simplified_v0.5.7.ts reduces v0.5.6 chart clutter by throttling setup pulses to 8 bars and defaulting failsafe setup bubbles off.
 
 ## Version Meaning
 

@@ -2,11 +2,11 @@
 
 ## Doing
 
-- Install `MacroMicro_Simplified_v0.5.6.ts` into Thinkorswim study `_dk_codex_macro_micro_v1` and review whether `TRIGGER: SETUP LONG/SHORT` now shows magenta/cyan big arrows or failsafe `SETUP L/S` bubbles.
+- Install `MacroMicro_Simplified_v0.5.7.ts` into Thinkorswim study `_dk_codex_macro_micro_v1` and review whether known-visible arrows remain present without v0.5.6 bubble spam.
 
 ## Todo
 
-- If v0.5.6 still shows no arrows and no failsafe bubbles while `TRIGGER` shows `SETUP SHORT` / `SETUP LONG`, compare the dashboard's latest-bar state with the visible chart area.
+- If v0.5.7 is still too noisy, raise `setupPulseBars` above 8 or disable `showSignalBubbles`; if too sparse, lower `setupPulseBars` to 5.
 - Log 5 to 10 QQQ 5-minute examples where arrows were helpful, late, blocked correctly, or still noisy.
 - Decide whether the first higher-timeframe context test should use 1-hour as a soft gate, caution state, or dashboard-only label.
 - Run a separate QQQ 15-minute validation pass after the 5-minute setup is stable.
@@ -57,3 +57,5 @@
 - Updated `tests/verify_simplified_indicator.ps1` for v0.5.5 fresh-plot and dense-pulse checks.
 - Added `MacroMicro_Simplified_v0.5.6.ts` so real entries use the known-visible big arrow plots and setup pulses have failsafe bubbles.
 - Updated `tests/verify_simplified_indicator.ps1` for v0.5.6 known-visible rendering checks.
+- Added `MacroMicro_Simplified_v0.5.7.ts` to throttle setup pulses to 8 bars and turn failsafe setup bubbles off by default after v0.5.6 proved too noisy.
+- Updated `tests/verify_simplified_indicator.ps1` for v0.5.7 clutter-control checks.
