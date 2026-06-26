@@ -74,3 +74,5 @@
 - Add v0.5.16 after v0.5.15 showed `RAW SETUP: L` and the last-bar test bubble/dot but no compact markers: keep spam removed, but route visible setup markers through direct raw setup cadence on the first setup bar, every `setupPulseBars` bars, and the live bar.
 
 - Add v0.5.17 after v0.5.16 showed `TRIGGER: SETUP LONG` and `NEXT: MARK READY` without visible markers: parallel agent review found the marker boolean path was true, so use direct raw setup proof bubbles with the v0.5.14-proven larger offset and move compact markers closer to candles.
+
+- Add v0.5.18 after v0.5.17 proved direct `RAW L/S` bubbles render but produced too much clutter: keep the raw proof route and thin only its visual cadence to 13 bars.

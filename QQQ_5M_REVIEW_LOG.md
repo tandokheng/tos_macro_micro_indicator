@@ -285,3 +285,10 @@ Use this after importing `MacroMicro_Simplified_v0.3.1.ts` into Thinkorswim.
 - Observation: v0.5.16 screenshot showed `BUILD: v0.5.16 RAW CADENCE`, `RAW SETUP: L`, `TRIGGER: SETUP LONG`, and `NEXT: MARK READY`, but no visible compact `L/S` marker after the study was removed and re-added.
 - Root-cause conclusion: parallel agent review confirmed the local boolean path is true; the remaining failure is the compact marker rendering route or placement, not raw setup gating.
 - Change: v0.5.17 keeps spam removed but adds direct `RAW L/S` proof bubbles using the v0.5.14-proven larger offset, and moves compact `L/S` marker dots/bubbles closer to candles for comparison.
+
+
+## 2026-06-27 raw-bubble density follow-up
+
+- Observation: v0.5.17 screenshot showed `BUILD: v0.5.17 RAW BUBBLE`, the `v0.5.17 TEST` bubble, and many direct `RAW L/S` proof bubbles, confirming the clean raw-bubble route works.
+- Root-cause conclusion: visibility is solved for direct raw proof bubbles, but v0.5.17 is too noisy for review/trading.
+- Change: v0.5.18 keeps direct raw proof bubbles but gives them a separate `rawSetupBubbleBars = 13` cadence so proof remains visible with less chart clutter.

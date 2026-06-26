@@ -2,13 +2,13 @@
 
 ## Doing
 
-- Install `MacroMicro_Simplified_v0.5.17.ts` into Thinkorswim study `_dk_codex_macro_micro_v1` and confirm every screenshot shows `BUILD: v0.5.17 RAW BUBBLE`, `RAW SETUP`, `RAW CONT`, and direct `RAW L/S` proof bubbles when raw setup is active.
+- Install `MacroMicro_Simplified_v0.5.18.ts` into Thinkorswim study `_dk_codex_macro_micro_v1` and confirm every screenshot shows `BUILD: v0.5.18 RAW THIN`, `RAW SETUP`, `RAW CONT`, and fewer direct `RAW L/S` proof bubbles than v0.5.17.
 
 ## Todo
 
-- If v0.5.17 does not show `BUILD: v0.5.17 RAW BUBBLE`, remove duplicate/old `_dk_codex_macro_micro_v1` studies and re-add the pasted source once.
-- Confirm old `SPAM L/S` bubbles are gone; v0.5.17 should show direct `RAW L/S` bubbles on first setup, cadence bars, and the live bar.
-- If `RAW SETUP` stays active on the live bar but no direct `RAW L/S` proof bubble appears, capture that screenshot because it means even the proven raw chart-bubble route is failing in TOS.
+- If v0.5.18 does not show `BUILD: v0.5.18 RAW THIN`, remove duplicate/old `_dk_codex_macro_micro_v1` studies and re-add the pasted source once.
+- Confirm old `SPAM L/S` bubbles are gone; v0.5.18 should still show direct `RAW L/S` bubbles, but on a slower proof cadence.
+- If `RAW SETUP` stays active on the live bar but no direct `RAW L/S` proof bubble appears, capture that screenshot because it means the proven raw chart-bubble route regressed.
 - If `CONTRACT: FAIL TRIGGER/MARKER` appears, capture that screenshot because it proves dashboard trigger and marker logic diverged on the same bar.
 - Log 5 to 10 QQQ 5-minute examples where arrows were helpful, late, blocked correctly, or still noisy.
 - Decide whether the first higher-timeframe context test should use 1-hour as a soft gate, caution state, or dashboard-only label.
@@ -82,3 +82,5 @@
 - Updated `tests/verify_simplified_indicator.ps1` for v0.5.16 raw-cadence marker checks.
 - Added `MacroMicro_Simplified_v0.5.17.ts` with direct raw setup proof bubbles and closer compact `L/S` marker placement after v0.5.16 showed `MARK READY` without visible markers.
 - Updated `tests/verify_simplified_indicator.ps1` for v0.5.17 direct raw-bubble checks.
+- Added `MacroMicro_Simplified_v0.5.18.ts` to thin direct raw proof bubbles to a separate 13-bar cadence after v0.5.17 rendered successfully but too densely.
+- Updated `tests/verify_simplified_indicator.ps1` for v0.5.18 raw proof-bubble cadence checks.
