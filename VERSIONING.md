@@ -35,6 +35,7 @@ Use an explicit version in every new indicator file and in the file header.
 - MacroMicro_Simplified_v0.4.9.ts adds a practical real-entry layer so visible arrows can fire from qualified setup edges without waiting for the full recursive entry-state stack.
 - MacroMicro_Simplified_v0.5.0.ts changes RVOL from a hard arrow blocker into a caution state for qualified setups; structure/chop can still block trades.
 - MacroMicro_Simplified_v0.5.1.ts splits dashboard diagnostics into `BLOCKED BY`, `CAUTION BY`, and `NEXT` so RVOL warnings are not confused with hard blockers.
+- MacroMicro_Simplified_v0.5.2.ts adds fast bias-flip caution arrows for hard breakdown/breakout bars before the slower 6-point bias fully flips.
 
 ## Version Meaning
 

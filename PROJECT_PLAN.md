@@ -24,6 +24,6 @@ Candidate hierarchy:
 ## Milestones
 
 - Done: Create `MacroMicro_Simplified_v0.2.0.ts` with stronger RVOL gating, candle confirmation, cleaner target/stop display, and compact signal bubbles.
-- Doing: Review/import `MacroMicro_Simplified_v0.5.1.ts`, which keeps RVOL caution-only behavior and splits dashboard diagnostics so warnings do not look like hard blockers.
+- Doing: Review/import `MacroMicro_Simplified_v0.5.2.ts`, which adds fast bias-flip caution arrows for hard 5-minute breaks while the slower 6-point bias catches up.
 - Todo: Decide whether a higher-timeframe context filter improves 5-minute entries.
 - Todo: Validate/tune the indicator on QQQ 15-minute charts after 5-minute behavior is acceptable.

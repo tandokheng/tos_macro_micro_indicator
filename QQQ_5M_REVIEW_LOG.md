@@ -173,3 +173,10 @@ Use this after importing `MacroMicro_Simplified_v0.3.1.ts` into Thinkorswim.
 
 - Observation: The single `WHY:` label could still make low RVOL look like a hard block even after v0.5.0 changed RVOL to caution-only.
 - Change: v0.5.1 replaces `WHY:` with `BLOCKED BY`, `CAUTION BY`, and `NEXT` labels so hard blocks, warning conditions, and next trigger waits are visually separated.
+
+
+## 2026-06-26 fast breakdown bias-flip follow-up
+
+- Observation: User screenshot showed `BIAS: LONG`, `SETUP: 4/6`, `TRADE: OK`, and `NEXT: CANDLE` while QQQ was already breaking down hard.
+- Root-cause conclusion: the 6-point bias can lag during fast 5-minute selloffs, so waiting for the normal short score to fully win can miss the first useful short cue.
+- Change: v0.5.2 adds strict `FLIP S/L` caution arrows when a large fast-break candle crosses VWAP/EMA structure while the old bias is still stale.
