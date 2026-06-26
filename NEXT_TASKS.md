@@ -2,12 +2,12 @@
 
 ## Doing
 
-- Install `MacroMicro_Simplified_v0.5.10.ts` into Thinkorswim study `_dk_codex_macro_micro_v1` and review whether compact cyan `S` / magenta `L` marker bubbles appear on QQQ 5m scrollback.
+- Install `MacroMicro_Simplified_v0.5.11.ts` into Thinkorswim study `_dk_codex_macro_micro_v1` and review whether `MARKER: S/L`, compact bubbles, or fresh marker dots appear on QQQ 5m scrollback.
 
 ## Todo
 
-- If v0.5.10 marker bubbles are too noisy, add spacing to setup-ready marker bubbles without changing `realLongEntry` / `realShortEntry`.
-- If marker bubbles appear but plot arrows still do not, document it as a TOS plot-style/rendering issue and stop relaxing signal gates for visibility.
+- If v0.5.11 shows `MARKER: S/L` but no bubble or dot, document it as a TOS display/style issue and test by removing/re-adding the study instance.
+- If v0.5.11 markers are too noisy, add spacing to setup-ready marker bubbles without changing `realLongEntry` / `realShortEntry`.
 - Log 5 to 10 QQQ 5-minute examples where arrows were helpful, late, blocked correctly, or still noisy.
 - Decide whether the first higher-timeframe context test should use 1-hour as a soft gate, caution state, or dashboard-only label.
 - Run a separate QQQ 15-minute validation pass after the 5-minute setup is stable.
@@ -66,3 +66,5 @@
 - Updated `tests/verify_simplified_indicator.ps1` for v0.5.9 continuation-anchor checks.
 - Added `MacroMicro_Simplified_v0.5.10.ts` with compact default-on `S` / `L` marker bubbles and visual-only setup-ready markers.
 - Updated `tests/verify_simplified_indicator.ps1` for v0.5.10 render-contract marker checks.
+- Added `MacroMicro_Simplified_v0.5.11.ts` with hardwired marker bubbles, fresh marker dot plots, and a `MARKER: S/L` dashboard label.
+- Updated `tests/verify_simplified_indicator.ps1` for v0.5.11 hardwired marker checks.

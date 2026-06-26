@@ -236,3 +236,10 @@ Use this after importing `MacroMicro_Simplified_v0.3.1.ts` into Thinkorswim.
 - Observation: User still reported no arrows while scrolling back; screenshot showed `BIAS: SHORT`, `SETUP: 6/6`, `TRADE: CAUTION`, `CAUTION BY: RVOL`, and `NEXT: SETUP PULSE`.
 - Multi-agent conclusion: `SETUP: 6/6` means the setup score is strong, but the throttled setup-pulse edge can still be false on that bar; also, v0.5.6 proved chart bubbles rendered, not necessarily that plot-arrow rendering was reliable.
 - Change: v0.5.10 adds default-on compact `S` / `L` marker bubbles driven by `visibleShortSignal` / `visibleLongSignal`, and moves setup-ready states into visual markers instead of `realShortEntry` / `realLongEntry` so PT/SL tracking is not repeatedly reset.
+
+
+## 2026-06-26 hardwired marker follow-up
+
+- Observation: After v0.5.10, user still saw no marker bubbles while the dashboard showed `TRIGGER: CONT SHORT`, which means the visible short marker state should be true.
+- Root-cause hypothesis: the new `showArrowMarkerBubbles` input may have inherited or remapped an old saved Thinkorswim study input value, silently disabling the new marker layer on the existing study instance.
+- Change: v0.5.11 removes the marker input, hardwires compact `S` / `L` marker bubbles, adds fresh `MarkerShortDotV0511` / `MarkerLongDotV0511` point plots, and adds a `MARKER: S/L` dashboard label from the same marker boolean.

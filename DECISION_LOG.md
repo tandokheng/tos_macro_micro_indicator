@@ -60,3 +60,5 @@
 - Add v0.5.9 after screenshot showed `BIAS: SHORT`, `SETUP: 6/6`, `TRADE: OK`, `NEXT: CONTINUE S`, and `TRIGGER: WAIT`: add visible continuation-anchor arrows that do not feed `realShortEntry` / `realLongEntry`, so they do not reset target/stop tracking.
 
 - Add v0.5.10 after multi-agent review of continued no-arrow screenshots: treat chart bubbles as the proven-visible marker path, add compact default-on `S` / `L` marker bubbles from `visibleShortSignal` / `visibleLongSignal`, and keep setup-ready markers visual-only so they do not repeatedly reset PT/SL tracking.
+
+- Add v0.5.11 after v0.5.10 showed `TRIGGER: CONT SHORT` but still no marker bubble: remove the new marker input as a possible saved-input failure point, hardwire marker bubbles, add fresh marker dot plots, and add a `MARKER: S/L` dashboard label tied to the same marker state.

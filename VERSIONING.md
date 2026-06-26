@@ -44,6 +44,7 @@ Use an explicit version in every new indicator file and in the file header.
 - MacroMicro_Simplified_v0.5.8.ts switches to arrows-first review: signal bubbles default off, setup pulses run every 5 bars, and real arrows use a closer live offset.
 - MacroMicro_Simplified_v0.5.9.ts adds continuation-anchor arrows so persistent `NEXT: CONTINUE S/L` states can paint without resetting trade tracking.
 - MacroMicro_Simplified_v0.5.10.ts adds default-on compact `L` / `S` marker bubbles from the visible-signal state because Thinkorswim plot arrows remained unreliable during scrollback testing; setup-ready markers are visual-only and do not reset target/stop tracking.
+- MacroMicro_Simplified_v0.5.11.ts hardwires compact marker bubbles, adds fresh v0.5.11 marker dot plots, and adds a `MARKER: L/S` dashboard label so marker visibility no longer depends on a saved TOS input.
 
 ## Version Meaning
 
