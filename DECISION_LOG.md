@@ -38,3 +38,5 @@
 - Add v0.4.8 after v0.4.7 showed no real arrows: the rendering path is proven, so move RVOL 0.10-0.80 into CAUTION and reserve hard blocking for sub-0.10 volume unless impulse momentum is present.
 
 - Add v0.4.9 after v0.4.8 still showed no arrows: keep the stricter recursive entry state, but add practical setup-edge `realLongEntry` / `realShortEntry` arrows and use them for PT/SL tracking.
+
+- Add v0.5.0 after screenshot showed `BIAS: LONG`, `SETUP: 5/6`, `RVOL: 0.02`, and `WHY: RVOL`: RVOL readings are too brittle as a hard blocker on QQQ 5m, so use RVOL as a caution state while preserving structure/chop blocking.

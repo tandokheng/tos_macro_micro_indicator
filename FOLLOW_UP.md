@@ -2,8 +2,8 @@
 
 ## High Leverage
 
-- FU-001 - Replace `_dk_codex_macro_micro_v1` with `MacroMicro_Simplified_v0.4.9.ts` in Thinkorswim and confirm it compiles.
-- FU-002 - Review whether practical real `ENTRY L/S` arrows appear without turning forced debug back on.
+- FU-001 - Replace `_dk_codex_macro_micro_v1` with `MacroMicro_Simplified_v0.5.0.ts` in Thinkorswim and confirm it compiles.
+- FU-002 - Confirm whether RVOL `0.02` now shows `TRADE: CAUTION` instead of `TRADE: BLOCKED`.
 
 ## Easy To Complete
 

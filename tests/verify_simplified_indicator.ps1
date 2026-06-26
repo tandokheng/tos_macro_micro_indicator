@@ -1,7 +1,7 @@
 $ErrorActionPreference = "Stop"
 
 $root = Split-Path -Parent $PSScriptRoot
-$studyPath = Join-Path $root "MacroMicro_Simplified_v0.4.9.ts"
+$studyPath = Join-Path $root "MacroMicro_Simplified_v0.5.0.ts"
 $tosStudyPath = Join-Path $root "_dk_codex_macro_micro_v1.ts"
 
 function Assert-True {
@@ -47,11 +47,11 @@ Assert-True -Condition (Test-Path -LiteralPath $tosStudyPath) -Message "TOS impo
 $text = Get-Content -LiteralPath $studyPath -Raw
 $tosText = Get-Content -LiteralPath $tosStudyPath -Raw
 
-Assert-Contains $text "# Version: v0.4.9" "v0.4.9 version header"
+Assert-Contains $text "# Version: v0.5.0" "v0.5.0 version header"
 Assert-Contains $text "# TOS Study: _dk_codex_macro_micro_v1" "TOS study name header"
 Assert-Contains $text "declare upper;" "upper price-chart declaration"
 Assert-Contains $text 'DefineGlobalColor("CautionAmber", CreateColor(180, 95, 0));' "readable caution amber color"
-Assert-True -Condition ($tosText -eq $text) -Message "TOS import study file must match MacroMicro_Simplified_v0.4.9.ts exactly"
+Assert-True -Condition ($tosText -eq $text) -Message "TOS import study file must match MacroMicro_Simplified_v0.5.0.ts exactly"
 Assert-Contains $text "Timeframe focus: 5m first, then 15m validation/tuning." "5m-first tuning note"
 Assert-Contains $text "input useFifteenMinuteProfile = no;" "5m profile remains default"
 Assert-Contains $text "input fifteenMinuteScoreTriggerFreshBars = 1;" "15m score freshness profile"
@@ -178,8 +178,9 @@ Assert-Contains $text "shortScore < triggerThreshold" "same-side short reset bel
 Assert-Contains $text "def shortCandleConfirm" "short candle confirmation"
 Assert-Contains $text "def shortScoreCrossTrigger" "short score-cross entry trigger"
 Assert-Contains $text "input minRelVolume = 0.80;" "5m caution RVOL threshold"
-Assert-Contains $text "input blockRelVolume = 0.10;" "5m hard RVOL block threshold"
+Assert-Contains $text "input blockRelVolume = 0.00;" "RVOL no longer hard-blocks qualified setups by default"
 Assert-Contains $text "input lowVolumeMomentumATRFactor = 1.20;" "low-volume impulse override range factor"
+Assert-True -Condition (-not $text.Contains("input blockRelVolume = 0.10;")) -Message "Old 0.10 RVOL hard block is still present"
 Assert-True -Condition (-not $text.Contains("input blockRelVolume = 0.35;")) -Message "Old 0.35 RVOL hard block is still present"
 Assert-True -Condition (-not $text.Contains("input blockRelVolume = 0.60;")) -Message "Old 0.60 RVOL hard block is still present"
 Assert-Contains $text "def extremeLowRelVolume" "extreme low relative volume gate"
@@ -189,8 +190,11 @@ Assert-Contains $text "def lowVolumeLongMomentum" "low-volume long momentum over
 Assert-Contains $text "def lowVolumeShortMomentum" "low-volume short momentum override"
 Assert-Contains $text "def longVolumeOK" "long direction volume gate"
 Assert-Contains $text "def shortVolumeOK" "short direction volume gate"
-Assert-Contains $text "def longVolumeOK = !extremeLowRelVolume or exceptionalLongMomentum or lowVolumeLongMomentum;" "long RVOL block allows impulse override"
-Assert-Contains $text "def shortVolumeOK = !extremeLowRelVolume or exceptionalShortMomentum or lowVolumeShortMomentum;" "short RVOL block allows impulse override"
+Assert-Contains $text "def longVolumeOK = yes;" "long RVOL is not a hard entry blocker"
+Assert-Contains $text "def shortVolumeOK = yes;" "short RVOL is not a hard entry blocker"
+Assert-Contains $text "def tradeBlocked = structureBlocked;" "trade blocked state does not hard-block solely on RVOL"
+Assert-True -Condition (-not $text.Contains("def longVolumeOK = !extremeLowRelVolume")) -Message "Long volume gate still hard-blocks extreme RVOL"
+Assert-True -Condition (-not $text.Contains("def shortVolumeOK = !extremeLowRelVolume")) -Message "Short volume gate still hard-blocks extreme RVOL"
 Assert-Contains $text "def fastBreakVolumeOK = relVol >= minRelVolume or candleTR >= avgTR20 * lowVolumeMomentumATRFactor;" "fast break can confirm on low-volume impulse"
 Assert-Contains $text "def tradeBlocked" "trade blocked state"
 Assert-Contains $text "def longTradeOK" "long trade permission state"

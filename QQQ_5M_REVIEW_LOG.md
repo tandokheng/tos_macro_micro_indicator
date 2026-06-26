@@ -160,3 +160,10 @@ Use this after importing `MacroMicro_Simplified_v0.3.1.ts` into Thinkorswim.
 - Observation: User reported no arrows even after v0.4.8 RVOL tuning.
 - Root-cause hypothesis: real arrows were still dependent on the full recursive `entryState` path, so practical setup edges could appear on the dashboard without a visible entry arrow.
 - Change: v0.4.9 adds `realLongEntry` / `realShortEntry`, combining the strict entry-state pulses with practical setup-edge arrows, and routes visible arrows, entry bubbles, alerts, and PT/SL tracking through that layer.
+
+
+## 2026-06-26 RVOL caution-only follow-up
+
+- Observation: User screenshot showed `BIAS: LONG`, `SETUP: 5/6`, `TRADE: BLOCKED`, `WHY: RVOL`, and `RVOL: 0.02`.
+- Root-cause conclusion: Thinkorswim RVOL can be extremely low even when a clean directional 5/6 setup is visible; using it as a hard gate still suppresses practical arrows.
+- Change: v0.5.0 changes RVOL to caution-only for qualified setups by setting `longVolumeOK` and `shortVolumeOK` to `yes` and leaving hard blocking to structure/chop.
