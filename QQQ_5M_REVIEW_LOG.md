@@ -257,3 +257,10 @@ Use this after importing `MacroMicro_Simplified_v0.3.1.ts` into Thinkorswim.
 - Observation: User screenshot showed `BUILD: v0.5.12 DIAG`, `MARKER: NONE`, `BIAS: SHORT`, `SETUP: 6/6`, and `TRIGGER: CONT SHORT`. Multi-agent review found that combination is logically impossible from the local v0.5.12 source because `CONT SHORT` should feed `visibleShortSignal`, then `arrowMarkerShort`.
 - Root-cause hypothesis: the active TOS study may be behaviorally drifting from the local source through paste/input/style state, or the dashboard trigger chain needs explicit contract diagnostics instead of transitive reasoning.
 - Change: v0.5.13 is a deliberately loud spam-diagnostic build. It hardwires raw setup/continuation pressure into visible spam markers (`SPAM L/S`) and the known-visible arrow plots without resetting PT/SL tracking, adds `BUILD: v0.5.13 SPAM DIAG`, `RAW`, and `CONTRACT` labels, and makes dashboard continuation trigger labels use named contract booleans.
+
+
+## 2026-06-26 v0.5.13 compile follow-up
+
+- Observation: Thinkorswim rejected v0.5.13 with `Invalid statement: AddLabel` and a later `Invalid statement: else`.
+- Root-cause hypothesis: the new diagnostic labels used long chained string expressions with nested string `if/else`, which likely confused the ThinkScript parser and caused it to report the next dashboard `AddLabel`.
+- Change: v0.5.14 preserves the spam diagnostic and marker contract, but splits `MARKER`, `CONTRACT`, `RAW SETUP`, and `RAW CONT` into static AddLabel statements.

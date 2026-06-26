@@ -2,12 +2,12 @@
 
 ## Doing
 
-- Install `MacroMicro_Simplified_v0.5.13.ts` into Thinkorswim study `_dk_codex_macro_micro_v1` and confirm every screenshot shows `BUILD: v0.5.13 SPAM DIAG`, `RAW: ...`, and `CONTRACT: OK` or `FAIL TRIGGER/MARKER`.
+- Install `MacroMicro_Simplified_v0.5.14.ts` into Thinkorswim study `_dk_codex_macro_micro_v1` and confirm every screenshot shows `BUILD: v0.5.14 SPAM DIAG`, `RAW SETUP`, `RAW CONT`, and `CONTRACT: OK` or `FAIL TRIGGER/MARKER`.
 
 ## Todo
 
-- If v0.5.13 does not show `BUILD: v0.5.13 SPAM DIAG`, remove duplicate/old `_dk_codex_macro_micro_v1` studies and re-add the pasted source once.
-- If v0.5.13 shows `RAW: SETUP` or `RAW: CONT` but no `SPAM L/S` bubble or arrow, document it as a TOS display/style issue and test by removing/re-adding the study instance.
+- If v0.5.14 does not show `BUILD: v0.5.14 SPAM DIAG`, remove duplicate/old `_dk_codex_macro_micro_v1` studies and re-add the pasted source once.
+- If v0.5.14 shows `RAW SETUP` or `RAW CONT` but no `SPAM L/S` bubble or arrow, document it as a TOS display/style issue and test by removing/re-adding the study instance.
 - If `CONTRACT: FAIL TRIGGER/MARKER` appears, capture that screenshot because it proves dashboard trigger and marker logic diverged on the same bar.
 - Log 5 to 10 QQQ 5-minute examples where arrows were helpful, late, blocked correctly, or still noisy.
 - Decide whether the first higher-timeframe context test should use 1-hour as a soft gate, caution state, or dashboard-only label.
@@ -73,3 +73,5 @@
 - Updated `tests/verify_simplified_indicator.ps1` for v0.5.12 always-visible diagnostic checks.
 - Added `MacroMicro_Simplified_v0.5.13.ts` with hardwired spam diagnostics, raw setup/continuation labels, and explicit dashboard-trigger/marker contract checks.
 - Updated `tests/verify_simplified_indicator.ps1` for v0.5.13 spam diagnostic and contract checks.
+- Added `MacroMicro_Simplified_v0.5.14.ts` to split v0.5.13 diagnostic labels into static labels after Thinkorswim rejected the chained `AddLabel` string expressions.
+- Updated `tests/verify_simplified_indicator.ps1` for v0.5.14 compile-safe diagnostic label checks.
