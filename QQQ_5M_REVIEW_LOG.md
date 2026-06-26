@@ -299,3 +299,10 @@ Use this after importing `MacroMicro_Simplified_v0.3.1.ts` into Thinkorswim.
 - Observation: User provided a separate ThinkScript that successfully shows arrows in Thinkorswim; its arrow plots use direct fire conditions, `low/high +/- off` placement, `PaintingStrategy.ARROW_UP/DOWN`, `AssignValueColor`, and line weight 5.
 - Root-cause hypothesis: v0.5.18 raw setup state and proof bubbles work, so the missing arrows are likely tied to the older multiplexed debug plot rendering path, color/style state, or placement rather than setup gating.
 - Change: v0.5.19 keeps the thinned raw proof bubbles and adds fresh `RawSetupLongArrowV0519` / `RawSetupShortArrowV0519` plots that mirror the known-working arrow script pattern.
+
+
+## 2026-06-27 v0.5.19 arrow confirmation
+
+- Observation: User screenshot showed `BUILD: v0.5.19 RAW ARROWS`, `v0.5.19 TEST`, direct `RAW L/S` proof bubbles, and visible magenta/cyan arrows on QQQ 5m.
+- Root-cause conclusion: the no-arrow issue was a Thinkorswim rendering/style-state problem around the previous arrow plot path, not the raw setup boolean. Fresh dedicated working-style plots rendered correctly.
+- Change: v0.5.20 keeps the working-style arrows default-on and turns raw proof bubbles off by default so the chart becomes cleaner for signal review.

@@ -2,15 +2,15 @@
 
 ## Doing
 
-- Install `MacroMicro_Simplified_v0.5.19.ts` into Thinkorswim study `_dk_codex_macro_micro_v1` and confirm every screenshot shows `BUILD: v0.5.19 RAW ARROWS`, `RAW SETUP`, `RAW CONT`, and magenta/cyan raw setup arrows near the direct `RAW L/S` proof bubbles.
+- Install `MacroMicro_Simplified_v0.5.20.ts` into Thinkorswim study `_dk_codex_macro_micro_v1` and confirm every screenshot shows `BUILD: v0.5.20 CLEAN ARROWS`, `RAW SETUP`, `RAW CONT`, hidden raw proof bubbles, and visible magenta/cyan raw setup arrows.
 
 ## Todo
 
-- If v0.5.19 does not show `BUILD: v0.5.19 RAW ARROWS`, remove duplicate/old `_dk_codex_macro_micro_v1` studies and re-add the pasted source once.
-- Confirm old `SPAM L/S` bubbles are gone; v0.5.19 should still show direct `RAW L/S` bubbles on the slower proof cadence and add working-style raw arrows.
-- If `RAW SETUP` stays active on the live bar but no direct `RAW L/S` proof bubble appears, capture that screenshot because it means the proven raw chart-bubble route regressed.
+- If v0.5.20 does not show `BUILD: v0.5.20 CLEAN ARROWS`, remove duplicate/old `_dk_codex_macro_micro_v1` studies and re-add the pasted source once.
+- Confirm old `SPAM L/S` bubbles are gone; v0.5.20 should hide direct `RAW L/S` proof bubbles by default and keep working-style raw arrows visible.
+- If `RAW SETUP` stays active on the live bar but no raw arrow appears, capture that screenshot; turn `showRawProofBubbles` on only if we need to compare bubble and arrow rendering directly.
 - If `CONTRACT: FAIL TRIGGER/MARKER` appears, capture that screenshot because it proves dashboard trigger and marker logic diverged on the same bar.
-- If direct `RAW L/S` bubbles appear but the new raw arrows do not, capture that screenshot because it isolates the failure to Thinkorswim arrow plot rendering/style state rather than raw setup logic.
+- If raw arrows disappear again while labels prove setup state, treat it as a Thinkorswim plot rendering/style-state issue and use the documented working-arrow primitive before changing gates.
 - Log 5 to 10 QQQ 5-minute examples where arrows were helpful, late, blocked correctly, or still noisy.
 - Decide whether the first higher-timeframe context test should use 1-hour as a soft gate, caution state, or dashboard-only label.
 - Run a separate QQQ 15-minute validation pass after the 5-minute setup is stable.
@@ -87,3 +87,6 @@
 - Updated `tests/verify_simplified_indicator.ps1` for v0.5.18 raw proof-bubble cadence checks.
 - Added `MacroMicro_Simplified_v0.5.19.ts` with fresh dedicated raw setup arrows that mirror a known-working ThinkScript arrow pattern from the user-provided reference script.
 - Updated `tests/verify_simplified_indicator.ps1` for v0.5.19 working-style raw arrow checks.
+- Confirmed from user screenshot that v0.5.19 arrows render in Thinkorswim; documented the lesson in `CLAUDE_ARROW_RENDERING_PROMPT.md`.
+- Added `MacroMicro_Simplified_v0.5.20.ts` to keep working-style arrows default-on while hiding raw proof bubbles by default.
+- Updated `tests/verify_simplified_indicator.ps1` for v0.5.20 clean-arrow checks.

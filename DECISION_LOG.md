@@ -78,3 +78,7 @@
 - Add v0.5.18 after v0.5.17 proved direct `RAW L/S` bubbles render but produced too much clutter: keep the raw proof route and thin only its visual cadence to 13 bars.
 
 - Add v0.5.19 after comparing a user-provided script whose arrows render correctly in Thinkorswim: keep v0.5.18's raw proof bubbles and add fresh dedicated raw setup arrow plots using the working pattern of direct conditions, `low/high +/- off`, `ARROW_UP/DOWN`, `AssignValueColor`, and line weight 5.
+
+- Treat the v0.5.19 screenshot as the canonical arrow-rendering lesson: when labels/bubbles prove signal state but arrows do not render, use fresh dedicated working-style arrow plots before changing signal gates.
+
+- Add v0.5.20 after v0.5.19 confirmed arrows render: keep working-style raw arrows default-on and hide direct raw proof bubbles by default for cleaner QQQ 5m review.
