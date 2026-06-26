@@ -42,6 +42,7 @@ Use an explicit version in every new indicator file and in the file header.
 - MacroMicro_Simplified_v0.5.6.ts routes real entries through the known-visible big debug arrow plots and adds failsafe setup bubbles after `TRIGGER: SETUP LONG/SHORT` appeared without visible arrows.
 - MacroMicro_Simplified_v0.5.7.ts reduces v0.5.6 chart clutter by throttling setup pulses to 8 bars and defaulting failsafe setup bubbles off.
 - MacroMicro_Simplified_v0.5.8.ts switches to arrows-first review: signal bubbles default off, setup pulses run every 5 bars, and real arrows use a closer live offset.
+- MacroMicro_Simplified_v0.5.9.ts adds continuation-anchor arrows so persistent `NEXT: CONTINUE S/L` states can paint without resetting trade tracking.
 
 ## Version Meaning
 

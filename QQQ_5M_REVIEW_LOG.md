@@ -222,3 +222,10 @@ Use this after importing `MacroMicro_Simplified_v0.3.1.ts` into Thinkorswim.
 - Observation: v0.5.7 screenshot showed a clean chart, but also no visible signals in the reviewed area; the current bar itself was `SETUP: 4/6`, `TRIGGER: WAIT`, and `NEXT: CANDLE`.
 - Root-cause conclusion: the current bar was correctly not triggering, but the review build should make historical arrows easier to see without needing setup bubbles.
 - Change: v0.5.8 defaults `showSignalBubbles` to `no`, sets `setupPulseBars = 5`, and moves real arrows closer to candles with `liveArrowOff` while preserving the known-visible debug plot names.
+
+
+## 2026-06-26 continuation-anchor follow-up
+
+- Observation: v0.5.8 screenshot showed `BIAS: SHORT`, `SETUP: 6/6`, `TRADE: OK`, and `NEXT: CONTINUE S`, but `TRIGGER: WAIT` and no visible arrow.
+- Root-cause conclusion: continuation pressure can persist after the edge-based continuation arrow has already passed, so the dashboard can show a valid continuation state without a current plotted arrow.
+- Change: v0.5.9 adds continuation-anchor arrows through `visibleLongSignal` / `visibleShortSignal`, separate from trade-entry tracking, so persistent `NEXT: CONTINUE S/L` states can paint without resetting PT/SL.

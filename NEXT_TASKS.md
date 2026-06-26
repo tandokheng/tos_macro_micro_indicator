@@ -2,11 +2,11 @@
 
 ## Doing
 
-- Install `MacroMicro_Simplified_v0.5.8.ts` into Thinkorswim study `_dk_codex_macro_micro_v1` and review whether arrows are visible without the v0.5.6 bubble spam.
+- Install `MacroMicro_Simplified_v0.5.9.ts` into Thinkorswim study `_dk_codex_macro_micro_v1` and review whether `NEXT: CONTINUE S/L` now paints magenta/cyan continuation-anchor arrows without bubble spam.
 
 ## Todo
 
-- If v0.5.8 is still too noisy, raise `setupPulseBars` above 5; if too sparse, lower it to 3 or temporarily turn `showSignalBubbles` back on.
+- If v0.5.9 is still too noisy, add spacing to continuation-anchor arrows; if still too sparse, lower `setupPulseBars` to 3 or temporarily turn `showSignalBubbles` back on.
 - Log 5 to 10 QQQ 5-minute examples where arrows were helpful, late, blocked correctly, or still noisy.
 - Decide whether the first higher-timeframe context test should use 1-hour as a soft gate, caution state, or dashboard-only label.
 - Run a separate QQQ 15-minute validation pass after the 5-minute setup is stable.
@@ -61,3 +61,5 @@
 - Updated `tests/verify_simplified_indicator.ps1` for v0.5.7 clutter-control checks.
 - Added `MacroMicro_Simplified_v0.5.8.ts` for arrows-first review: setup pulses every 5 bars, signal bubbles default off, and real arrows closer to candles.
 - Updated `tests/verify_simplified_indicator.ps1` for v0.5.8 arrows-first checks.
+- Added `MacroMicro_Simplified_v0.5.9.ts` with continuation-anchor arrows for persistent `NEXT: CONTINUE S/L` states.
+- Updated `tests/verify_simplified_indicator.ps1` for v0.5.9 continuation-anchor checks.

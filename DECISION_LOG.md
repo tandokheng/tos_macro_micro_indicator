@@ -56,3 +56,5 @@
 - Add v0.5.7 after v0.5.6 screenshot showed the visibility path working but flooding the chart with `SETUP L/S` bubbles: keep known-visible arrows, turn failsafe bubbles off by default, and throttle setup pulses to every 8 bars.
 
 - Add v0.5.8 after v0.5.7 screenshot became quiet again on a non-triggering `SETUP: 4/6` bar: keep the known-visible arrow path, move live arrows closer to candles, turn normal bubbles off by default, and use `setupPulseBars = 5` as a middle ground.
+
+- Add v0.5.9 after screenshot showed `BIAS: SHORT`, `SETUP: 6/6`, `TRADE: OK`, `NEXT: CONTINUE S`, and `TRIGGER: WAIT`: add visible continuation-anchor arrows that do not feed `realShortEntry` / `realLongEntry`, so they do not reset target/stop tracking.
