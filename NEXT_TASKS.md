@@ -2,11 +2,11 @@
 
 ## Doing
 
-- Install `MacroMicro_Simplified_v0.5.7.ts` into Thinkorswim study `_dk_codex_macro_micro_v1` and review whether known-visible arrows remain present without v0.5.6 bubble spam.
+- Install `MacroMicro_Simplified_v0.5.8.ts` into Thinkorswim study `_dk_codex_macro_micro_v1` and review whether arrows are visible without the v0.5.6 bubble spam.
 
 ## Todo
 
-- If v0.5.7 is still too noisy, raise `setupPulseBars` above 8 or disable `showSignalBubbles`; if too sparse, lower `setupPulseBars` to 5.
+- If v0.5.8 is still too noisy, raise `setupPulseBars` above 5; if too sparse, lower it to 3 or temporarily turn `showSignalBubbles` back on.
 - Log 5 to 10 QQQ 5-minute examples where arrows were helpful, late, blocked correctly, or still noisy.
 - Decide whether the first higher-timeframe context test should use 1-hour as a soft gate, caution state, or dashboard-only label.
 - Run a separate QQQ 15-minute validation pass after the 5-minute setup is stable.
@@ -59,3 +59,5 @@
 - Updated `tests/verify_simplified_indicator.ps1` for v0.5.6 known-visible rendering checks.
 - Added `MacroMicro_Simplified_v0.5.7.ts` to throttle setup pulses to 8 bars and turn failsafe setup bubbles off by default after v0.5.6 proved too noisy.
 - Updated `tests/verify_simplified_indicator.ps1` for v0.5.7 clutter-control checks.
+- Added `MacroMicro_Simplified_v0.5.8.ts` for arrows-first review: setup pulses every 5 bars, signal bubbles default off, and real arrows closer to candles.
+- Updated `tests/verify_simplified_indicator.ps1` for v0.5.8 arrows-first checks.

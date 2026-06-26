@@ -54,3 +54,5 @@
 - Add v0.5.6 after screenshot showed `TRIGGER: SETUP LONG` but still no visible arrow: treat the score/trigger path as working and move real entries onto the previously proven-visible `DebugBigArrow` / `DebugBigUpArrow` plots, with failsafe setup bubbles as a second visual route.
 
 - Add v0.5.7 after v0.5.6 screenshot showed the visibility path working but flooding the chart with `SETUP L/S` bubbles: keep known-visible arrows, turn failsafe bubbles off by default, and throttle setup pulses to every 8 bars.
+
+- Add v0.5.8 after v0.5.7 screenshot became quiet again on a non-triggering `SETUP: 4/6` bar: keep the known-visible arrow path, move live arrows closer to candles, turn normal bubbles off by default, and use `setupPulseBars = 5` as a middle ground.

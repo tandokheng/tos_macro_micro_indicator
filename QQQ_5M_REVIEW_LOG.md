@@ -215,3 +215,10 @@ Use this after importing `MacroMicro_Simplified_v0.3.1.ts` into Thinkorswim.
 - Observation: v0.5.6 screenshot showed many cyan/magenta `SETUP S/L` bubbles across the chart, proving the visual path but making the chart too noisy.
 - Root-cause conclusion: `setupPulseBars = 1` plus default-on failsafe bubbles was appropriate for proof, but not for trading review.
 - Change: v0.5.7 keeps the known-visible arrow route, restores `setupPulseBars` to 8, and defaults `showFailsafeSignalBubbles` to `no`.
+
+
+## 2026-06-26 arrows-first middle-ground follow-up
+
+- Observation: v0.5.7 screenshot showed a clean chart, but also no visible signals in the reviewed area; the current bar itself was `SETUP: 4/6`, `TRIGGER: WAIT`, and `NEXT: CANDLE`.
+- Root-cause conclusion: the current bar was correctly not triggering, but the review build should make historical arrows easier to see without needing setup bubbles.
+- Change: v0.5.8 defaults `showSignalBubbles` to `no`, sets `setupPulseBars = 5`, and moves real arrows closer to candles with `liveArrowOff` while preserving the known-visible debug plot names.
