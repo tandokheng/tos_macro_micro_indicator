@@ -167,3 +167,9 @@ Use this after importing `MacroMicro_Simplified_v0.3.1.ts` into Thinkorswim.
 - Observation: User screenshot showed `BIAS: LONG`, `SETUP: 5/6`, `TRADE: BLOCKED`, `WHY: RVOL`, and `RVOL: 0.02`.
 - Root-cause conclusion: Thinkorswim RVOL can be extremely low even when a clean directional 5/6 setup is visible; using it as a hard gate still suppresses practical arrows.
 - Change: v0.5.0 changes RVOL to caution-only for qualified setups by setting `longVolumeOK` and `shortVolumeOK` to `yes` and leaving hard blocking to structure/chop.
+
+
+## 2026-06-26 dashboard diagnostic split
+
+- Observation: The single `WHY:` label could still make low RVOL look like a hard block even after v0.5.0 changed RVOL to caution-only.
+- Change: v0.5.1 replaces `WHY:` with `BLOCKED BY`, `CAUTION BY`, and `NEXT` labels so hard blocks, warning conditions, and next trigger waits are visually separated.

@@ -2,11 +2,11 @@
 
 ## Doing
 
-- Install `MacroMicro_Simplified_v0.5.0.ts` into Thinkorswim study `_dk_codex_macro_micro_v1` and review whether RVOL `0.02` setups now show `TRADE: CAUTION` instead of `TRADE: BLOCKED`.
+- Install `MacroMicro_Simplified_v0.5.1.ts` into Thinkorswim study `_dk_codex_macro_micro_v1` and review whether RVOL `0.02` setups now show `TRADE: CAUTION` plus `CAUTION BY: RVOL`, instead of `TRADE: BLOCKED`.
 
 ## Todo
 
-- If v0.5.0 is still too quiet, capture the dashboard labels from that exact chart area; structure/chop is then the likely remaining blocker.
+- If v0.5.1 is still too quiet, capture the dashboard labels from that exact chart area; `BLOCKED BY`, `CAUTION BY`, and `NEXT` should identify the remaining blocker.
 - Log 5 to 10 QQQ 5-minute examples where arrows were helpful, late, blocked correctly, or still noisy.
 - Decide whether the first higher-timeframe context test should use 1-hour as a soft gate, caution state, or dashboard-only label.
 - Run a separate QQQ 15-minute validation pass after the 5-minute setup is stable.
@@ -45,3 +45,5 @@
 - Updated `tests/verify_simplified_indicator.ps1` for v0.4.9 practical real-entry checks.
 - Added `MacroMicro_Simplified_v0.5.0.ts` so RVOL is caution-only for qualified setups instead of a hard arrow blocker.
 - Updated `tests/verify_simplified_indicator.ps1` for v0.5.0 RVOL-as-caution checks.
+- Added `MacroMicro_Simplified_v0.5.1.ts` to split dashboard diagnostics into hard block, caution source, and next trigger reason.
+- Updated `tests/verify_simplified_indicator.ps1` for v0.5.1 diagnostic label checks.

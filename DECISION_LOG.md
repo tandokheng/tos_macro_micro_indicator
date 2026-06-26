@@ -40,3 +40,5 @@
 - Add v0.4.9 after v0.4.8 still showed no arrows: keep the stricter recursive entry state, but add practical setup-edge `realLongEntry` / `realShortEntry` arrows and use them for PT/SL tracking.
 
 - Add v0.5.0 after screenshot showed `BIAS: LONG`, `SETUP: 5/6`, `RVOL: 0.02`, and `WHY: RVOL`: RVOL readings are too brittle as a hard blocker on QQQ 5m, so use RVOL as a caution state while preserving structure/chop blocking.
+
+- Add v0.5.1 to split the old combined `WHY:` diagnostic into `BLOCKED BY`, `CAUTION BY`, and `NEXT` so low RVOL is shown as a caution source instead of looking like the reason for a hard block.

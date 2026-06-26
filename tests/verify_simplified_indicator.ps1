@@ -1,7 +1,7 @@
 $ErrorActionPreference = "Stop"
 
 $root = Split-Path -Parent $PSScriptRoot
-$studyPath = Join-Path $root "MacroMicro_Simplified_v0.5.0.ts"
+$studyPath = Join-Path $root "MacroMicro_Simplified_v0.5.1.ts"
 $tosStudyPath = Join-Path $root "_dk_codex_macro_micro_v1.ts"
 
 function Assert-True {
@@ -47,11 +47,11 @@ Assert-True -Condition (Test-Path -LiteralPath $tosStudyPath) -Message "TOS impo
 $text = Get-Content -LiteralPath $studyPath -Raw
 $tosText = Get-Content -LiteralPath $tosStudyPath -Raw
 
-Assert-Contains $text "# Version: v0.5.0" "v0.5.0 version header"
+Assert-Contains $text "# Version: v0.5.1" "v0.5.1 version header"
 Assert-Contains $text "# TOS Study: _dk_codex_macro_micro_v1" "TOS study name header"
 Assert-Contains $text "declare upper;" "upper price-chart declaration"
 Assert-Contains $text 'DefineGlobalColor("CautionAmber", CreateColor(180, 95, 0));' "readable caution amber color"
-Assert-True -Condition ($tosText -eq $text) -Message "TOS import study file must match MacroMicro_Simplified_v0.5.0.ts exactly"
+Assert-True -Condition ($tosText -eq $text) -Message "TOS import study file must match MacroMicro_Simplified_v0.5.1.ts exactly"
 Assert-Contains $text "Timeframe focus: 5m first, then 15m validation/tuning." "5m-first tuning note"
 Assert-Contains $text "input useFifteenMinuteProfile = no;" "5m profile remains default"
 Assert-Contains $text "input fifteenMinuteScoreTriggerFreshBars = 1;" "15m score freshness profile"
@@ -168,7 +168,10 @@ Assert-True -Condition (-not $text.Contains("showSignalBubbles and debugForcedSh
 Assert-Contains $text '"TEST LONG"' "forced long trigger dashboard state"
 Assert-Contains $text '"TEST SHORT"' "forced short trigger dashboard state"
 Assert-Contains $text '"DEBUG FORCE ARROWS"' "visible forced-arrow debug dashboard label"
-Assert-Contains $text '"WHY: "' "no-arrow diagnostic dashboard label"
+Assert-Contains $text '"BLOCKED BY: "' "hard-block diagnostic dashboard label"
+Assert-Contains $text '"CAUTION BY: "' "caution diagnostic dashboard label"
+Assert-Contains $text '"NEXT: "' "next-trigger diagnostic dashboard label"
+Assert-True -Condition (-not $text.Contains('"WHY: "')) -Message "Old combined WHY diagnostic label can confuse caution with hard block"
 Assert-Contains $text '"SCORE"' "score-first diagnostic state"
 Assert-Contains $text '"TIE"' "tie diagnostic state"
 Assert-Contains $text '"SETUP: " +' "setup dashboard label"

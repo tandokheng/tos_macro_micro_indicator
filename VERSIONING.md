@@ -34,6 +34,7 @@ Use an explicit version in every new indicator file and in the file header.
 - MacroMicro_Simplified_v0.4.8.ts retunes 5m RVOL gating so sub-0.35 RVOL is CAUTION, while only sub-0.10 RVOL hard-blocks unless price action shows impulse momentum.
 - MacroMicro_Simplified_v0.4.9.ts adds a practical real-entry layer so visible arrows can fire from qualified setup edges without waiting for the full recursive entry-state stack.
 - MacroMicro_Simplified_v0.5.0.ts changes RVOL from a hard arrow blocker into a caution state for qualified setups; structure/chop can still block trades.
+- MacroMicro_Simplified_v0.5.1.ts splits dashboard diagnostics into `BLOCKED BY`, `CAUTION BY`, and `NEXT` so RVOL warnings are not confused with hard blockers.
 
 ## Version Meaning
 
