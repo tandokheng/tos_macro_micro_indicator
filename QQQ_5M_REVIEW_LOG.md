@@ -271,3 +271,10 @@ Use this after importing `MacroMicro_Simplified_v0.3.1.ts` into Thinkorswim.
 - Observation: v0.5.14 screenshot showed `BUILD: v0.5.14 SPAM DIAG`, `RAW SETUP: S`, and many cyan/magenta `SPAM S/L` bubbles, proving the chart-bubble marker route and raw setup source both work.
 - Root-cause conclusion: raw setup state was being painted every bar through the diagnostic layer, while the dashboard clean trigger could still say `WAIT` because it uses the edge/throttled setup-pulse layer.
 - Change: v0.5.15 removes hardwired `SPAM L/S` bubbles and routes setup visibility through `setupPulseLongArrow` / `setupPulseShortArrow`, keeping raw labels for diagnosis but making the visible marker layer clean enough for QQQ 5m review.
+
+
+## 2026-06-26 raw cadence marker follow-up
+
+- Observation: v0.5.15 screenshot showed `BUILD: v0.5.15 CLEAN RAW`, `RAW SETUP: L`, and the last-bar test bubble/dot, with old `SPAM L/S` bubbles gone, but no compact `L/S` markers even after scrolling.
+- Root-cause conclusion: the raw setup source and chart-bubble path were alive, but visible setup markers depended only on the setup-pulse edge/counter path, which could leave a valid raw setup visually silent.
+- Change: v0.5.16 adds direct raw setup cadence markers on the first setup bar, every `setupPulseBars` bars while raw setup persists, and the live last bar for immediate screenshot confirmation.
