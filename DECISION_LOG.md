@@ -84,3 +84,5 @@
 - Add v0.5.20 after v0.5.19 confirmed arrows render: keep working-style raw arrows default-on and hide direct raw proof bubbles by default for cleaner QQQ 5m review.
 
 - Add `THINKSCRIPT_DEBUGGING_LESSONS.md` after receiving Claude's ThinkScript lessons: preserve general guardrails for instrumentation, time-window logic, value-based arrows, recursive state, chart timezone, versioning, and independent review.
+
+- Add `BACKTESTING_GUARDRAILS.md` before writing any Yahoo Finance backtest: require data coverage probes, no look-ahead fills, pessimistic stop/target handling, timezone/session checks, one-position state, honest statistics, and explicit limitations.

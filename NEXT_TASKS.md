@@ -12,6 +12,7 @@
 - If `CONTRACT: FAIL TRIGGER/MARKER` appears, capture that screenshot because it proves dashboard trigger and marker logic diverged on the same bar.
 - If raw arrows disappear again while labels prove setup state, treat it as a Thinkorswim plot rendering/style-state issue and use the documented working-arrow primitive before changing gates.
 - Log 5 to 10 QQQ 5-minute examples where arrows were helpful, late, blocked correctly, or still noisy.
+- When ready for a Python/Yahoo Finance backtest, define the exact symbol, session, date window, entry fill rule, stop/target rule, cost model, and minimum sample-size threshold before writing code.
 - Decide whether the first higher-timeframe context test should use 1-hour as a soft gate, caution state, or dashboard-only label.
 - Run a separate QQQ 15-minute validation pass after the 5-minute setup is stable.
 - Add static verifier checks for any higher-timeframe variables if they are introduced.
@@ -91,3 +92,4 @@
 - Added `MacroMicro_Simplified_v0.5.20.ts` to keep working-style arrows default-on while hiding raw proof bubbles by default.
 - Updated `tests/verify_simplified_indicator.ps1` for v0.5.20 clean-arrow checks.
 - Added `THINKSCRIPT_DEBUGGING_LESSONS.md` and folded Claude's general ThinkScript debugging rules into the Claude handoff prompt.
+- Added `BACKTESTING_GUARDRAILS.md` from Claude's backtest lessons, adapted for QQQ/Yahoo Finance use before any backtest code is written.
