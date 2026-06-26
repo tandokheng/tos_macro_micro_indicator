@@ -180,3 +180,10 @@ Use this after importing `MacroMicro_Simplified_v0.3.1.ts` into Thinkorswim.
 - Observation: User screenshot showed `BIAS: LONG`, `SETUP: 4/6`, `TRADE: OK`, and `NEXT: CANDLE` while QQQ was already breaking down hard.
 - Root-cause conclusion: the 6-point bias can lag during fast 5-minute selloffs, so waiting for the normal short score to fully win can miss the first useful short cue.
 - Change: v0.5.2 adds strict `FLIP S/L` caution arrows when a large fast-break candle crosses VWAP/EMA structure while the old bias is still stale.
+
+
+## 2026-06-26 short continuation pressure follow-up
+
+- Observation: User screenshot showed `BIAS: SHORT`, `SETUP: 4/6`, `TRADE: CAUTION`, `CAUTION BY: RVOL`, and `NEXT: CANDLE` while QQQ remained in an active downtrend.
+- Root-cause conclusion: after the bias has flipped correctly, strict candle confirmation can still starve 4/6 continuation entries during low-RVOL trend pressure.
+- Change: v0.5.3 adds `CONT S/L` caution arrows when price keeps breaking in the active 4/6 bias direction despite strict candle confirmation not passing.

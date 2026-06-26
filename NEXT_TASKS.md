@@ -2,11 +2,11 @@
 
 ## Doing
 
-- Install `MacroMicro_Simplified_v0.5.2.ts` into Thinkorswim study `_dk_codex_macro_micro_v1` and review whether the 2026-06-26 9:30 AM QQQ breakdown can show `FLIP S` / `CAUTION BY: BREAKDOWN`.
+- Install `MacroMicro_Simplified_v0.5.3.ts` into Thinkorswim study `_dk_codex_macro_micro_v1` and review whether active 4/6 short trends can show `CONT S` / `CAUTION BY: CONTINUE S` instead of staying at `NEXT: CANDLE`.
 
 ## Todo
 
-- If v0.5.2 is still too quiet, capture the dashboard labels from that exact chart area; `BLOCKED BY`, `CAUTION BY`, and `NEXT` should identify the remaining blocker.
+- If v0.5.3 is still too quiet, capture the dashboard labels from that exact chart area; `BLOCKED BY`, `CAUTION BY`, and `NEXT` should identify the remaining blocker.
 - Log 5 to 10 QQQ 5-minute examples where arrows were helpful, late, blocked correctly, or still noisy.
 - Decide whether the first higher-timeframe context test should use 1-hour as a soft gate, caution state, or dashboard-only label.
 - Run a separate QQQ 15-minute validation pass after the 5-minute setup is stable.
@@ -49,3 +49,5 @@
 - Updated `tests/verify_simplified_indicator.ps1` for v0.5.1 diagnostic label checks.
 - Added `MacroMicro_Simplified_v0.5.2.ts` with fast bias-flip caution arrows for hard breakdown/breakout bars while the slower score bias lags.
 - Updated `tests/verify_simplified_indicator.ps1` for v0.5.2 fast bias-flip checks.
+- Added `MacroMicro_Simplified_v0.5.3.ts` with 4/6 continuation-pressure caution arrows for active trends stuck on `NEXT: CANDLE`.
+- Updated `tests/verify_simplified_indicator.ps1` for v0.5.3 continuation-pressure checks.

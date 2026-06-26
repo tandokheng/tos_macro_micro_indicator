@@ -44,3 +44,5 @@
 - Add v0.5.1 to split the old combined `WHY:` diagnostic into `BLOCKED BY`, `CAUTION BY`, and `NEXT` so low RVOL is shown as a caution source instead of looking like the reason for a hard block.
 
 - Add v0.5.2 after screenshot showed `BIAS: LONG`, `SETUP: 4/6`, `TRADE: OK`, and `NEXT: CANDLE` during a sharp QQQ selloff: add fast bias-flip caution arrows so hard breakdown/breakout bars can signal before the slower 6-point bias fully flips.
+
+- Add v0.5.3 after screenshot showed `BIAS: SHORT`, `SETUP: 4/6`, `TRADE: CAUTION`, `CAUTION BY: RVOL`, and `NEXT: CANDLE` during an active QQQ downtrend: add 4/6 continuation-pressure caution arrows so active trends are not starved by strict candle confirmation.

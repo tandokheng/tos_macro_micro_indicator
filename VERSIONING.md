@@ -36,6 +36,7 @@ Use an explicit version in every new indicator file and in the file header.
 - MacroMicro_Simplified_v0.5.0.ts changes RVOL from a hard arrow blocker into a caution state for qualified setups; structure/chop can still block trades.
 - MacroMicro_Simplified_v0.5.1.ts splits dashboard diagnostics into `BLOCKED BY`, `CAUTION BY`, and `NEXT` so RVOL warnings are not confused with hard blockers.
 - MacroMicro_Simplified_v0.5.2.ts adds fast bias-flip caution arrows for hard breakdown/breakout bars before the slower 6-point bias fully flips.
+- MacroMicro_Simplified_v0.5.3.ts adds 4/6 continuation-pressure caution arrows when the bias is already correct but strict candle confirmation still reports `NEXT: CANDLE`.
 
 ## Version Meaning
 
