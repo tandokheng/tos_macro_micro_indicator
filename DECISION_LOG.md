@@ -86,3 +86,5 @@
 - Add `THINKSCRIPT_DEBUGGING_LESSONS.md` after receiving Claude's ThinkScript lessons: preserve general guardrails for instrumentation, time-window logic, value-based arrows, recursive state, chart timezone, versioning, and independent review.
 
 - Add `BACKTESTING_GUARDRAILS.md` before writing any Yahoo Finance backtest: require data coverage probes, no look-ahead fills, pessimistic stop/target handling, timezone/session checks, one-position state, honest statistics, and explicit limitations.
+
+- Add v0.5.21 after v0.5.20 was visibly too noisy: raw setup should remain a diagnostic label/source state, while default arrows should use fresh working-style plots driven only by real trade-review entries.

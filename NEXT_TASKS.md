@@ -2,13 +2,13 @@
 
 ## Doing
 
-- Install `MacroMicro_Simplified_v0.5.20.ts` into Thinkorswim study `_dk_codex_macro_micro_v1` and confirm every screenshot shows `BUILD: v0.5.20 CLEAN ARROWS`, `RAW SETUP`, `RAW CONT`, hidden raw proof bubbles, and visible magenta/cyan raw setup arrows.
+- Install `MacroMicro_Simplified_v0.5.21.ts` into Thinkorswim study `_dk_codex_macro_micro_v1` and confirm every screenshot shows `BUILD: v0.5.21 QUIET ARROWS`, `RAW SETUP`, `RAW CONT`, hidden raw proof bubbles, and fewer magenta/cyan review arrows.
 
 ## Todo
 
-- If v0.5.20 does not show `BUILD: v0.5.20 CLEAN ARROWS`, remove duplicate/old `_dk_codex_macro_micro_v1` studies and re-add the pasted source once.
-- Confirm old `SPAM L/S` bubbles are gone; v0.5.20 should hide direct `RAW L/S` proof bubbles by default and keep working-style raw arrows visible.
-- If `RAW SETUP` stays active on the live bar but no raw arrow appears, capture that screenshot; turn `showRawProofBubbles` on only if we need to compare bubble and arrow rendering directly.
+- If v0.5.21 does not show `BUILD: v0.5.21 QUIET ARROWS`, remove duplicate/old `_dk_codex_macro_micro_v1` studies and re-add the pasted source once.
+- Confirm old `SPAM L/S` bubbles are gone; v0.5.21 should hide direct `RAW L/S` proof bubbles by default and keep only review arrows visible.
+- If `RAW SETUP` stays active on the live bar but no arrow appears, that is acceptable in v0.5.21 unless a real trade-review trigger is also active.
 - If `CONTRACT: FAIL TRIGGER/MARKER` appears, capture that screenshot because it proves dashboard trigger and marker logic diverged on the same bar.
 - If raw arrows disappear again while labels prove setup state, treat it as a Thinkorswim plot rendering/style-state issue and use the documented working-arrow primitive before changing gates.
 - Log 5 to 10 QQQ 5-minute examples where arrows were helpful, late, blocked correctly, or still noisy.
@@ -93,3 +93,5 @@
 - Updated `tests/verify_simplified_indicator.ps1` for v0.5.20 clean-arrow checks.
 - Added `THINKSCRIPT_DEBUGGING_LESSONS.md` and folded Claude's general ThinkScript debugging rules into the Claude handoff prompt.
 - Added `BACKTESTING_GUARDRAILS.md` from Claude's backtest lessons, adapted for QQQ/Yahoo Finance use before any backtest code is written.
+- Added `MacroMicro_Simplified_v0.5.21.ts` after v0.5.20 proved too noisy; raw setup remains diagnostic-only and default arrows now follow real trade-review signals.
+- Updated `tests/verify_simplified_indicator.ps1` for v0.5.21 quiet-arrow checks.

@@ -306,3 +306,10 @@ Use this after importing `MacroMicro_Simplified_v0.3.1.ts` into Thinkorswim.
 - Observation: User screenshot showed `BUILD: v0.5.19 RAW ARROWS`, `v0.5.19 TEST`, direct `RAW L/S` proof bubbles, and visible magenta/cyan arrows on QQQ 5m.
 - Root-cause conclusion: the no-arrow issue was a Thinkorswim rendering/style-state problem around the previous arrow plot path, not the raw setup boolean. Fresh dedicated working-style plots rendered correctly.
 - Change: v0.5.20 keeps the working-style arrows default-on and turns raw proof bubbles off by default so the chart becomes cleaner for signal review.
+
+
+## 2026-06-27 v0.5.20 noise follow-up
+
+- Observation: User screenshot showed `BUILD: v0.5.20 CLEAN ARROWS` and many magenta/cyan arrows across QQQ 5m, even though raw proof bubbles were hidden.
+- Root-cause conclusion: v0.5.20 still fed raw setup cadence into `visibleLongSignal` / `visibleShortSignal`, and also kept a separate raw setup arrow layer. Visibility was solved, but diagnostic raw setup became the default signal layer.
+- Change: v0.5.21 makes raw setup diagnostic-only, removes raw setup from dashboard triggers/default markers, and adds fresh working-style review arrows driven only by `realLongEntry` / `realShortEntry`.

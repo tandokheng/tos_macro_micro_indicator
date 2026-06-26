@@ -54,6 +54,7 @@ Use an explicit version in every new indicator file and in the file header.
 - MacroMicro_Simplified_v0.5.18.ts keeps the proven direct raw proof bubbles but thins them to a separate 13-bar cadence after v0.5.17 showed too many `RAW L/S` bubbles.
 - MacroMicro_Simplified_v0.5.19.ts adds fresh dedicated raw setup arrow plots that mirror the known-working arrow script: direct condition, `low/high +/- off`, `ARROW_UP/DOWN`, `AssignValueColor`, and line weight 5.
 - MacroMicro_Simplified_v0.5.20.ts keeps the v0.5.19 working-style arrows default-on and turns raw proof bubbles off by default after the user confirmed arrows render in Thinkorswim.
+- MacroMicro_Simplified_v0.5.21.ts makes raw setup diagnostic-only and moves default arrows to fresh working-style review plots driven only by real trade-entry signals.
 
 ## Version Meaning
 
