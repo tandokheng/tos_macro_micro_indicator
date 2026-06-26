@@ -76,3 +76,5 @@
 - Add v0.5.17 after v0.5.16 showed `TRIGGER: SETUP LONG` and `NEXT: MARK READY` without visible markers: parallel agent review found the marker boolean path was true, so use direct raw setup proof bubbles with the v0.5.14-proven larger offset and move compact markers closer to candles.
 
 - Add v0.5.18 after v0.5.17 proved direct `RAW L/S` bubbles render but produced too much clutter: keep the raw proof route and thin only its visual cadence to 13 bars.
+
+- Add v0.5.19 after comparing a user-provided script whose arrows render correctly in Thinkorswim: keep v0.5.18's raw proof bubbles and add fresh dedicated raw setup arrow plots using the working pattern of direct conditions, `low/high +/- off`, `ARROW_UP/DOWN`, `AssignValueColor`, and line weight 5.

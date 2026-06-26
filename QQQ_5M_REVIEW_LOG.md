@@ -292,3 +292,10 @@ Use this after importing `MacroMicro_Simplified_v0.3.1.ts` into Thinkorswim.
 - Observation: v0.5.17 screenshot showed `BUILD: v0.5.17 RAW BUBBLE`, the `v0.5.17 TEST` bubble, and many direct `RAW L/S` proof bubbles, confirming the clean raw-bubble route works.
 - Root-cause conclusion: visibility is solved for direct raw proof bubbles, but v0.5.17 is too noisy for review/trading.
 - Change: v0.5.18 keeps direct raw proof bubbles but gives them a separate `rawSetupBubbleBars = 13` cadence so proof remains visible with less chart clutter.
+
+
+## 2026-06-27 working-arrow comparison follow-up
+
+- Observation: User provided a separate ThinkScript that successfully shows arrows in Thinkorswim; its arrow plots use direct fire conditions, `low/high +/- off` placement, `PaintingStrategy.ARROW_UP/DOWN`, `AssignValueColor`, and line weight 5.
+- Root-cause hypothesis: v0.5.18 raw setup state and proof bubbles work, so the missing arrows are likely tied to the older multiplexed debug plot rendering path, color/style state, or placement rather than setup gating.
+- Change: v0.5.19 keeps the thinned raw proof bubbles and adds fresh `RawSetupLongArrowV0519` / `RawSetupShortArrowV0519` plots that mirror the known-working arrow script pattern.

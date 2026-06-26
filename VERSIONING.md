@@ -52,6 +52,7 @@ Use an explicit version in every new indicator file and in the file header.
 - MacroMicro_Simplified_v0.5.16.ts replaces pulse-edge-only setup visibility with raw setup cadence markers: first setup bar, every `setupPulseBars` bars, and the live bar.
 - MacroMicro_Simplified_v0.5.17.ts adds direct raw setup proof bubbles (`RAW L/S`) using the v0.5.14-proven larger offset and moves compact `L/S` markers closer to candles.
 - MacroMicro_Simplified_v0.5.18.ts keeps the proven direct raw proof bubbles but thins them to a separate 13-bar cadence after v0.5.17 showed too many `RAW L/S` bubbles.
+- MacroMicro_Simplified_v0.5.19.ts adds fresh dedicated raw setup arrow plots that mirror the known-working arrow script: direct condition, `low/high +/- off`, `ARROW_UP/DOWN`, `AssignValueColor`, and line weight 5.
 
 ## Version Meaning
 

@@ -2,14 +2,15 @@
 
 ## Doing
 
-- Install `MacroMicro_Simplified_v0.5.18.ts` into Thinkorswim study `_dk_codex_macro_micro_v1` and confirm every screenshot shows `BUILD: v0.5.18 RAW THIN`, `RAW SETUP`, `RAW CONT`, and fewer direct `RAW L/S` proof bubbles than v0.5.17.
+- Install `MacroMicro_Simplified_v0.5.19.ts` into Thinkorswim study `_dk_codex_macro_micro_v1` and confirm every screenshot shows `BUILD: v0.5.19 RAW ARROWS`, `RAW SETUP`, `RAW CONT`, and magenta/cyan raw setup arrows near the direct `RAW L/S` proof bubbles.
 
 ## Todo
 
-- If v0.5.18 does not show `BUILD: v0.5.18 RAW THIN`, remove duplicate/old `_dk_codex_macro_micro_v1` studies and re-add the pasted source once.
-- Confirm old `SPAM L/S` bubbles are gone; v0.5.18 should still show direct `RAW L/S` bubbles, but on a slower proof cadence.
+- If v0.5.19 does not show `BUILD: v0.5.19 RAW ARROWS`, remove duplicate/old `_dk_codex_macro_micro_v1` studies and re-add the pasted source once.
+- Confirm old `SPAM L/S` bubbles are gone; v0.5.19 should still show direct `RAW L/S` bubbles on the slower proof cadence and add working-style raw arrows.
 - If `RAW SETUP` stays active on the live bar but no direct `RAW L/S` proof bubble appears, capture that screenshot because it means the proven raw chart-bubble route regressed.
 - If `CONTRACT: FAIL TRIGGER/MARKER` appears, capture that screenshot because it proves dashboard trigger and marker logic diverged on the same bar.
+- If direct `RAW L/S` bubbles appear but the new raw arrows do not, capture that screenshot because it isolates the failure to Thinkorswim arrow plot rendering/style state rather than raw setup logic.
 - Log 5 to 10 QQQ 5-minute examples where arrows were helpful, late, blocked correctly, or still noisy.
 - Decide whether the first higher-timeframe context test should use 1-hour as a soft gate, caution state, or dashboard-only label.
 - Run a separate QQQ 15-minute validation pass after the 5-minute setup is stable.
@@ -84,3 +85,5 @@
 - Updated `tests/verify_simplified_indicator.ps1` for v0.5.17 direct raw-bubble checks.
 - Added `MacroMicro_Simplified_v0.5.18.ts` to thin direct raw proof bubbles to a separate 13-bar cadence after v0.5.17 rendered successfully but too densely.
 - Updated `tests/verify_simplified_indicator.ps1` for v0.5.18 raw proof-bubble cadence checks.
+- Added `MacroMicro_Simplified_v0.5.19.ts` with fresh dedicated raw setup arrows that mirror a known-working ThinkScript arrow pattern from the user-provided reference script.
+- Updated `tests/verify_simplified_indicator.ps1` for v0.5.19 working-style raw arrow checks.

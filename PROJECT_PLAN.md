@@ -24,6 +24,6 @@ Candidate hierarchy:
 ## Milestones
 
 - Done: Create `MacroMicro_Simplified_v0.2.0.ts` with stronger RVOL gating, candle confirmation, cleaner target/stop display, and compact signal bubbles.
-- Doing: Review/import `MacroMicro_Simplified_v0.5.18.ts`, a QQQ 5m raw-thin build that keeps the proven direct `RAW L/S` proof route but slows it to a separate cadence after v0.5.17 proved visible but noisy.
+- Doing: Review/import `MacroMicro_Simplified_v0.5.19.ts`, a QQQ 5m raw-arrow build that keeps the v0.5.18 thinned `RAW L/S` proof bubbles and adds fresh dedicated arrow plots copied from a known-working ThinkScript arrow pattern.
 - Todo: Decide whether a higher-timeframe context filter improves 5-minute entries.
 - Todo: Validate/tune the indicator on QQQ 15-minute charts after 5-minute behavior is acceptable.
