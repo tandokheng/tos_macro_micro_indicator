@@ -264,3 +264,10 @@ Use this after importing `MacroMicro_Simplified_v0.3.1.ts` into Thinkorswim.
 - Observation: Thinkorswim rejected v0.5.13 with `Invalid statement: AddLabel` and a later `Invalid statement: else`.
 - Root-cause hypothesis: the new diagnostic labels used long chained string expressions with nested string `if/else`, which likely confused the ThinkScript parser and caused it to report the next dashboard `AddLabel`.
 - Change: v0.5.14 preserves the spam diagnostic and marker contract, but splits `MARKER`, `CONTRACT`, `RAW SETUP`, and `RAW CONT` into static AddLabel statements.
+
+
+## 2026-06-26 clean raw-marker follow-up
+
+- Observation: v0.5.14 screenshot showed `BUILD: v0.5.14 SPAM DIAG`, `RAW SETUP: S`, and many cyan/magenta `SPAM S/L` bubbles, proving the chart-bubble marker route and raw setup source both work.
+- Root-cause conclusion: raw setup state was being painted every bar through the diagnostic layer, while the dashboard clean trigger could still say `WAIT` because it uses the edge/throttled setup-pulse layer.
+- Change: v0.5.15 removes hardwired `SPAM L/S` bubbles and routes setup visibility through `setupPulseLongArrow` / `setupPulseShortArrow`, keeping raw labels for diagnosis but making the visible marker layer clean enough for QQQ 5m review.

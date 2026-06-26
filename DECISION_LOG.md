@@ -68,3 +68,5 @@
 - Add v0.5.13 after a screenshot showed the logically inconsistent state `BUILD: v0.5.12 DIAG`, `TRIGGER: CONT SHORT`, and `MARKER: NONE`: recreate the useful v0.5.6 spam proof through hardwired raw setup/continuation markers, add `RAW` and `CONTRACT` labels, and keep diagnostic spam visual-only so PT/SL tracking does not reset every bar.
 
 - Add v0.5.14 after Thinkorswim rejected v0.5.13 with `Invalid statement: AddLabel`: split the new diagnostic MARKER/CONTRACT/RAW labels into static AddLabel statements so the spam diagnostic can compile while preserving the same marker contract and raw pressure proof.
+
+- Add v0.5.15 after v0.5.14 rendered many `SPAM L/S` bubbles: keep the raw setup/continuation dashboard diagnostics, remove hardwired spam bubbles, and route setup visibility through throttled setup-pulse markers so QQQ 5m can be tested without chart flooding.

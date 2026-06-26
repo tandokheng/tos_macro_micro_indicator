@@ -1,7 +1,7 @@
 $ErrorActionPreference = "Stop"
 
 $root = Split-Path -Parent $PSScriptRoot
-$studyPath = Join-Path $root "MacroMicro_Simplified_v0.5.14.ts"
+$studyPath = Join-Path $root "MacroMicro_Simplified_v0.5.15.ts"
 $tosStudyPath = Join-Path $root "_dk_codex_macro_micro_v1.ts"
 
 function Assert-True {
@@ -41,17 +41,57 @@ function Assert-Before {
     Assert-True -Condition ($earlierIndex -lt $laterIndex) -Message "Invalid ThinkScript definition order: $Description"
 }
 
+function Assert-RegexCount {
+    param(
+        [string] $Text,
+        [string] $Pattern,
+        [int] $Expected,
+        [string] $Description
+    )
+
+    $count = [regex]::Matches($Text, $Pattern).Count
+    Assert-True -Condition ($count -eq $Expected) -Message "$Description expected $Expected, found $count"
+}
+
+function Assert-NoRegex {
+    param(
+        [string] $Text,
+        [string] $Pattern,
+        [string] $Description
+    )
+
+    Assert-True -Condition (-not [regex]::IsMatch($Text, $Pattern)) -Message $Description
+}
+
+function Assert-RenderCallsClosed {
+    param(
+        [string] $Text,
+        [string] $CallName
+    )
+
+    $escapedCall = [regex]::Escape($CallName)
+    $openCount = [regex]::Matches($Text, "\b$escapedCall\s*\(").Count
+    $closedCount = [regex]::Matches($Text, "\b$escapedCall\s*\((?s:.*?)\);").Count
+    Assert-True -Condition ($openCount -eq $closedCount) -Message "$CallName render statements are not balanced: $closedCount closed / $openCount opened"
+}
+
 Assert-True -Condition (Test-Path -LiteralPath $studyPath) -Message "Study file does not exist: $studyPath"
 Assert-True -Condition (Test-Path -LiteralPath $tosStudyPath) -Message "TOS import study file does not exist: $tosStudyPath"
 
 $text = Get-Content -LiteralPath $studyPath -Raw
 $tosText = Get-Content -LiteralPath $tosStudyPath -Raw
 
-Assert-Contains $text "# Version: v0.5.14" "v0.5.14 version header"
+Assert-RegexCount $text "(?m)^# Version:" 1 "single version header"
+Assert-RegexCount $text "(?m)^declare upper;" 1 "single upper declaration"
+Assert-NoRegex $text "(?m)^else\b" "Naked top-level else statement detected"
+Assert-RenderCallsClosed $text "AddLabel"
+Assert-RenderCallsClosed $text "AddChartBubble"
+Assert-RenderCallsClosed $text "Alert"
+Assert-Contains $text "# Version: v0.5.15" "v0.5.15 version header"
 Assert-Contains $text "# TOS Study: _dk_codex_macro_micro_v1" "TOS study name header"
 Assert-Contains $text "declare upper;" "upper price-chart declaration"
 Assert-Contains $text 'DefineGlobalColor("CautionAmber", CreateColor(180, 95, 0));' "readable caution amber color"
-Assert-True -Condition ($tosText -eq $text) -Message "TOS import study file must match MacroMicro_Simplified_v0.5.14.ts exactly"
+Assert-True -Condition ($tosText -eq $text) -Message "TOS import study file must match MacroMicro_Simplified_v0.5.15.ts exactly"
 Assert-Contains $text "Timeframe focus: 5m first, then 15m validation/tuning." "5m-first tuning note"
 Assert-Contains $text "input useFifteenMinuteProfile = no;" "5m profile remains default"
 Assert-Contains $text "input fifteenMinuteScoreTriggerFreshBars = 1;" "15m score freshness profile"
@@ -96,7 +136,6 @@ Assert-Contains $text "input fastBreakLookback = 3;" "fast break lookback"
 Assert-Contains $text "input continuationBreakLookback = 2;" "continuation break lookback"
 Assert-Contains $text "input continuationRangeFactor = 0.35;" "continuation pressure range factor"
 Assert-Contains $text "input setupPulseBars = 5;" "normal setup pulse interval remains moderate"
-Assert-Contains $text "def spamDiagMode = yes;" "hardwired v0.5.14 spam diagnostic mode avoids saved TOS input drift"
 Assert-Contains $text "def fastBreakVolumeOK" "fast break volume guard"
 Assert-Contains $text "def fastBreakoutConfirm" "fast upside breakout confirmation"
 Assert-Contains $text "def fastBreakdownConfirm" "fast downside breakdown confirmation"
@@ -111,20 +150,27 @@ Assert-Contains $text "def longContinuationPressure" "long 4/6 continuation pres
 Assert-Contains $text "def longSetupPulseReady" "long 5/6 setup pulse readiness"
 Assert-Contains $text "def shortSetupPulseReady" "short 5/6 setup pulse readiness"
 Assert-Contains $text "def setupPulseState" "recursive setup pulse state"
-Assert-Contains $text "def setupPulseLongArrow = longSetupPulseReady and (setupPulseState[1] <= 0 or setupPulseState[1] >= setupPulseBars);" "dense long setup pulse arrow"
-Assert-Contains $text "def setupPulseShortArrow = shortSetupPulseReady and (setupPulseState[1] >= 0 or AbsValue(setupPulseState[1]) >= setupPulseBars);" "dense short setup pulse arrow"
+Assert-Contains $text "def setupPulseLongArrow = longSetupPulseReady and (setupPulseState[1] <= 0 or setupPulseState[1] >= setupPulseBars);" "long setup pulse state still exists for failsafe/debug bubbles"
+Assert-Contains $text "def setupPulseShortArrow = shortSetupPulseReady and (setupPulseState[1] >= 0 or AbsValue(setupPulseState[1]) >= setupPulseBars);" "short setup pulse state still exists for failsafe/debug bubbles"
+Assert-Before $text "def setupPulseState" "def setupPulseLongArrow" "setupPulseState must be defined before long setup pulse"
+Assert-Before $text "def setupPulseState" "def setupPulseShortArrow" "setupPulseState must be defined before short setup pulse"
 Assert-Contains $text "def shortContinuationArrow" "short continuation caution arrow"
 Assert-Contains $text "def longContinuationArrow" "long continuation caution arrow"
 Assert-Contains $text "def continuationAnchorLongArrow = showContinuationAnchorArrows and longContinuationPressure and longScore >= triggerThreshold;" "persistent long continuation anchor arrow"
 Assert-Contains $text "def continuationAnchorShortArrow = showContinuationAnchorArrows and shortContinuationPressure and shortScore >= triggerThreshold;" "persistent short continuation anchor arrow"
-Assert-Contains $text "def visualLongSetupReady = longSetupPulseReady;" "visual long setup-ready state"
-Assert-Contains $text "def visualShortSetupReady = shortSetupPulseReady;" "visual short setup-ready state"
+Assert-Contains $text "def visualLongSetupReady = setupPulseLongArrow;" "visual long setup-ready state uses the existing throttled setup pulse"
+Assert-Contains $text "def visualShortSetupReady = setupPulseShortArrow;" "visual short setup-ready state uses the existing throttled setup pulse"
+Assert-Before $text "def setupPulseLongArrow" "def visualLongSetupReady" "long setup pulse must be defined before visual long setup state"
+Assert-Before $text "def setupPulseShortArrow" "def visualShortSetupReady" "short setup pulse must be defined before visual short setup state"
 Assert-Contains $text "def realLongEntry = newLongEntry or practicalLongArrow or fastFlipLongArrow or longContinuationArrow;" "real long entry excludes visual-only setup pulse"
 Assert-Contains $text "def realShortEntry = newShortEntry or practicalShortArrow or fastFlipShortArrow or shortContinuationArrow;" "real short entry excludes visual-only setup pulse"
-Assert-Contains $text "def spamDiagLong = spamDiagMode and (longSetupPulseReady or longContinuationPressure);" "long spam diagnostic uses raw setup/continuation pressure"
-Assert-Contains $text "def spamDiagShort = spamDiagMode and (shortSetupPulseReady or shortContinuationPressure);" "short spam diagnostic uses raw setup/continuation pressure"
-Assert-Contains $text "def visibleLongSignal = realLongEntry or continuationAnchorLongArrow or visualLongSetupReady or spamDiagLong;" "visible long signal includes spam diagnostics without resetting trade tracking"
-Assert-Contains $text "def visibleShortSignal = realShortEntry or continuationAnchorShortArrow or visualShortSetupReady or spamDiagShort;" "visible short signal includes spam diagnostics without resetting trade tracking"
+Assert-True -Condition (-not $text.Contains("def spamDiagMode = yes;")) -Message "Hardwired spam diagnostic mode is still enabled"
+Assert-True -Condition (-not $text.Contains("def spamDiagLong")) -Message "Spam diagnostic long signal is still present"
+Assert-True -Condition (-not $text.Contains("def spamDiagShort")) -Message "Spam diagnostic short signal is still present"
+Assert-Contains $text "def visibleLongSignal = realLongEntry or continuationAnchorLongArrow or visualLongSetupReady;" "visible long signal uses throttled raw setup without spam diagnostics"
+Assert-Contains $text "def visibleShortSignal = realShortEntry or continuationAnchorShortArrow or visualShortSetupReady;" "visible short signal uses throttled raw setup without spam diagnostics"
+Assert-Before $text "def visualLongSetupReady" "def visibleLongSignal" "visual long setup state must be defined before visible long signal"
+Assert-Before $text "def visualShortSetupReady" "def visibleShortSignal" "visual short setup state must be defined before visible short signal"
 Assert-Contains $text "def arrowMarkerLong = visibleLongSignal;" "compact long marker follows visible long signal"
 Assert-Contains $text "def arrowMarkerShort = visibleShortSignal;" "compact short marker follows visible short signal"
 Assert-Contains $text "def dashboardContLong = continuationAnchorLongArrow or longContinuationArrow;" "CONT LONG dashboard contract boolean"
@@ -132,8 +178,8 @@ Assert-Contains $text "def dashboardContShort = continuationAnchorShortArrow or 
 Assert-Contains $text "def markerRequiredLong = dashboardTriggerLong;" "long marker required by dashboard trigger"
 Assert-Contains $text "def markerRequiredShort = dashboardTriggerShort;" "short marker required by dashboard trigger"
 Assert-Contains $text "def markerContractFail =" "trigger/marker contract failure boolean"
-Assert-Contains $text "def longSignalCaution = longScore < triggerThreshold or longTradeCaution or fastFlipLongArrow or longContinuationArrow or setupPulseLongArrow;" "setup pulse long is marked caution"
-Assert-Contains $text "def shortSignalCaution = shortScore < triggerThreshold or shortTradeCaution or fastFlipShortArrow or shortContinuationArrow or setupPulseShortArrow;" "setup pulse short is marked caution"
+Assert-Contains $text "def longSignalCaution = longScore < triggerThreshold or longTradeCaution or fastFlipLongArrow or longContinuationArrow or visualLongSetupReady;" "throttled setup long is marked caution"
+Assert-Contains $text "def shortSignalCaution = shortScore < triggerThreshold or shortTradeCaution or fastFlipShortArrow or shortContinuationArrow or visualShortSetupReady;" "throttled setup short is marked caution"
 Assert-Contains $text '"FLIP S "' "fast flip short signal bubble"
 Assert-Contains $text '"FLIP L "' "fast flip long signal bubble"
 Assert-Contains $text '"CONT S "' "continuation short signal bubble"
@@ -155,7 +201,7 @@ Assert-Contains $text '"S"' "compact short marker label"
 Assert-Contains $text "Color.MAGENTA" "compact long marker color"
 Assert-Contains $text "Color.CYAN" "compact short marker color"
 Assert-Contains $text '"MARKER: NONE"' "dashboard marker state label"
-Assert-Contains $text 'AddLabel(yes, "BUILD: v0.5.14 SPAM DIAG", Color.BLACK);' "always-visible build version dashboard label"
+Assert-Contains $text 'AddLabel(yes, "BUILD: v0.5.15 CLEAN RAW", Color.BLACK);' "always-visible build version dashboard label"
 Assert-Contains $text 'AddLabel(arrowMarkerLong and arrowMarkerShort, "MARKER: BOTH", if markerContractFail then Color.RED else Color.GRAY);' "static marker both label"
 Assert-Contains $text 'AddLabel(arrowMarkerLong and !arrowMarkerShort, "MARKER: L", if markerContractFail then Color.RED else Color.MAGENTA);' "static marker long label"
 Assert-Contains $text 'AddLabel(!arrowMarkerLong and arrowMarkerShort, "MARKER: S", if markerContractFail then Color.RED else Color.CYAN);' "static marker short label"
@@ -175,9 +221,9 @@ Assert-True -Condition (-not $text.Contains('AddLabel(dashOK, "MARKER: "')) -Mes
 Assert-Contains $text "plot BuildProofDotV0513 =" "hardwired last-bar proof dot"
 Assert-Contains $text "if lastVisibleBar then high + liveArrowOff else Double.NaN;" "proof dot is independent of signal"
 Assert-Contains $text "BuildProofDotV0513.SetPaintingStrategy(PaintingStrategy.POINTS);" "proof dot uses point rendering"
-Assert-Contains $text '"v0.5.14 TEST"' "last-bar build bubble proves chart-bubble path"
-Assert-Contains $text 'AddChartBubble(spamDiagLong, low - bigArrowOff * 0.75, "SPAM L", Color.MAGENTA, no);' "hardwired long spam diagnostic bubble"
-Assert-Contains $text 'AddChartBubble(spamDiagShort, high + bigArrowOff * 0.75, "SPAM S", Color.CYAN, yes);' "hardwired short spam diagnostic bubble"
+Assert-Contains $text '"v0.5.15 TEST"' "last-bar build bubble proves chart-bubble path"
+Assert-True -Condition (-not $text.Contains('"SPAM L"')) -Message "Hardwired long spam diagnostic bubble is still present"
+Assert-True -Condition (-not $text.Contains('"SPAM S"')) -Message "Hardwired short spam diagnostic bubble is still present"
 Assert-Contains $text '"FLIP SHORT"' "fast flip short dashboard trigger"
 Assert-Contains $text '"FLIP LONG"' "fast flip long dashboard trigger"
 Assert-Contains $text '"CONT SHORT"' "continuation short dashboard trigger"

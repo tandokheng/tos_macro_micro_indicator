@@ -46,6 +46,9 @@ Use an explicit version in every new indicator file and in the file header.
 - MacroMicro_Simplified_v0.5.10.ts adds default-on compact `L` / `S` marker bubbles from the visible-signal state because Thinkorswim plot arrows remained unreliable during scrollback testing; setup-ready markers are visual-only and do not reset target/stop tracking.
 - MacroMicro_Simplified_v0.5.11.ts hardwires compact marker bubbles, adds fresh v0.5.11 marker dot plots, and adds a `MARKER: L/S` dashboard label so marker visibility no longer depends on a saved TOS input.
 - MacroMicro_Simplified_v0.5.12.ts adds always-visible `BUILD: v0.5.12 DIAG` and `MARKER: NONE/L/S` labels plus a last-bar proof dot/bubble so screenshots prove whether the correct build is active and whether the marker state is actually none.
+- MacroMicro_Simplified_v0.5.13.ts adds a deliberately noisy raw setup/continuation spam diagnostic to prove the chart-bubble marker path.
+- MacroMicro_Simplified_v0.5.14.ts fixes v0.5.13 ThinkScript parser errors by splitting diagnostic labels into static `AddLabel` calls.
+- MacroMicro_Simplified_v0.5.15.ts removes the `SPAM L/S` diagnostic bubbles and routes setup visibility through throttled setup-pulse markers for a cleaner QQQ 5m test build.
 
 ## Version Meaning
 

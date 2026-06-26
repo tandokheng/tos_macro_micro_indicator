@@ -24,6 +24,6 @@ Candidate hierarchy:
 ## Milestones
 
 - Done: Create `MacroMicro_Simplified_v0.2.0.ts` with stronger RVOL gating, candle confirmation, cleaner target/stop display, and compact signal bubbles.
-- Doing: Review/import `MacroMicro_Simplified_v0.5.14.ts`, a QQQ 5m spam-diagnostic compile-fix build with static build/raw/contract labels and hardwired raw setup/continuation markers to separate source drift, marker logic, and TOS rendering issues.
+- Doing: Review/import `MacroMicro_Simplified_v0.5.15.ts`, a QQQ 5m clean raw-marker build that keeps raw setup/continuation diagnostics visible but removes hardwired `SPAM L/S` bubbles and uses throttled setup-pulse markers.
 - Todo: Decide whether a higher-timeframe context filter improves 5-minute entries.
 - Todo: Validate/tune the indicator on QQQ 15-minute charts after 5-minute behavior is acceptable.
