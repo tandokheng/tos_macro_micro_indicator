@@ -2,16 +2,19 @@
 
 ## Current Test Script
 
-- File: `MacroMicro_Simplified_v0.5.12.ts`
+- File: `MacroMicro_Simplified_v0.5.13.ts`
 - Import-ready file: `_dk_codex_macro_micro_v1.ts`
 - Thinkorswim study to replace: `_dk_codex_macro_micro_v1`
 - Primary chart for review: QQQ 5-minute, 20-day view
 
-## What v0.5.12 Is Testing
+## What v0.5.13 Is Testing
 
-- `BUILD: v0.5.12 DIAG` is always visible through `AddLabel(yes, ...)`; if that label is absent, TOS is not running this pasted build or study labels are hidden.
-- `MARKER: NONE/L/S` is always visible through `AddLabel(yes, ...)`, so a no-signal bar now proves marker state is `NONE` instead of leaving us guessing.
-- A cyan `v0.5.12 TEST` bubble and `BuildProofDotV0512` point appear on the last loaded bar to prove the bubble/point drawing paths are active independent of signal logic.
+- `BUILD: v0.5.13 SPAM DIAG` is always visible through `AddLabel(yes, ...)`; if that label is absent, TOS is not running this pasted build or study labels are hidden.
+- `MARKER: NONE/L/S/BOTH` is always visible through `AddLabel(yes, ...)`, and turns red if the dashboard trigger contract says a marker should exist but the marker state is false.
+- `CONTRACT: OK/FAIL TRIGGER/MARKER` is always visible. If it fails, screenshot that bar because the trigger label and marker path disagree.
+- `RAW: SETUP L/S/- | CONT L/S/-` is always visible. It shows whether raw setup-ready or continuation-pressure logic is firing even if the clean trigger is not.
+- A cyan `v0.5.13 TEST` bubble and `BuildProofDotV0513` point appear on the last loaded bar to prove the bubble/point drawing paths are active independent of signal logic.
+- Hardwired `SPAM L` / `SPAM S` bubbles and the known-visible arrow plots now fire from raw setup/continuation pressure. This is intentionally noisy for diagnostics.
 - Compact `L` / `S` marker bubbles are hardwired to the marker state, not controlled by a new input. This avoids TOS preserving or remapping old saved input values and silently turning the marker off.
 - Fresh dot fallback plots, `MarkerLongDotV0511` and `MarkerShortDotV0511`, paint magenta/cyan points from the same marker state without using arrow painting.
 - Compact `L` / `S` marker bubbles remain the primary visible signal marker because they use the chart-bubble path that already rendered reliably in Thinkorswim.
@@ -30,10 +33,12 @@
 - Active 4/6 trends can produce `CONT S/L` caution arrows when price keeps breaking in the bias direction but strict candle confirmation still says `NEXT: CANDLE`.
 - Sustained 5/6 setups can produce compact `S` / `L` marker bubbles while they remain setup-ready; the older setup pulse is now visual diagnostics, not a trade-state reset.
 - Profit target and stop tracking follow the practical real-entry layer.
-- If `BUILD: v0.5.12 DIAG` appears, the correct build is active. If `MARKER: S/L` appears but no bubble or dot appears, the signal is true and the remaining issue is TOS display/style/rendering.
+- If `BUILD: v0.5.13 SPAM DIAG` appears, the correct build is active. If `RAW` shows setup/continuation pressure but no spam bubble/arrow appears, the remaining issue is TOS display/style/rendering rather than signal logic.
+- v0.5.13 is not the final clean trading view. It is a diagnostic checkpoint to recreate the useful v0.5.6 spam proof without letting setup pulses reset PT/SL every bar.
 
 ## Current Manual Test Flow
 
 - Paste `_dk_codex_macro_micro_v1.ts` into the Thinkorswim study `_dk_codex_macro_micro_v1`.
-- Confirm the header shows `# Version: v0.5.12` in the pasted source.
+- Confirm the header shows `# Version: v0.5.13` in the pasted source.
+- Confirm the chart labels show `BUILD: v0.5.13 SPAM DIAG`, `CONTRACT: OK` or `FAIL TRIGGER/MARKER`, and `RAW: ...`.
 - Review QQQ 5m first; defer 15m validation until 5m behavior is acceptable.

@@ -64,3 +64,5 @@
 - Add v0.5.11 after v0.5.10 showed `TRIGGER: CONT SHORT` but still no marker bubble: remove the new marker input as a possible saved-input failure point, hardwire marker bubbles, add fresh marker dot plots, and add a `MARKER: S/L` dashboard label tied to the same marker state.
 
 - Add v0.5.12 after the user still saw no markers on a `TRIGGER: WAIT` / `NEXT: SCORE` screenshot: make the build and marker state visible on every bar with `BUILD: v0.5.12 DIAG` and `MARKER: NONE/L/S`, plus a last-bar proof dot/bubble to identify TOS study-instance or display issues before changing signal logic again.
+
+- Add v0.5.13 after a screenshot showed the logically inconsistent state `BUILD: v0.5.12 DIAG`, `TRIGGER: CONT SHORT`, and `MARKER: NONE`: recreate the useful v0.5.6 spam proof through hardwired raw setup/continuation markers, add `RAW` and `CONTRACT` labels, and keep diagnostic spam visual-only so PT/SL tracking does not reset every bar.

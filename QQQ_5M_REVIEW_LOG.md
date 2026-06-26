@@ -250,3 +250,10 @@ Use this after importing `MacroMicro_Simplified_v0.3.1.ts` into Thinkorswim.
 - Observation: User again reported no marker while scrolling, but the screenshot showed `BIAS: NO TRADE`, `SETUP: 3/6`, `TRIGGER: WAIT`, and `NEXT: SCORE`, so the current bar correctly had no marker contract.
 - Root-cause conclusion: v0.5.11 still could not prove whether the active chart was running the latest pasted build when marker state was `NONE`.
 - Change: v0.5.12 adds always-visible `BUILD: v0.5.12 DIAG` and `MARKER: NONE/L/S` labels plus a last-loaded-bar `v0.5.12 TEST` bubble and `BuildProofDotV0512` point.
+
+
+## 2026-06-26 spam diagnostic contract follow-up
+
+- Observation: User screenshot showed `BUILD: v0.5.12 DIAG`, `MARKER: NONE`, `BIAS: SHORT`, `SETUP: 6/6`, and `TRIGGER: CONT SHORT`. Multi-agent review found that combination is logically impossible from the local v0.5.12 source because `CONT SHORT` should feed `visibleShortSignal`, then `arrowMarkerShort`.
+- Root-cause hypothesis: the active TOS study may be behaviorally drifting from the local source through paste/input/style state, or the dashboard trigger chain needs explicit contract diagnostics instead of transitive reasoning.
+- Change: v0.5.13 is a deliberately loud spam-diagnostic build. It hardwires raw setup/continuation pressure into visible spam markers (`SPAM L/S`) and the known-visible arrow plots without resetting PT/SL tracking, adds `BUILD: v0.5.13 SPAM DIAG`, `RAW`, and `CONTRACT` labels, and makes dashboard continuation trigger labels use named contract booleans.
