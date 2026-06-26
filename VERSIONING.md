@@ -38,6 +38,7 @@ Use an explicit version in every new indicator file and in the file header.
 - MacroMicro_Simplified_v0.5.2.ts adds fast bias-flip caution arrows for hard breakdown/breakout bars before the slower 6-point bias fully flips.
 - MacroMicro_Simplified_v0.5.3.ts adds 4/6 continuation-pressure caution arrows when the bias is already correct but strict candle confirmation still reports `NEXT: CANDLE`.
 - MacroMicro_Simplified_v0.5.4.ts adds a 5/6 setup-pulse fallback so sustained qualified setups print caution arrows even when candle confirmation never opens the normal entry path.
+- MacroMicro_Simplified_v0.5.5.ts adds fresh v0.5.5 arrow plot names and dense 5/6 setup pulses so inherited hidden TOS plot settings or pulse spacing cannot make valid setups look arrowless.
 
 ## Version Meaning
 

@@ -48,3 +48,5 @@
 - Add v0.5.3 after screenshot showed `BIAS: SHORT`, `SETUP: 4/6`, `TRADE: CAUTION`, `CAUTION BY: RVOL`, and `NEXT: CANDLE` during an active QQQ downtrend: add 4/6 continuation-pressure caution arrows so active trends are not starved by strict candle confirmation.
 
 - Add v0.5.4 after user reported no arrows even while scrolling back and screenshot showed `BIAS: SHORT`, `SETUP: 5/6`, `TRADE: CAUTION`, `CAUTION BY: RVOL`, and `NEXT: CANDLE`: add a 5/6 setup-pulse fallback so sustained qualified setups can print caution arrows even when strict candle confirmation never opens.
+
+- Add v0.5.5 after v0.5.4 still showed no visible arrows on a chart with `SETUP: 6/6` and `NEXT: SETUP PULSE`: use fresh v0.5.5 arrow plot names and set setup pulses dense by default so every valid 5/6 setup bar can paint `SETUP S/L`.

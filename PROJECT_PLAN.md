@@ -24,6 +24,6 @@ Candidate hierarchy:
 ## Milestones
 
 - Done: Create `MacroMicro_Simplified_v0.2.0.ts` with stronger RVOL gating, candle confirmation, cleaner target/stop display, and compact signal bubbles.
-- Doing: Review/import `MacroMicro_Simplified_v0.5.4.ts`, which adds a 5/6 setup-pulse fallback so sustained qualified setups cannot starve all visible arrows.
+- Doing: Review/import `MacroMicro_Simplified_v0.5.5.ts`, which adds fresh arrow plot names and dense 5/6 setup-pulse arrows so valid setups cannot disappear because of pulse spacing or inherited TOS plot settings.
 - Todo: Decide whether a higher-timeframe context filter improves 5-minute entries.
 - Todo: Validate/tune the indicator on QQQ 15-minute charts after 5-minute behavior is acceptable.

@@ -194,3 +194,10 @@ Use this after importing `MacroMicro_Simplified_v0.3.1.ts` into Thinkorswim.
 - Observation: User reported no arrows anywhere while scrolling back; screenshot showed `BIAS: SHORT`, `SETUP: 5/6`, `TRADE: CAUTION`, `CAUTION BY: RVOL`, and `NEXT: CANDLE`.
 - Root-cause conclusion: real arrows were still too dependent on candidate edges and candle confirmation, so sustained 5/6 setups could remain valid without printing visible historical arrows.
 - Change: v0.5.4 adds `SETUP S/L` caution arrows on 5/6 setup pulses, with a refresh every `setupPulseBars` bars while the qualified setup persists.
+
+
+## 2026-06-26 dense setup-pulse visibility follow-up
+
+- Observation: User screenshot still showed no arrows while the dashboard showed a valid 5/6 setup and `NEXT: SETUP PULSE`.
+- Root-cause hypothesis: either the setup pulse spacing was still too sparse for the visible window, or Thinkorswim kept inherited hidden/custom plot settings on the previous primary arrow plot names.
+- Change: v0.5.5 uses fresh `SignalLongV055Arrow` / `SignalShortV055Arrow` plot names and sets `setupPulseBars = 1`, so every valid 5/6 setup bar should print a visible `SETUP S/L` caution arrow.
