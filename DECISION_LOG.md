@@ -58,3 +58,5 @@
 - Add v0.5.8 after v0.5.7 screenshot became quiet again on a non-triggering `SETUP: 4/6` bar: keep the known-visible arrow path, move live arrows closer to candles, turn normal bubbles off by default, and use `setupPulseBars = 5` as a middle ground.
 
 - Add v0.5.9 after screenshot showed `BIAS: SHORT`, `SETUP: 6/6`, `TRADE: OK`, `NEXT: CONTINUE S`, and `TRIGGER: WAIT`: add visible continuation-anchor arrows that do not feed `realShortEntry` / `realLongEntry`, so they do not reset target/stop tracking.
+
+- Add v0.5.10 after multi-agent review of continued no-arrow screenshots: treat chart bubbles as the proven-visible marker path, add compact default-on `S` / `L` marker bubbles from `visibleShortSignal` / `visibleLongSignal`, and keep setup-ready markers visual-only so they do not repeatedly reset PT/SL tracking.

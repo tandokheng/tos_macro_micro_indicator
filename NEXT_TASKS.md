@@ -2,11 +2,12 @@
 
 ## Doing
 
-- Install `MacroMicro_Simplified_v0.5.9.ts` into Thinkorswim study `_dk_codex_macro_micro_v1` and review whether `NEXT: CONTINUE S/L` now paints magenta/cyan continuation-anchor arrows without bubble spam.
+- Install `MacroMicro_Simplified_v0.5.10.ts` into Thinkorswim study `_dk_codex_macro_micro_v1` and review whether compact cyan `S` / magenta `L` marker bubbles appear on QQQ 5m scrollback.
 
 ## Todo
 
-- If v0.5.9 is still too noisy, add spacing to continuation-anchor arrows; if still too sparse, lower `setupPulseBars` to 3 or temporarily turn `showSignalBubbles` back on.
+- If v0.5.10 marker bubbles are too noisy, add spacing to setup-ready marker bubbles without changing `realLongEntry` / `realShortEntry`.
+- If marker bubbles appear but plot arrows still do not, document it as a TOS plot-style/rendering issue and stop relaxing signal gates for visibility.
 - Log 5 to 10 QQQ 5-minute examples where arrows were helpful, late, blocked correctly, or still noisy.
 - Decide whether the first higher-timeframe context test should use 1-hour as a soft gate, caution state, or dashboard-only label.
 - Run a separate QQQ 15-minute validation pass after the 5-minute setup is stable.
@@ -63,3 +64,5 @@
 - Updated `tests/verify_simplified_indicator.ps1` for v0.5.8 arrows-first checks.
 - Added `MacroMicro_Simplified_v0.5.9.ts` with continuation-anchor arrows for persistent `NEXT: CONTINUE S/L` states.
 - Updated `tests/verify_simplified_indicator.ps1` for v0.5.9 continuation-anchor checks.
+- Added `MacroMicro_Simplified_v0.5.10.ts` with compact default-on `S` / `L` marker bubbles and visual-only setup-ready markers.
+- Updated `tests/verify_simplified_indicator.ps1` for v0.5.10 render-contract marker checks.

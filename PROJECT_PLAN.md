@@ -8,7 +8,7 @@ Build a cleaner Thinkorswim macro/micro intraday indicator that is practical for
 
 - Optimize the simplified 5-of-6 model on 5-minute charts first.
 - Treat 15-minute tuning as the next validation pass, not as a simultaneous target.
-- Keep the chart readable: one long arrow, one short arrow, standby dots, compact signal bubbles, and optional target/stop bubbles.
+- Keep the chart readable: one visible long marker, one visible short marker, standby dots, compact optional signal bubbles, and optional target/stop bubbles.
 - Use static verifier checks to catch accidental regressions in versioning, thresholds, arrow count, and old visual spam.
 
 ## Higher-Timeframe Context Hypothesis
@@ -24,6 +24,6 @@ Candidate hierarchy:
 ## Milestones
 
 - Done: Create `MacroMicro_Simplified_v0.2.0.ts` with stronger RVOL gating, candle confirmation, cleaner target/stop display, and compact signal bubbles.
-- Doing: Review/import `MacroMicro_Simplified_v0.5.9.ts`, an arrows-first QQQ 5m review build that adds continuation anchors for persistent `NEXT: CONTINUE S/L` states.
+- Doing: Review/import `MacroMicro_Simplified_v0.5.10.ts`, a QQQ 5m visibility build that uses compact default-on `S` / `L` marker bubbles because Thinkorswim plot arrows remained unreliable in scrollback.
 - Todo: Decide whether a higher-timeframe context filter improves 5-minute entries.
 - Todo: Validate/tune the indicator on QQQ 15-minute charts after 5-minute behavior is acceptable.

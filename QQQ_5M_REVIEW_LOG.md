@@ -229,3 +229,10 @@ Use this after importing `MacroMicro_Simplified_v0.3.1.ts` into Thinkorswim.
 - Observation: v0.5.8 screenshot showed `BIAS: SHORT`, `SETUP: 6/6`, `TRADE: OK`, and `NEXT: CONTINUE S`, but `TRIGGER: WAIT` and no visible arrow.
 - Root-cause conclusion: continuation pressure can persist after the edge-based continuation arrow has already passed, so the dashboard can show a valid continuation state without a current plotted arrow.
 - Change: v0.5.9 adds continuation-anchor arrows through `visibleLongSignal` / `visibleShortSignal`, separate from trade-entry tracking, so persistent `NEXT: CONTINUE S/L` states can paint without resetting PT/SL.
+
+
+## 2026-06-26 compact marker-bubble follow-up
+
+- Observation: User still reported no arrows while scrolling back; screenshot showed `BIAS: SHORT`, `SETUP: 6/6`, `TRADE: CAUTION`, `CAUTION BY: RVOL`, and `NEXT: SETUP PULSE`.
+- Multi-agent conclusion: `SETUP: 6/6` means the setup score is strong, but the throttled setup-pulse edge can still be false on that bar; also, v0.5.6 proved chart bubbles rendered, not necessarily that plot-arrow rendering was reliable.
+- Change: v0.5.10 adds default-on compact `S` / `L` marker bubbles driven by `visibleShortSignal` / `visibleLongSignal`, and moves setup-ready states into visual markers instead of `realShortEntry` / `realLongEntry` so PT/SL tracking is not repeatedly reset.
