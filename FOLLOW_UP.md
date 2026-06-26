@@ -2,8 +2,8 @@
 
 ## High Leverage
 
-- FU-001 - Replace `_dk_codex_macro_micro_v1` with `MacroMicro_Simplified_v0.5.3.ts` in Thinkorswim and confirm it compiles.
-- FU-002 - Confirm whether the active 4/6 QQQ short trend now shows `CONT S` or `CAUTION BY: CONTINUE S` instead of only `NEXT: CANDLE`.
+- FU-001 - Replace `_dk_codex_macro_micro_v1` with `MacroMicro_Simplified_v0.5.4.ts` in Thinkorswim and confirm it compiles.
+- FU-002 - Confirm whether sustained 5/6 QQQ short setups now show `SETUP S` arrows or `TRIGGER: SETUP SHORT`.
 
 ## Easy To Complete
 

@@ -2,11 +2,11 @@
 
 ## Doing
 
-- Install `MacroMicro_Simplified_v0.5.3.ts` into Thinkorswim study `_dk_codex_macro_micro_v1` and review whether active 4/6 short trends can show `CONT S` / `CAUTION BY: CONTINUE S` instead of staying at `NEXT: CANDLE`.
+- Install `MacroMicro_Simplified_v0.5.4.ts` into Thinkorswim study `_dk_codex_macro_micro_v1` and review whether sustained 5/6 setups now show `SETUP S/L` caution arrows instead of no arrows.
 
 ## Todo
 
-- If v0.5.3 is still too quiet, capture the dashboard labels from that exact chart area; `BLOCKED BY`, `CAUTION BY`, and `NEXT` should identify the remaining blocker.
+- If v0.5.4 still shows no arrows, confirm whether `TRIGGER` ever shows `SETUP SHORT` / `SETUP LONG`; if not, the issue is likely a TOS plot visibility/customization setting rather than signal logic.
 - Log 5 to 10 QQQ 5-minute examples where arrows were helpful, late, blocked correctly, or still noisy.
 - Decide whether the first higher-timeframe context test should use 1-hour as a soft gate, caution state, or dashboard-only label.
 - Run a separate QQQ 15-minute validation pass after the 5-minute setup is stable.
@@ -51,3 +51,5 @@
 - Updated `tests/verify_simplified_indicator.ps1` for v0.5.2 fast bias-flip checks.
 - Added `MacroMicro_Simplified_v0.5.3.ts` with 4/6 continuation-pressure caution arrows for active trends stuck on `NEXT: CANDLE`.
 - Updated `tests/verify_simplified_indicator.ps1` for v0.5.3 continuation-pressure checks.
+- Added `MacroMicro_Simplified_v0.5.4.ts` with a 5/6 setup-pulse fallback to prevent sustained qualified setups from producing no arrows.
+- Updated `tests/verify_simplified_indicator.ps1` for v0.5.4 setup-pulse checks.

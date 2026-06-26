@@ -187,3 +187,10 @@ Use this after importing `MacroMicro_Simplified_v0.3.1.ts` into Thinkorswim.
 - Observation: User screenshot showed `BIAS: SHORT`, `SETUP: 4/6`, `TRADE: CAUTION`, `CAUTION BY: RVOL`, and `NEXT: CANDLE` while QQQ remained in an active downtrend.
 - Root-cause conclusion: after the bias has flipped correctly, strict candle confirmation can still starve 4/6 continuation entries during low-RVOL trend pressure.
 - Change: v0.5.3 adds `CONT S/L` caution arrows when price keeps breaking in the active 4/6 bias direction despite strict candle confirmation not passing.
+
+
+## 2026-06-26 setup-pulse starvation follow-up
+
+- Observation: User reported no arrows anywhere while scrolling back; screenshot showed `BIAS: SHORT`, `SETUP: 5/6`, `TRADE: CAUTION`, `CAUTION BY: RVOL`, and `NEXT: CANDLE`.
+- Root-cause conclusion: real arrows were still too dependent on candidate edges and candle confirmation, so sustained 5/6 setups could remain valid without printing visible historical arrows.
+- Change: v0.5.4 adds `SETUP S/L` caution arrows on 5/6 setup pulses, with a refresh every `setupPulseBars` bars while the qualified setup persists.
