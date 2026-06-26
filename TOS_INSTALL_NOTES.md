@@ -2,18 +2,21 @@
 
 ## Current Test Script
 
-- File: `MacroMicro_Simplified_v0.2.1.ts`
+- File: `MacroMicro_Simplified_v0.4.9.ts`
 - Import-ready file: `_dk_codex_macro_micro_v1.ts`
 - Thinkorswim study to replace: `_dk_codex_macro_micro_v1`
 - Primary chart for review: QQQ 5-minute, 20-day view
 
-## What v0.2.1 Changes Visually
+## What v0.4.9 Is Testing
 
-- First valid long/short leg shows `ENTRY L` or `ENTRY S`.
-- Same-direction repeat signals show `ADD L` or `ADD S` instead of another plain entry arrow.
-- Profit target and stop bubbles default to visible with `PT` and `SL`.
-- Score breakdown from a strong active trade to 3/6 shows `DANGER L` or `DANGER S`.
+- Real arrows use `realLongEntry` / `realShortEntry`, which combine the strict entry-state path with practical setup-edge arrows.
+- `debugForceArrows` defaults to `no`; do not turn it back on unless specifically debugging plot visibility.
+- RVOL from `0.10` to `0.80` is treated as `CAUTION`, not a hard block.
+- Profit target and stop tracking follow the practical real-entry layer.
+- If there are still no arrows, capture the dashboard labels from that exact chart area.
 
-## Current Automation Blocker
+## Current Manual Test Flow
 
-Computer Use can see the Thinkorswim chart, but cannot activate app windows right now. It returned `failed to activate captured window` for both Thinkorswim and Notepad after a helper reset. Because of that, the script was not pasted into Thinkorswim automatically in this run.
+- Paste `_dk_codex_macro_micro_v1.ts` into the Thinkorswim study `_dk_codex_macro_micro_v1`.
+- Confirm the header shows `# Version: v0.4.9` in the pasted source.
+- Review QQQ 5m first; defer 15m validation until 5m behavior is acceptable.

@@ -1,6 +1,6 @@
 # ============================================================
 # Macro Micro Simplified 5-of-6 Intraday Study
-# Version: v0.4.9
+# Version: v0.4.6
 # TOS Study: _dk_codex_macro_micro_v1
 # Label: 5-of-6 intraday simplified
 # Timeframe focus: 5m first, then 15m validation/tuning.
@@ -32,9 +32,6 @@
 # - Fresh primary arrow plot names avoid inherited hidden TOS plot settings from LongArrow/ShortArrow
 # - Forced short debug now uses the known-visible DebugBigArrow plot and ungated forced bubbles
 # - Forced long debug now has a mirrored big magenta DebugBigUpArrow plot
-# - Clean signal test: debug-force defaults off and real arrows no longer include forced debug conditions
-# - RVOL tuning: sub-0.35 RVOL is CAUTION, hard block is reserved for truly dead volume or non-impulse bars
-# - Practical real-entry layer: arrows can fire from qualified setup edges without waiting for full recursive entry-state alignment
 # ============================================================
 
 declare upper;
@@ -62,9 +59,8 @@ input chopADX = 14;
 input useVWAPFilter = yes;
 input volumeMALength = 50;
 input minRelVolume = 0.80;
-input blockRelVolume = 0.10;
+input blockRelVolume = 0.35;
 input exceptionalMomentumATRFactor = 1.60;
-input lowVolumeMomentumATRFactor = 1.20;
 input fastBreakTRFactor = 1.35;
 input fastBreakLookback = 3;
 
@@ -88,7 +84,7 @@ input showDangerBubbles = yes;
 input showTargetStopBubbles = yes;
 input showDashboard = yes;
 input showDebugLabel = yes;
-input debugForceArrows = no;
+input debugForceArrows = yes;
 input debugPaintBigArrow = no;
 
 input muteAllAlerts = no;
@@ -256,7 +252,7 @@ def directionalShortConfirm =
 
 def longBreakConfirm = directionalLongConfirm and (close > high[1] or close > emaSlow);
 def shortBreakConfirm = directionalShortConfirm and (close < low[1] or close < emaSlow);
-def fastBreakVolumeOK = relVol >= minRelVolume or candleTR >= avgTR20 * lowVolumeMomentumATRFactor;
+def fastBreakVolumeOK = relVol >= minRelVolume or candleTR >= avgTR20 * exceptionalMomentumATRFactor;
 def fastBreakoutConfirm =
     candleTR >= avgTR20 * fastBreakTRFactor and
     close > close[1] and
@@ -303,22 +299,6 @@ def exceptionalShortMomentum =
     shortCandleConfirm and
     sellPressure;
 
-def lowVolumeLongMomentum =
-    longScore >= triggerThreshold and
-    longScore > shortScore and
-    candleTR >= avgTR20 * lowVolumeMomentumATRFactor and
-    close > close[1] and
-    close > emaFast and
-    close >= high - candleTR * 0.50;
-
-def lowVolumeShortMomentum =
-    shortScore >= triggerThreshold and
-    shortScore > longScore and
-    candleTR >= avgTR20 * lowVolumeMomentumATRFactor and
-    close < close[1] and
-    close < emaFast and
-    close <= low + candleTR * 0.50;
-
 # ---------------- Trade State ----------------
 def mixedBias = longScore >= standbyThreshold and shortScore >= standbyThreshold;
 def extensionATR = if atr > 0 then AbsValue(close - emaFast) / atr else 0;
@@ -328,9 +308,9 @@ def extremeLowRelVolume = relVol < blockRelVolume;
 def chop = adx < chopADX and maxScore < triggerThreshold;
 
 def structureBlocked = mixedBias or chop;
-def longVolumeOK = !extremeLowRelVolume or exceptionalLongMomentum or lowVolumeLongMomentum;
-def shortVolumeOK = !extremeLowRelVolume or exceptionalShortMomentum or lowVolumeShortMomentum;
-def tradeBlocked = structureBlocked or (extremeLowRelVolume and !exceptionalLongMomentum and !exceptionalShortMomentum and !lowVolumeLongMomentum and !lowVolumeShortMomentum);
+def longVolumeOK = !extremeLowRelVolume or exceptionalLongMomentum;
+def shortVolumeOK = !extremeLowRelVolume or exceptionalShortMomentum;
+def tradeBlocked = structureBlocked or (extremeLowRelVolume and !exceptionalLongMomentum and !exceptionalShortMomentum);
 def longTradeOK = !structureBlocked and longVolumeOK;
 def shortTradeOK = !structureBlocked and shortVolumeOK;
 def longTradeCaution = longTradeOK and (extended or lowVolume or adx < chopADX or (extremeLowRelVolume and exceptionalLongMomentum));
@@ -388,39 +368,6 @@ def sameSideShortExpired = entryState[1] < -activeResetSameSideAfterBars and !tr
 def newLongEntry = entryState == 1 and entryState[1] != 1;
 def newShortEntry = entryState == -1 and entryState[1] != -1;
 
-def practicalLongSetup =
-    longTradeOK and
-    longScore >= triggerThreshold and
-    longScore > shortScore and
-    (longEntryConfirm or lowVolumeLongMomentum or (close > emaFast and close > close[1]));
-
-def practicalShortSetup =
-    shortTradeOK and
-    shortScore >= triggerThreshold and
-    shortScore > longScore and
-    (shortEntryConfirm or lowVolumeShortMomentum or (close < emaFast and close < close[1]));
-
-def practicalLongCautionSetup =
-    allowCautionFourOfSix and
-    longTradeOK and
-    longScore == standbyThreshold and
-    longScore > shortScore and
-    (longEntryConfirm or lowVolumeLongMomentum);
-
-def practicalShortCautionSetup =
-    allowCautionFourOfSix and
-    shortTradeOK and
-    shortScore == standbyThreshold and
-    shortScore > longScore and
-    (shortEntryConfirm or lowVolumeShortMomentum);
-
-def practicalLongCandidate = practicalLongSetup or practicalLongCautionSetup;
-def practicalShortCandidate = practicalShortSetup or practicalShortCautionSetup;
-def practicalLongArrow = practicalLongCandidate and !practicalLongCandidate[1];
-def practicalShortArrow = practicalShortCandidate and !practicalShortCandidate[1];
-def realLongEntry = newLongEntry or practicalLongArrow;
-def realShortEntry = newShortEntry or practicalShortArrow;
-
 def longEntryPulse =
     longEntryCandidate and
     (longEntryEdge or longReadyEdge or cooldownJustCleared or longTradeJustUnblocked or sameSideLongExpired);
@@ -436,14 +383,14 @@ def continuationShortSignal = shortEntryPulse and cooldownOK and lastEntryDir[1]
 def activeEntryPrice =
     CompoundValue(
         1,
-        if realLongEntry or realShortEntry then close else activeEntryPrice[1],
+        if newLongEntry or newShortEntry then close else activeEntryPrice[1],
         close
     );
 
 def lockedATR =
     CompoundValue(
         1,
-        if realLongEntry or realShortEntry then atr else lockedATR[1],
+        if newLongEntry or newShortEntry then atr else lockedATR[1],
         atr
     );
 
@@ -458,8 +405,8 @@ def shortStopPrice = activeEntryPrice + lockedATR * stopATRFactor;
 def activeDir =
     CompoundValue(
         1,
-        if realLongEntry then 1
-        else if realShortEntry then -1
+        if newLongEntry then 1
+        else if newShortEntry then -1
         else if activeDir[1] == 1 and (high >= longTargetPrice[1] or low <= longStopPrice[1] or shortScore >= triggerThreshold) then 0
         else if activeDir[1] == -1 and (low <= shortTargetPrice[1] or high >= shortStopPrice[1] or longScore >= triggerThreshold) then 0
         else activeDir[1],
@@ -486,7 +433,7 @@ def activeTradeScore =
 def peakTradeScore =
     CompoundValue(
         1,
-        if realLongEntry or realShortEntry then activeTradeScore
+        if newLongEntry or newShortEntry then activeTradeScore
         else if activeDir != 0 then Max(peakTradeScore[1], activeTradeScore)
         else 0,
         0
@@ -513,15 +460,14 @@ def shortStandby = shortBias and !shortTrigger and shortTradeOK and activeDir !=
 def debugForcedLongArrow = debugForceArrows and longScore >= triggerThreshold and longScore > shortScore;
 def debugForcedShortArrow = debugForceArrows and shortScore >= triggerThreshold and shortScore > longScore;
 def arrowOff = Max(off, atr * 0.12);
-def signalArrowOff = Max(off * 8, atr * 0.30);
 def bigArrowOff = Max(off * 50, atr * 1.20);
 
-plot DebugBigArrow = if (debugPaintBigArrow and lastVisibleBar) or (debugForceArrows and debugForcedShortArrow) then high + bigArrowOff else Double.NaN;
+plot DebugBigArrow = if (debugPaintBigArrow and lastVisibleBar) or debugForcedShortArrow then high + bigArrowOff else Double.NaN;
 DebugBigArrow.SetPaintingStrategy(PaintingStrategy.ARROW_DOWN);
 DebugBigArrow.SetLineWeight(5);
 DebugBigArrow.SetDefaultColor(Color.CYAN);
 
-plot DebugBigUpArrow = if debugForceArrows and debugForcedLongArrow then low - bigArrowOff else Double.NaN;
+plot DebugBigUpArrow = if debugForcedLongArrow then low - bigArrowOff else Double.NaN;
 DebugBigUpArrow.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
 DebugBigUpArrow.SetLineWeight(5);
 DebugBigUpArrow.SetDefaultColor(Color.MAGENTA);
@@ -538,17 +484,17 @@ StandbyShortDot.SetPaintingStrategy(PaintingStrategy.POINTS);
 StandbyShortDot.SetLineWeight(3);
 StandbyShortDot.SetDefaultColor(CreateColor(190, 0, 0));
 
-plot VisibleLongArrow = if realLongEntry then low - signalArrowOff else Double.NaN;
+plot VisibleLongArrow = if newLongEntry or debugForcedLongArrow then low - arrowOff else Double.NaN;
 VisibleLongArrow.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
 VisibleLongArrow.SetLineWeight(5);
 VisibleLongArrow.SetDefaultColor(Color.GREEN);
-VisibleLongArrow.AssignValueColor(if debugForcedLongArrow and !realLongEntry then Color.MAGENTA else Color.GREEN);
+VisibleLongArrow.AssignValueColor(if debugForcedLongArrow and !newLongEntry then Color.MAGENTA else Color.GREEN);
 
-plot VisibleShortArrow = if realShortEntry then high + signalArrowOff else Double.NaN;
+plot VisibleShortArrow = if newShortEntry or debugForcedShortArrow then high + arrowOff else Double.NaN;
 VisibleShortArrow.SetPaintingStrategy(PaintingStrategy.ARROW_DOWN);
 VisibleShortArrow.SetLineWeight(5);
 VisibleShortArrow.SetDefaultColor(Color.RED);
-VisibleShortArrow.AssignValueColor(if debugForcedShortArrow and !realShortEntry then Color.CYAN else Color.RED);
+VisibleShortArrow.AssignValueColor(if debugForcedShortArrow and !newShortEntry then Color.CYAN else Color.RED);
 
 # ---------------- Target / Stop Lines ----------------
 plot PTarget =
@@ -575,7 +521,7 @@ SLoss.SetDefaultColor(Color.RED);
 
 # ---------------- Bubbles + Alerts ----------------
 AddChartBubble(
-    showSignalBubbles and realLongEntry,
+    showSignalBubbles and newLongEntry,
     low - off * 1.4,
     "ENTRY L " +
         (if longScore >= 6 then "6" else if longScore >= 5 then "5" else if longScore >= 4 then "4" else if longScore >= 3 then "3" else if longScore >= 2 then "2" else if longScore >= 1 then "1" else "0") +
@@ -585,7 +531,7 @@ AddChartBubble(
     no
 );
 AddChartBubble(
-    showSignalBubbles and realShortEntry,
+    showSignalBubbles and newShortEntry,
     high + off * 1.4,
     "ENTRY S " +
         (if shortScore >= 6 then "6" else if shortScore >= 5 then "5" else if shortScore >= 4 then "4" else if shortScore >= 3 then "3" else if shortScore >= 2 then "2" else if shortScore >= 1 then "1" else "0") +
@@ -596,7 +542,7 @@ AddChartBubble(
 );
 
 AddChartBubble(
-    debugForceArrows and debugForcedLongArrow and !realLongEntry,
+    debugForceArrows and debugForcedLongArrow and !newLongEntry,
     low - bigArrowOff * 1.1,
     "TEST L " +
         (if longScore >= 6 then "6" else if longScore >= 5 then "5" else if longScore >= 4 then "4" else if longScore >= 3 then "3" else if longScore >= 2 then "2" else if longScore >= 1 then "1" else "0") +
@@ -605,7 +551,7 @@ AddChartBubble(
     no
 );
 AddChartBubble(
-    debugForceArrows and debugForcedShortArrow and !realShortEntry,
+    debugForceArrows and debugForcedShortArrow and !newShortEntry,
     high + bigArrowOff * 1.1,
     "TEST S " +
         (if shortScore >= 6 then "6" else if shortScore >= 5 then "5" else if shortScore >= 4 then "4" else if shortScore >= 3 then "3" else if shortScore >= 2 then "2" else if shortScore >= 1 then "1" else "0") +
@@ -628,17 +574,17 @@ AddChartBubble(showContinuationBubbles and continuationShortSignal, high + off *
 AddChartBubble(showDangerBubbles and longDangerEdge, high + off * 1.8, "DANGER L " + (if longScore >= 6 then "6" else if longScore >= 5 then "5" else if longScore >= 4 then "4" else if longScore >= 3 then "3" else if longScore >= 2 then "2" else if longScore >= 1 then "1" else "0") + "/6", Color.ORANGE, yes);
 AddChartBubble(showDangerBubbles and shortDangerEdge, low - off * 1.8, "DANGER S " + (if shortScore >= 6 then "6" else if shortScore >= 5 then "5" else if shortScore >= 4 then "4" else if shortScore >= 3 then "3" else if shortScore >= 2 then "2" else if shortScore >= 1 then "1" else "0") + "/6", Color.ORANGE, no);
 
-AddChartBubble(showTargetStopBubbles and realLongEntry, longTargetPrice, "PT", GlobalColor("CautionAmber"), yes);
-AddChartBubble(showTargetStopBubbles and realLongEntry, longStopPrice, "SL", Color.RED, no);
-AddChartBubble(showTargetStopBubbles and realShortEntry, shortTargetPrice, "PT", GlobalColor("CautionAmber"), no);
-AddChartBubble(showTargetStopBubbles and realShortEntry, shortStopPrice, "SL", Color.RED, yes);
+AddChartBubble(showTargetStopBubbles and newLongEntry, longTargetPrice, "PT", GlobalColor("CautionAmber"), yes);
+AddChartBubble(showTargetStopBubbles and newLongEntry, longStopPrice, "SL", Color.RED, no);
+AddChartBubble(showTargetStopBubbles and newShortEntry, shortTargetPrice, "PT", GlobalColor("CautionAmber"), no);
+AddChartBubble(showTargetStopBubbles and newShortEntry, shortStopPrice, "SL", Color.RED, yes);
 AddChartBubble(showTargetStopBubbles and targetHit and activeDir[1] == 1, longTargetPrice[1], "PT", GlobalColor("CautionAmber"), yes);
 AddChartBubble(showTargetStopBubbles and targetHit and activeDir[1] == -1, shortTargetPrice[1], "PT", GlobalColor("CautionAmber"), no);
 AddChartBubble(showTargetStopBubbles and stopHit and activeDir[1] == 1, longStopPrice[1], "SL", Color.RED, no);
 AddChartBubble(showTargetStopBubbles and stopHit and activeDir[1] == -1, shortStopPrice[1], "SL", Color.RED, yes);
 
-Alert(!muteAllAlerts and realLongEntry, "LONG 5/6 Trigger", Alert.BAR, alertSoundUp);
-Alert(!muteAllAlerts and realShortEntry, "SHORT 5/6 Trigger", Alert.BAR, alertSoundDown);
+Alert(!muteAllAlerts and newLongEntry, "LONG 5/6 Trigger", Alert.BAR, alertSoundUp);
+Alert(!muteAllAlerts and newShortEntry, "SHORT 5/6 Trigger", Alert.BAR, alertSoundDown);
 Alert(!muteAllAlerts and targetHit, "PTARGET Hit", Alert.BAR, alertSoundExit);
 Alert(!muteAllAlerts and stopHit, "SLOSS Hit", Alert.BAR, alertSoundExit);
 Alert(!muteAllAlerts and longDangerEdge, "DANGER LONG score breakdown", Alert.BAR, alertSoundExit);
@@ -678,20 +624,20 @@ AddLabel(
         (if longDangerEdge then "DANGER LONG"
          else if shortDangerEdge then "DANGER SHORT"
          else if debugPaintBigArrow and lastVisibleBar then "BIG TEST"
-         else if debugForcedLongArrow and !realLongEntry then "TEST LONG"
-         else if debugForcedShortArrow and !realShortEntry then "TEST SHORT"
-         else if realLongEntry then "LONG"
-         else if realShortEntry then "SHORT"
+         else if debugForcedLongArrow and !newLongEntry then "TEST LONG"
+         else if debugForcedShortArrow and !newShortEntry then "TEST SHORT"
+         else if newLongEntry then "LONG"
+         else if newShortEntry then "SHORT"
          else if longStandby then "LONG STANDBY"
          else if shortStandby then "SHORT STANDBY"
          else if dashTradeBlocked and dashDir != 0 then "BLOCKED"
          else "WAIT"),
     if longDangerEdge or shortDangerEdge then Color.ORANGE
     else if debugPaintBigArrow and lastVisibleBar then Color.CYAN
-    else if debugForcedLongArrow and !realLongEntry then Color.MAGENTA
-    else if debugForcedShortArrow and !realShortEntry then Color.CYAN
-    else if realLongEntry then Color.GREEN
-    else if realShortEntry then Color.RED
+    else if debugForcedLongArrow and !newLongEntry then Color.MAGENTA
+    else if debugForcedShortArrow and !newShortEntry then Color.CYAN
+    else if newLongEntry then Color.GREEN
+    else if newShortEntry then Color.RED
     else if longStandby or shortStandby then GlobalColor("CautionAmber")
     else if dashTradeBlocked and dashDir != 0 then Color.RED
     else Color.GRAY

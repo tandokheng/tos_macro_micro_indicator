@@ -24,6 +24,6 @@ Candidate hierarchy:
 ## Milestones
 
 - Done: Create `MacroMicro_Simplified_v0.2.0.ts` with stronger RVOL gating, candle confirmation, cleaner target/stop display, and compact signal bubbles.
-- Doing: Review v0.2.0 on QQQ 5-minute charts in Thinkorswim.
+- Doing: Review/import `MacroMicro_Simplified_v0.4.9.ts`, which adds a practical real-entry layer so arrows are no longer dependent on full recursive entry-state alignment.
 - Todo: Decide whether a higher-timeframe context filter improves 5-minute entries.
 - Todo: Validate/tune the indicator on QQQ 15-minute charts after 5-minute behavior is acceptable.

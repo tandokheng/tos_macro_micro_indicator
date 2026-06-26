@@ -2,13 +2,13 @@
 
 ## Doing
 
-- Install `MacroMicro_Simplified_v0.2.1.ts` into Thinkorswim study `_dk_codex_macro_micro_v1` and review QQQ 5-minute charts.
+- Install `MacroMicro_Simplified_v0.4.9.ts` into Thinkorswim study `_dk_codex_macro_micro_v1` and review whether practical real `ENTRY L/S` arrows appear on qualified setup edges.
 
 ## Todo
 
+- If v0.4.9 is still too quiet, capture the dashboard labels from that exact chart area; score/structure is then the likely remaining blocker.
 - Log 5 to 10 QQQ 5-minute examples where arrows were helpful, late, blocked correctly, or still noisy.
 - Decide whether the first higher-timeframe context test should use 1-hour as a soft gate, caution state, or dashboard-only label.
-- Resume 5-iteration visual tuning once Windows Computer Use can activate app windows again.
 - Run a separate QQQ 15-minute validation pass after the 5-minute setup is stable.
 - Add static verifier checks for any higher-timeframe variables if they are introduced.
 
@@ -16,4 +16,30 @@
 
 - Added `MacroMicro_Simplified_v0.2.0.ts`.
 - Added `MacroMicro_Simplified_v0.2.1.ts` with entry/add/danger/PT-SL display refinements.
-- Updated `tests/verify_simplified_indicator.ps1` for v0.2.1 static checks.
+- Added `MacroMicro_Simplified_v0.3.4.ts` with explicit `declare upper;`, ready-entry fallback, and `WHY:` diagnostics after v0.3.3 still showed no arrows.
+- Added `MacroMicro_Simplified_v0.3.5.ts` to relax 5m RVOL hard block from `0.60` to `0.35` and make `0.35-0.80` relative volume a CAUTION zone.
+- Added `MacroMicro_Simplified_v0.3.6.ts` to allow 4/6 candle-confirmed CAUTION arrows, decouple micro score from volume pressure, and show integer setup scores.
+- Added `MacroMicro_Simplified_v0.3.7.ts` to fix historical arrow starvation from candidate-edge cooldown resets, use same-side arrow refresh after 30 bars, and change bright yellow UI to amber.
+- Added `MacroMicro_Simplified_v0.3.8.ts` with a visible default 5m profile, optional 15m timing profile, and same-side refresh that waits for the next valid candidate after the reset window.
+- Added `MacroMicro_Simplified_v0.3.9.ts` to fix v0.3.8 ThinkScript forward-reference compile errors with a recursive entry-state model.
+- Updated `tests/verify_simplified_indicator.ps1` for v0.3.9 static checks, including guards against the forward-reference bug.
+- Added `MacroMicro_Simplified_v0.4.0.ts` with fast break confirmation for 5/6 TRADE OK impulse moves that were blocked by strict candle confirmation.
+- Updated `tests/verify_simplified_indicator.ps1` for v0.4.0 fast-break static checks.
+- Added `MacroMicro_Simplified_v0.4.1.ts` as a forced-arrow diagnostic build with magenta/cyan `TEST L/S` arrows and bubbles.
+- Updated `tests/verify_simplified_indicator.ps1` for v0.4.1 debug-force checks.
+- Added `MacroMicro_Simplified_v0.4.2.ts` so forced debug arrows ignore TRADE/RVOL and test plot visibility from score only.
+- Updated `tests/verify_simplified_indicator.ps1` for v0.4.2 score-only forced-arrow checks.
+- Added `MacroMicro_Simplified_v0.4.3.ts` with one always-on big cyan last-bar arrow and `BIG TEST ARROW` bubble.
+- Updated `tests/verify_simplified_indicator.ps1` for v0.4.3 big-arrow diagnostic checks.
+- Added `MacroMicro_Simplified_v0.4.4.ts` with fresh primary arrow plot names to avoid inherited hidden/custom settings from old TOS plot names.
+- Updated `tests/verify_simplified_indicator.ps1` for v0.4.4 fresh-arrow-plot checks.
+- Added `MacroMicro_Simplified_v0.4.5.ts` so score-forced shorts use the known-visible `DebugBigArrow` plot and forced debug bubbles ignore the normal signal-bubble toggle.
+- Updated `tests/verify_simplified_indicator.ps1` for v0.4.5 forced-arrow render-path checks.
+- Added `MacroMicro_Simplified_v0.4.6.ts` with a mirrored magenta `DebugBigUpArrow` for score-forced long visibility testing.
+- Updated `tests/verify_simplified_indicator.ps1` for v0.4.6 mirrored long debug-arrow checks.
+- Added `MacroMicro_Simplified_v0.4.7.ts` with forced-arrow debug defaulted off and real entry arrows separated from debug-forced arrows.
+- Updated `tests/verify_simplified_indicator.ps1` for v0.4.7 clean-signal checks.
+- Added `MacroMicro_Simplified_v0.4.8.ts` so RVOL 0.10-0.80 is CAUTION and only truly dead volume hard-blocks without impulse momentum.
+- Updated `tests/verify_simplified_indicator.ps1` for v0.4.8 RVOL/impulse checks.
+- Added `MacroMicro_Simplified_v0.4.9.ts` with practical real-entry arrows and PT/SL tracking based on `realLongEntry` / `realShortEntry`.
+- Updated `tests/verify_simplified_indicator.ps1` for v0.4.9 practical real-entry checks.
