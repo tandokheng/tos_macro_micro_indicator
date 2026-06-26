@@ -201,3 +201,10 @@ Use this after importing `MacroMicro_Simplified_v0.3.1.ts` into Thinkorswim.
 - Observation: User screenshot still showed no arrows while the dashboard showed a valid 5/6 setup and `NEXT: SETUP PULSE`.
 - Root-cause hypothesis: either the setup pulse spacing was still too sparse for the visible window, or Thinkorswim kept inherited hidden/custom plot settings on the previous primary arrow plot names.
 - Change: v0.5.5 uses fresh `SignalLongV055Arrow` / `SignalShortV055Arrow` plot names and sets `setupPulseBars = 1`, so every valid 5/6 setup bar should print a visible `SETUP S/L` caution arrow.
+
+
+## 2026-06-26 known-visible signal rendering follow-up
+
+- Observation: User screenshot showed `TRIGGER: SETUP LONG`, `SETUP: 5/6`, and `TRADE: CAUTION`, but still no visible arrow.
+- Root-cause conclusion: the signal condition is now firing; the remaining failure is the standard primary arrow rendering path or scrollback/dashboard mismatch, not the score trigger.
+- Change: v0.5.6 routes real entries through the known-visible `DebugBigArrow` / `DebugBigUpArrow` plots and adds short failsafe `SETUP L/S` bubbles on setup pulses.
