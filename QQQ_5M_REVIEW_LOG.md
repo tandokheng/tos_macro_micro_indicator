@@ -320,3 +320,10 @@ Use this after importing `MacroMicro_Simplified_v0.3.1.ts` into Thinkorswim.
 - Observation: User screenshot showed `BUILD: v0.5.21 QUIET ARROWS`, the test bubble/dot, target/stop lines, and no magenta/cyan review arrows across the visible QQQ 5m region.
 - Root-cause conclusion: v0.5.21 overcorrected by moving default arrows to entry-only gates. That avoided raw cadence spam, but it also removed useful setup-review arrows from historical chart review.
 - Change: v0.5.22 keeps the proven working-style arrow primitive, adds setup-review arrows only on first 5/6 setup edges or 6/6 upgrades, and keeps PT/SL trade tracking tied to `realLongEntry` / `realShortEntry`.
+
+
+## 2026-06-27 v0.5.22 historical-arrow follow-up
+
+- Observation: User screenshot showed `BUILD: v0.5.22 BALANCED ARROWS` and the `v0.5.22 TEST` bubble, but no magenta/cyan arrows on historical QQQ 5m candles. The user correctly asked whether arrows should still show while the market is closed.
+- Root-cause conclusion: Closed market is not the blocker; ThinkScript should still render historical bars. v0.5.22's first-edge/6-upgrade gate was still too sparse for visible scrollback regions.
+- Change: v0.5.23 keeps the working-style arrow primitive and adds a visual-only slow refresh every `setupReviewRefreshBars = 13` bars during sustained 5/6 setups when quality is present. This does not feed `realLongEntry` / `realShortEntry`, PT/SL tracking, or alerts.

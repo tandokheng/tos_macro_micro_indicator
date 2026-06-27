@@ -90,3 +90,5 @@
 - Add v0.5.21 after v0.5.20 was visibly too noisy: raw setup should remain a diagnostic label/source state, while default arrows should use fresh working-style plots driven only by real trade-review entries.
 
 - Add v0.5.22 after v0.5.21 removed too many arrows: default review arrows should include first 5/6 setup edges and 6/6 upgrades, but still avoid raw cadence repeats and not reset trade tracking unless a real entry fires.
+
+- Add v0.5.23 after v0.5.22 still showed no historical arrows: closed market is not a reason for missing past arrows, so add a slow quality-gated visual refresh for sustained 5/6 setup states while leaving real trade tracking untouched.

@@ -48,7 +48,7 @@ Current next direction:
 - Build from the latest versioned file.
 - Keep the working-style arrows as the default visible marker path.
 - Hide raw proof bubbles by default once arrows are confirmed.
-- Use v0.5.22's balanced review-arrow idea as the starting point: real entries plus setup-edge/quality-upgrade review arrows, not repeated raw cadence.
+- Use v0.5.23's review-refresh idea as the starting point: real entries plus setup-edge/quality-upgrade review arrows and a slow quality-gated sustained setup refresh, not repeated raw cadence.
 - Update VERSIONING.md, TOS_INSTALL_NOTES.md, NEXT_TASKS.md, FOLLOW_UP.md, PROJECT_PLAN.md, QQQ_5M_REVIEW_LOG.md, and DECISION_LOG.md.
 - Commit and push useful checkpoints.
 ```
