@@ -110,3 +110,5 @@
 - Add v0.5.30 after v0.5.29 screenshots showed the indicator works in clean direction but still marks chop: filter setup-review arrows through local trend efficiency, side-specific score dominance, and EMA17 direction while leaving fast break, low-volume momentum, continuation pressure, and real-entry tracking intact.
 
 - Add v0.5.31 after v0.5.30 screenshots still showed noisy chop arrows while `DBG CHOP` was high: apply the same chop gate to real-entry review arrows and remove low-volume momentum as a direct review-arrow bypass, while leaving actual `realLongEntry` / `realShortEntry` trade tracking intact.
+
+- Add v0.5.32 after v0.5.31 still showed too many arrows in sideways regions: add a mixed-direction conflict filter that blocks visible review arrows when both long and short candidates fired within 13 bars, unless a fast break, continuation, or efficient VWAP/EMA-aligned move escapes the range.

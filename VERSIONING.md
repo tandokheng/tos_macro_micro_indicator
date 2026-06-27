@@ -65,6 +65,7 @@ Use an explicit version in every new indicator file and in the file header.
 - MacroMicro_Simplified_v0.5.29.ts adds a final visual-only review throttle with `reviewVisualMinBars = 8`, keeps raw `DBG REV` counts unthrottled, and adds `DBG VIS L/S` so chart noise can be tuned without hiding source diagnostics.
 - MacroMicro_Simplified_v0.5.30.ts adds a default-on setup-review chop filter using 12-bar trend efficiency, 2-point score dominance, and side-specific slow-EMA direction, plus `DBG CHOP L/S` counts for suppressed review arrows.
 - MacroMicro_Simplified_v0.5.31.ts applies the chop filter to real-entry review arrows too and removes low-volume momentum as a direct review-arrow bypass, so `DBG CHOP L/S` now catches both setup-review and real-entry review arrows blocked by chop.
+- MacroMicro_Simplified_v0.5.32.ts adds a mixed-direction review filter: when long and short review candidates both appear within 13 bars, visible review arrows are blocked unless a fast break, continuation pressure, or efficient VWAP/EMA-aligned move escapes the range.
 
 ## Version Meaning
 

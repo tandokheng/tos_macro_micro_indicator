@@ -383,3 +383,10 @@ Use this after importing `MacroMicro_Simplified_v0.3.1.ts` into Thinkorswim.
 - Observation: User screenshots showed `BUILD: v0.5.30 CHOP FILTER` with high `DBG CHOP L/S` counts, but visible arrows remained noisy in sideways regions.
 - Root-cause conclusion: the chop filter was active, but it did not cover every visible-arrow source. Real-entry review arrows still bypassed the setup-review chop gate, and low-volume momentum could bypass the review regime filter.
 - Change: v0.5.31 applies the chop filter to real-entry review arrows as well as setup-review arrows, removes low-volume momentum as a direct review-arrow bypass, and keeps actual trade entry/PT/SL tracking tied to the original `realLongEntry` / `realShortEntry` path.
+
+
+## 2026-06-27 v0.5.31 mixed-chop follow-up
+
+- Observation: User screenshots showed `BUILD: v0.5.31 REAL CHOP`; `DBG CHOP` was high, but `DBG VIS L/S` still showed too many alternating arrows in sideways regions.
+- Root-cause conclusion: the remaining noise was not an uncovered real-entry bypass. It was alternating long/short review candidates surviving after the chop gate and visual throttle.
+- Change: v0.5.32 adds a mixed-direction filter: when both long and short review candidates appear within 13 bars, visible review arrows are blocked unless a fast break, continuation, or efficient VWAP/EMA-aligned move escapes the range. `DBG MIX L/S` reports these blocks.
