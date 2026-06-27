@@ -2,13 +2,13 @@
 
 ## Doing
 
-- Install `MacroMicro_Simplified_v0.5.23.ts` into Thinkorswim study `_dk_codex_macro_micro_v1` and confirm every screenshot shows `BUILD: v0.5.23 REVIEW REFRESH`, `RAW SETUP`, `RAW CONT`, hidden raw proof bubbles, and historical arrows present without v0.5.20-style noise.
+- Install `MacroMicro_Simplified_v0.5.24.ts` into Thinkorswim study `_dk_codex_macro_micro_v1` and confirm every screenshot shows `BUILD: v0.5.24 DEBUG COUNTS`, `RAW SETUP`, `RAW CONT`, `DBG SET`, `DBG REV`, `DBG PROBE`, and any historical review/probe arrows.
 
 ## Todo
 
-- If v0.5.23 does not show `BUILD: v0.5.23 REVIEW REFRESH`, remove duplicate/old `_dk_codex_macro_micro_v1` studies and re-add the pasted source once.
-- Confirm old `SPAM L/S` bubbles are gone; v0.5.23 should hide direct `RAW L/S` proof bubbles by default and keep only review-refresh arrows visible.
-- If `RAW SETUP` stays active on the live bar but no arrow appears, that is acceptable unless the bar is an edge, a 6/6 upgrade, a slow quality refresh, or a real trade-review trigger.
+- If v0.5.24 does not show `BUILD: v0.5.24 DEBUG COUNTS`, remove duplicate/old `_dk_codex_macro_micro_v1` studies and re-add the pasted source once.
+- Confirm old `SPAM L/S` bubbles are gone; v0.5.24 should hide direct `RAW L/S` proof bubbles by default and show review arrows or green/red score-probe arrows when the corresponding gate fires.
+- If arrows are absent, capture the debug counts: nonzero `DBG SET` with zero `DBG REV` means the review gate is too strict; zero `DBG SET` means the setup source is not active in that loaded region.
 - If `CONTRACT: FAIL TRIGGER/MARKER` appears, capture that screenshot because it proves dashboard trigger and marker logic diverged on the same bar.
 - If raw arrows disappear again while labels prove setup state, treat it as a Thinkorswim plot rendering/style-state issue and use the documented working-arrow primitive before changing gates.
 - Log 5 to 10 QQQ 5-minute examples where arrows were helpful, late, blocked correctly, or still noisy.
@@ -99,3 +99,5 @@
 - Updated `tests/verify_simplified_indicator.ps1` for v0.5.22 balanced-arrow checks.
 - Added `MacroMicro_Simplified_v0.5.23.ts` after v0.5.22 still showed no historical arrows; sustained 5/6 setup states now get a slow quality-gated visual refresh.
 - Updated `tests/verify_simplified_indicator.ps1` for v0.5.23 review-refresh checks.
+- Added `MacroMicro_Simplified_v0.5.24.ts` after v0.5.23 still showed no arrows while scrolling; the build adds `DBG SET`, `DBG REV`, `DBG PROBE` labels and fresh score-probe arrows to identify the silent layer.
+- Added `tests/verify_review_signal_fixture.ps1`, `.gitattributes`, and v0.5.24 verifier checks for diagnostic arrows/counts and stable line endings.

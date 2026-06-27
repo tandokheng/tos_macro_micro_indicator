@@ -92,3 +92,5 @@
 - Add v0.5.22 after v0.5.21 removed too many arrows: default review arrows should include first 5/6 setup edges and 6/6 upgrades, but still avoid raw cadence repeats and not reset trade tracking unless a real entry fires.
 
 - Add v0.5.23 after v0.5.22 still showed no historical arrows: closed market is not a reason for missing past arrows, so add a slow quality-gated visual refresh for sustained 5/6 setup states while leaving real trade tracking untouched.
+
+- Add v0.5.24 after the user scrolled v0.5.23 and still saw zero arrows: follow the instrumentation-first lesson by adding 200-bar setup/review/probe counts and visual-only score-probe arrows before changing the trading gate again.

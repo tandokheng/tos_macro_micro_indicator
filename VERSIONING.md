@@ -57,6 +57,7 @@ Use an explicit version in every new indicator file and in the file header.
 - MacroMicro_Simplified_v0.5.21.ts makes raw setup diagnostic-only and moves default arrows to fresh working-style review plots driven only by real trade-entry signals.
 - MacroMicro_Simplified_v0.5.22.ts restores balanced default arrows by adding first 5/6 setup-edge and 6/6-upgrade review signals, while avoiding raw cadence spam and keeping trade tracking on real entries only.
 - MacroMicro_Simplified_v0.5.23.ts adds a slow quality-gated sustained setup review refresh so historical 5/6 regions can show arrows without returning to raw cadence spam.
+- MacroMicro_Simplified_v0.5.24.ts adds debug count labels plus visual-only score-probe arrows to diagnose whether v0.5.23's no-arrow result came from setup source absence or an over-strict review gate.
 
 ## Version Meaning
 

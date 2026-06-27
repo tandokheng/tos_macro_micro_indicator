@@ -327,3 +327,10 @@ Use this after importing `MacroMicro_Simplified_v0.3.1.ts` into Thinkorswim.
 - Observation: User screenshot showed `BUILD: v0.5.22 BALANCED ARROWS` and the `v0.5.22 TEST` bubble, but no magenta/cyan arrows on historical QQQ 5m candles. The user correctly asked whether arrows should still show while the market is closed.
 - Root-cause conclusion: Closed market is not the blocker; ThinkScript should still render historical bars. v0.5.22's first-edge/6-upgrade gate was still too sparse for visible scrollback regions.
 - Change: v0.5.23 keeps the working-style arrow primitive and adds a visual-only slow refresh every `setupReviewRefreshBars = 13` bars during sustained 5/6 setups when quality is present. This does not feed `realLongEntry` / `realShortEntry`, PT/SL tracking, or alerts.
+
+
+## 2026-06-27 v0.5.23 no-arrow diagnostic follow-up
+
+- Observation: User scrolled through v0.5.23 and reported there was not a single arrow. The screenshot still showed the study/dashboard path rendering, so this is not a closed-market or blank-study issue.
+- Root-cause hypothesis: after the arrow-rendering primitive was proven in v0.5.19/v0.5.20, v0.5.23's remaining no-arrow behavior is likely a silent historical signal-gate problem: either the setup source is absent in the loaded region or the review-quality gate is too strict.
+- Change: v0.5.24 adds on-chart `DBG SET`, `DBG REV`, and `DBG PROBE` counts over a 200-bar lookback, plus fresh visual-only green/red score-probe arrows that fire from 5/6 setup cadence only when the normal review arrow is silent. Trade entry and PT/SL tracking remain tied to `realLongEntry` / `realShortEntry`.
