@@ -334,3 +334,10 @@ Use this after importing `MacroMicro_Simplified_v0.3.1.ts` into Thinkorswim.
 - Observation: User scrolled through v0.5.23 and reported there was not a single arrow. The screenshot still showed the study/dashboard path rendering, so this is not a closed-market or blank-study issue.
 - Root-cause hypothesis: after the arrow-rendering primitive was proven in v0.5.19/v0.5.20, v0.5.23's remaining no-arrow behavior is likely a silent historical signal-gate problem: either the setup source is absent in the loaded region or the review-quality gate is too strict.
 - Change: v0.5.24 adds on-chart `DBG SET`, `DBG REV`, and `DBG PROBE` counts over a 200-bar lookback, plus fresh visual-only green/red score-probe arrows that fire from 5/6 setup cadence only when the normal review arrow is silent. Trade entry and PT/SL tracking remain tied to `realLongEntry` / `realShortEntry`.
+
+
+## 2026-06-27 v0.5.24 NaN review follow-up
+
+- Observation: User saw many arrows immediately after v0.5.24 loaded, then Thinkorswim recalculated and all arrows disappeared. The screenshot showed `DBG SET L200: 53`, `DBG SET S200: 80`, and `DBG PROBE L/S: 5/7`, but `DBG REV L200/S200` and `DBG ANY L/S` were `NaN`.
+- Root-cause conclusion: setup and probe cadence were alive, but the review visual signal was not a clean boolean. Because the probe plot was gated by `!reviewLongSignal` / `!reviewShortSignal`, a `NaN` review state also suppressed the probe arrows.
+- Change: v0.5.25 converts real-entry and setup-review components into NaN-safe 0/1 flags before building `reviewLongSignal` / `reviewShortSignal`, then uses fresh v0.5.25 review/probe arrow plot names.

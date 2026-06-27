@@ -25,7 +25,7 @@ Candidate hierarchy:
 ## Milestones
 
 - Done: Create `MacroMicro_Simplified_v0.2.0.ts` with stronger RVOL gating, candle confirmation, cleaner target/stop display, and compact signal bubbles.
-- Doing: Review/import `MacroMicro_Simplified_v0.5.24.ts`, a QQQ 5m debug-count build that keeps the working-style arrow primitive, preserves v0.5.23 review refreshes, and adds setup/review/probe counts after v0.5.23 still showed no historical arrows.
+- Doing: Review/import `MacroMicro_Simplified_v0.5.25.ts`, a QQQ 5m NaN-safe review build that keeps the working-style arrow primitive, preserves setup/review/probe diagnostics, and prevents unsafe review booleans from suppressing arrows after recalculation.
 - Todo: Build a separate Python/Yahoo Finance backtest only after agreeing on scope, using `BACKTESTING_GUARDRAILS.md` as the safety checklist.
 - Todo: Decide whether a higher-timeframe context filter improves 5-minute entries.
 - Todo: Validate/tune the indicator on QQQ 15-minute charts after 5-minute behavior is acceptable.

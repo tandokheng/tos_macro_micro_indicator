@@ -96,3 +96,5 @@
 - Add v0.5.24 after the user scrolled v0.5.23 and still saw zero arrows: follow the instrumentation-first lesson by adding 200-bar setup/review/probe counts and visual-only score-probe arrows before changing the trading gate again.
 
 - Trim the v0.5.24 ThinkScript header after the user reported `.ts` files were not readable again: keep the active paste file near the v0.5.17 size that opened successfully and store cumulative history in `VERSIONING.md`.
+
+- Add v0.5.25 after v0.5.24 showed `DBG SET` and `DBG PROBE` counts but `DBG REV: NaN`: sanitize review visual booleans before counts and plot gates so probe arrows are not suppressed by an unsafe review state.

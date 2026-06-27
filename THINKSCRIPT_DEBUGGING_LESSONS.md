@@ -33,6 +33,7 @@ def inWindow =
 - After arrow visibility is proven, tune the signal gate separately. Raw setup cadence can spam the chart, while entry-only gates can make arrows disappear. Prefer first-edge or quality-upgrade review signals before changing trade-tracking entries.
 - Market status does not suppress historical ThinkScript plots. If the market is closed and the build/test bubble renders but past arrows are missing, inspect sustained historical signal gates rather than assuming the chart is inactive.
 - If the working arrow primitive has already been proven and a later build shows zero arrows after scrollback, instrument the source and review gates before loosening rules. Track recent setup counts, review counts, and probe counts so a screenshot can separate "setup source absent" from "review gate too strict."
+- If a debug count label shows `NaN`, treat the upstream boolean as unsafe, not merely false. Sanitize visual-layer booleans into 0/1 flags before using them in `Sum(...)`, `HighestAll(...)`, negation gates like `!reviewSignal`, or arrow plots.
 
 Working primitive:
 

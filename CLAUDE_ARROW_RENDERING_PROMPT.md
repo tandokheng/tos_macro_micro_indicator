@@ -37,6 +37,7 @@ Rule for future debugging:
 - Do not swing from raw setup cadence directly to entry-only arrows without checking screenshots. v0.5.20 was too noisy because raw cadence became the default arrow layer; v0.5.21 was too sparse because arrows were entry-only. Prefer balanced setup-review edges such as first 5/6 setup bars or 6/6 upgrades while keeping trade tracking tied to real entries.
 - After v0.5.23, remember that once the arrow primitive is proven, zero arrows after scrolling is likely a silent signal-gate issue, not market status. Instrument first with setup/review/probe counts before loosening the trading model.
 - v0.5.24's intended diagnostic pattern is `DBG SET L200/S200`, `DBG REV L200/S200`, and `DBG PROBE L/S`: nonzero SET with zero REV means the review gate is too strict; zero SET means the setup source is absent in the loaded region. Green/red score-probe arrows are visual-only and must not feed entries, target/stop tracking, or alerts.
+- v0.5.24 screenshot showed a more specific trap: `DBG SET` and `DBG PROBE` were numeric but `DBG REV` / `DBG ANY` were `NaN`, and arrows disappeared after TOS recalculated. That means the visual review boolean was unsafe; sanitize booleans into 0/1 flags before using them in `Sum`, `HighestAll`, negation gates, or arrow plots.
 
 General ThinkScript debugging rules:
 - Instrument first with on-chart state labels. If the study shows nothing, ask the human to read the bottom error line in the ThinkScript editor.
@@ -50,7 +51,7 @@ Current next direction:
 - Build from the latest versioned file.
 - Keep the working-style arrows as the default visible marker path.
 - Hide raw proof bubbles by default once arrows are confirmed.
-- Use v0.5.24's debug-count build as the starting point: real entries plus setup-edge/quality-upgrade review arrows, a slow quality-gated sustained setup refresh, and visual-only score-probe diagnostics, not repeated raw cadence.
+- Use v0.5.25's NaN-safe review build as the starting point: real entries plus setup-edge/quality-upgrade review arrows, a slow quality-gated sustained setup refresh, and visual-only score-probe diagnostics, not repeated raw cadence.
 - Update VERSIONING.md, TOS_INSTALL_NOTES.md, NEXT_TASKS.md, FOLLOW_UP.md, PROJECT_PLAN.md, QQQ_5M_REVIEW_LOG.md, and DECISION_LOG.md.
 - Commit and push useful checkpoints.
 ```
