@@ -355,3 +355,10 @@ Use this after importing `MacroMicro_Simplified_v0.3.1.ts` into Thinkorswim.
 - Observation: User screenshot showed `BUILD: v0.5.26 CLEAN VISUALS`, numeric `DBG REV`, no large `L/S` marker bubbles, and stable magenta/cyan review arrows. The remaining clutter was the green/red score-probe arrows, which were meant as diagnostics rather than the default trading review layer.
 - Root-cause conclusion: v0.5.26 solved the marker-bubble clutter and kept arrows stable; score-probe visuals should be opt-in now that `DBG PROBE` can carry the diagnostic count.
 - Change: v0.5.27 keeps NaN-safe review arrows default-on, makes score-probe arrows default-off with `showScoreProbeArrows = no`, and counts score-probe readiness in `DBG PROBE` even when the visual probe arrows are hidden.
+
+
+## 2026-06-27 v0.5.27 chop-noise follow-up
+
+- Observation: User screenshot showed `BUILD: v0.5.27 REVIEW ONLY`, numeric `DBG REV`, no green/red score-probe arrows, and a readable `.ts` file. The chart still had too many magenta/cyan review arrows in sideways stretches.
+- Root-cause conclusion: the remaining noise came from the review gate, not rendering or file handoff. `setupReviewLongQuality` / `setupReviewShortQuality` still allowed score-only 6/6 refreshes, so sustained high score could keep painting arrows without directional follow-through.
+- Change: v0.5.28 slows setup-review refresh from 13 to 21 bars and qualifies both setup-review edges and refreshes with directional follow-through, so score-only 6/6 no longer refreshes arrows during chop.

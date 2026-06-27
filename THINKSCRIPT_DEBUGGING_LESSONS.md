@@ -36,6 +36,7 @@ def inWindow =
 - If a debug count label shows `NaN`, treat the upstream boolean as unsafe, not merely false. Sanitize visual-layer booleans into 0/1 flags before using them in `Sum(...)`, `HighestAll(...)`, negation gates like `!reviewSignal`, or arrow plots.
 - Once arrows are proven stable, remove or gate proof bubbles. Hardwired compact `L/S` bubbles are useful diagnostics, but they can hide the cleaner arrow layer during review.
 - Keep diagnostic counts separate from visual toggles once a probe layer is proven. A default-off arrow toggle such as `showScoreProbeArrows` should not also zero the `DBG PROBE` count if that count is needed to explain whether the source cadence exists.
+- After arrow rendering and NaN-safe counts are proven, treat excessive arrows as review-gate tuning. Score-only 6/6 refreshes can still be noisy in chop; require directional follow-through or slow the refresh cadence before changing the rendering path again.
 
 Working primitive:
 
