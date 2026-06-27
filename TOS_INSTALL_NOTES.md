@@ -4,6 +4,7 @@
 
 - File: `MacroMicro_Simplified_v0.5.24.ts`
 - Import-ready file: `_dk_codex_macro_micro_v1.ts`
+- Side-panel readable copy: `MacroMicro_Simplified_v0.5.24_READABLE.txt`
 - Thinkorswim study to replace: `_dk_codex_macro_micro_v1`
 - Primary chart for review: QQQ 5-minute, 20-day view
 
@@ -31,6 +32,7 @@
 ## Current Manual Test Flow
 
 - Paste `_dk_codex_macro_micro_v1.ts` into the Thinkorswim study `_dk_codex_macro_micro_v1`.
+- If the `.ts` file does not open in Codex side panel, open `MacroMicro_Simplified_v0.5.24_READABLE.txt`; it is verified to match the `.ts` source exactly.
 - Confirm the pasted source header shows `# Version: v0.5.24`.
 - Confirm the chart labels show `BUILD: v0.5.24 DEBUG COUNTS`, `RAW SETUP`, `RAW CONT`, `DBG SET L200/S200`, `DBG REV L200/S200`, `DBG PROBE L/S`, and `CONTRACT: OK` or `FAIL TRIGGER/MARKER`.
 - Confirm old `SPAM L` / `SPAM S` bubbles are gone.

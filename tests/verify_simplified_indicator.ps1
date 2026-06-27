@@ -3,6 +3,7 @@ $ErrorActionPreference = "Stop"
 $root = Split-Path -Parent $PSScriptRoot
 $studyPath = Join-Path $root "MacroMicro_Simplified_v0.5.24.ts"
 $tosStudyPath = Join-Path $root "_dk_codex_macro_micro_v1.ts"
+$readableStudyPath = Join-Path $root "MacroMicro_Simplified_v0.5.24_READABLE.txt"
 $reviewFixturePath = Join-Path $PSScriptRoot "verify_review_signal_fixture.ps1"
 $gitAttributesPath = Join-Path $root ".gitattributes"
 
@@ -79,6 +80,7 @@ function Assert-RenderCallsClosed {
 
 Assert-True -Condition (Test-Path -LiteralPath $studyPath) -Message "Study file does not exist: $studyPath"
 Assert-True -Condition (Test-Path -LiteralPath $tosStudyPath) -Message "TOS import study file does not exist: $tosStudyPath"
+Assert-True -Condition (Test-Path -LiteralPath $readableStudyPath) -Message "Side-panel readable study copy does not exist: $readableStudyPath"
 Assert-True -Condition (Test-Path -LiteralPath $reviewFixturePath) -Message "Review signal fixture verifier does not exist: $reviewFixturePath"
 Assert-True -Condition (Test-Path -LiteralPath $gitAttributesPath) -Message ".gitattributes must exist to keep TOS/powershell line endings stable"
 
@@ -86,6 +88,7 @@ Assert-True -Condition (Test-Path -LiteralPath $gitAttributesPath) -Message ".gi
 
 $text = Get-Content -LiteralPath $studyPath -Raw
 $tosText = Get-Content -LiteralPath $tosStudyPath -Raw
+$readableText = Get-Content -LiteralPath $readableStudyPath -Raw
 $gitAttributesText = Get-Content -LiteralPath $gitAttributesPath -Raw
 
 Assert-RegexCount $text "(?m)^# Version:" 1 "single version header"
@@ -101,6 +104,7 @@ Assert-Contains $text "# TOS Study: _dk_codex_macro_micro_v1" "TOS study name he
 Assert-Contains $text "declare upper;" "upper price-chart declaration"
 Assert-Contains $text 'DefineGlobalColor("CautionAmber", CreateColor(180, 95, 0));' "readable caution amber color"
 Assert-True -Condition ($tosText -eq $text) -Message "TOS import study file must match MacroMicro_Simplified_v0.5.24.ts exactly"
+Assert-True -Condition ($readableText -eq $text) -Message "Side-panel readable .txt copy must match MacroMicro_Simplified_v0.5.24.ts exactly"
 Assert-Contains $text "Timeframe focus: 5m first, then 15m validation/tuning." "5m-first tuning note"
 Assert-Contains $text "input useFifteenMinuteProfile = no;" "5m profile remains default"
 Assert-Contains $text "input fifteenMinuteScoreTriggerFreshBars = 1;" "15m score freshness profile"
