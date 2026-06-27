@@ -30,6 +30,7 @@ def inWindow =
 - Use value-based arrow plots at a price offset, not `PaintingStrategy.BOOLEAN_ARROW`.
 - `BOOLEAN_ARROW` can render faintly and can be obscured by bubbles on the same bar.
 - If a bubble renders from a condition but an arrow from the same condition does not, treat it as rendering/placement/style state, not as a signal-gate failure.
+- After arrow visibility is proven, tune the signal gate separately. Raw setup cadence can spam the chart, while entry-only gates can make arrows disappear. Prefer first-edge or quality-upgrade review signals before changing trade-tracking entries.
 
 Working primitive:
 

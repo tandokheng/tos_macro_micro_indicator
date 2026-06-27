@@ -88,3 +88,5 @@
 - Add `BACKTESTING_GUARDRAILS.md` before writing any Yahoo Finance backtest: require data coverage probes, no look-ahead fills, pessimistic stop/target handling, timezone/session checks, one-position state, honest statistics, and explicit limitations.
 
 - Add v0.5.21 after v0.5.20 was visibly too noisy: raw setup should remain a diagnostic label/source state, while default arrows should use fresh working-style plots driven only by real trade-review entries.
+
+- Add v0.5.22 after v0.5.21 removed too many arrows: default review arrows should include first 5/6 setup edges and 6/6 upgrades, but still avoid raw cadence repeats and not reset trade tracking unless a real entry fires.

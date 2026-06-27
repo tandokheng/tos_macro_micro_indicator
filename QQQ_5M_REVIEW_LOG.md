@@ -313,3 +313,10 @@ Use this after importing `MacroMicro_Simplified_v0.3.1.ts` into Thinkorswim.
 - Observation: User screenshot showed `BUILD: v0.5.20 CLEAN ARROWS` and many magenta/cyan arrows across QQQ 5m, even though raw proof bubbles were hidden.
 - Root-cause conclusion: v0.5.20 still fed raw setup cadence into `visibleLongSignal` / `visibleShortSignal`, and also kept a separate raw setup arrow layer. Visibility was solved, but diagnostic raw setup became the default signal layer.
 - Change: v0.5.21 makes raw setup diagnostic-only, removes raw setup from dashboard triggers/default markers, and adds fresh working-style review arrows driven only by `realLongEntry` / `realShortEntry`.
+
+
+## 2026-06-27 v0.5.21 sparse-arrow follow-up
+
+- Observation: User screenshot showed `BUILD: v0.5.21 QUIET ARROWS`, the test bubble/dot, target/stop lines, and no magenta/cyan review arrows across the visible QQQ 5m region.
+- Root-cause conclusion: v0.5.21 overcorrected by moving default arrows to entry-only gates. That avoided raw cadence spam, but it also removed useful setup-review arrows from historical chart review.
+- Change: v0.5.22 keeps the proven working-style arrow primitive, adds setup-review arrows only on first 5/6 setup edges or 6/6 upgrades, and keeps PT/SL trade tracking tied to `realLongEntry` / `realShortEntry`.

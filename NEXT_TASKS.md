@@ -2,13 +2,13 @@
 
 ## Doing
 
-- Install `MacroMicro_Simplified_v0.5.21.ts` into Thinkorswim study `_dk_codex_macro_micro_v1` and confirm every screenshot shows `BUILD: v0.5.21 QUIET ARROWS`, `RAW SETUP`, `RAW CONT`, hidden raw proof bubbles, and fewer magenta/cyan review arrows.
+- Install `MacroMicro_Simplified_v0.5.22.ts` into Thinkorswim study `_dk_codex_macro_micro_v1` and confirm every screenshot shows `BUILD: v0.5.22 BALANCED ARROWS`, `RAW SETUP`, `RAW CONT`, hidden raw proof bubbles, and setup-edge arrows present without v0.5.20-style noise.
 
 ## Todo
 
-- If v0.5.21 does not show `BUILD: v0.5.21 QUIET ARROWS`, remove duplicate/old `_dk_codex_macro_micro_v1` studies and re-add the pasted source once.
-- Confirm old `SPAM L/S` bubbles are gone; v0.5.21 should hide direct `RAW L/S` proof bubbles by default and keep only review arrows visible.
-- If `RAW SETUP` stays active on the live bar but no arrow appears, that is acceptable in v0.5.21 unless a real trade-review trigger is also active.
+- If v0.5.22 does not show `BUILD: v0.5.22 BALANCED ARROWS`, remove duplicate/old `_dk_codex_macro_micro_v1` studies and re-add the pasted source once.
+- Confirm old `SPAM L/S` bubbles are gone; v0.5.22 should hide direct `RAW L/S` proof bubbles by default and keep only balanced review arrows visible.
+- If `RAW SETUP` stays active on the live bar but no arrow appears, that is acceptable unless the bar is the first 5/6 setup edge, a 6/6 upgrade, or a real trade-review trigger.
 - If `CONTRACT: FAIL TRIGGER/MARKER` appears, capture that screenshot because it proves dashboard trigger and marker logic diverged on the same bar.
 - If raw arrows disappear again while labels prove setup state, treat it as a Thinkorswim plot rendering/style-state issue and use the documented working-arrow primitive before changing gates.
 - Log 5 to 10 QQQ 5-minute examples where arrows were helpful, late, blocked correctly, or still noisy.
@@ -95,3 +95,5 @@
 - Added `BACKTESTING_GUARDRAILS.md` from Claude's backtest lessons, adapted for QQQ/Yahoo Finance use before any backtest code is written.
 - Added `MacroMicro_Simplified_v0.5.21.ts` after v0.5.20 proved too noisy; raw setup remains diagnostic-only and default arrows now follow real trade-review signals.
 - Updated `tests/verify_simplified_indicator.ps1` for v0.5.21 quiet-arrow checks.
+- Added `MacroMicro_Simplified_v0.5.22.ts` after v0.5.21 proved too sparse; default arrows now use real entries plus first 5/6 setup edges and 6/6 upgrades.
+- Updated `tests/verify_simplified_indicator.ps1` for v0.5.22 balanced-arrow checks.
