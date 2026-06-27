@@ -37,6 +37,7 @@ def inWindow =
 - Once arrows are proven stable, remove or gate proof bubbles. Hardwired compact `L/S` bubbles are useful diagnostics, but they can hide the cleaner arrow layer during review.
 - Keep diagnostic counts separate from visual toggles once a probe layer is proven. A default-off arrow toggle such as `showScoreProbeArrows` should not also zero the `DBG PROBE` count if that count is needed to explain whether the source cadence exists.
 - After arrow rendering and NaN-safe counts are proven, treat excessive arrows as review-gate tuning. Score-only 6/6 refreshes can still be noisy in chop; require directional follow-through or slow the refresh cadence before changing the rendering path again.
+- If raw review counts are useful but plotted arrows remain noisy, throttle only the final visible-arrow layer. Keep `DBG REV` as the unthrottled source count and add a separate plotted count such as `DBG VIS` so tuning does not hide diagnostics.
 
 Working primitive:
 
@@ -56,6 +57,7 @@ ShortSig.SetLineWeight(5);
 - Keep recursive/self-referential state simple and seeded on known bars.
 - Avoid wrapping self-references in conditional expressions inside `Max()` / `Min()` calls; this can fail to compile and leave the chart blank.
 - Prefer plain state updates split across readable `def` blocks.
+- For self-referential throttles, keep the state update inside `CompoundValue` and avoid depending on a separate forward-referenced ready boolean inside the recursive expression.
 
 Risky pattern:
 

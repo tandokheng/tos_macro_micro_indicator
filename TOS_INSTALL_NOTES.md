@@ -2,15 +2,15 @@
 
 ## Current Test Script
 
-- File: `MacroMicro_Simplified_v0.5.28.ts`
+- File: `MacroMicro_Simplified_v0.5.29.ts`
 - Import-ready file: `_dk_codex_macro_micro_v1.ts`
-- Side-panel readable copy: `MacroMicro_Simplified_v0.5.28_READABLE.txt`
+- Side-panel readable copy: `MacroMicro_Simplified_v0.5.29_READABLE.txt`
 - Thinkorswim study to replace: `_dk_codex_macro_micro_v1`
 - Primary chart for review: QQQ 5-minute, 20-day view
 
-## What v0.5.28 Is Testing
+## What v0.5.29 Is Testing
 
-- `BUILD: v0.5.28 TIGHT REVIEW` is always visible through a static `AddLabel(yes, ...)`; if absent, TOS is not running this pasted build or study labels are hidden.
+- `BUILD: v0.5.29 THROTTLED VIS` is always visible through a static `AddLabel(yes, ...)`; if absent, TOS is not running this pasted build or study labels are hidden.
 - v0.5.14 proved raw setup pressure can render, but it did so with intentionally noisy `SPAM L/S` bubbles. v0.5.15 removed those hardwired spam bubbles.
 - v0.5.19 proved the real missing-arrow issue was Thinkorswim arrow plot rendering/style state, not raw setup gating.
 - The working arrow primitive is now documented: fresh dedicated plot name, direct condition, `low/high +/- off`, `ARROW_UP/DOWN`, `AssignValueColor`, and line weight 5.
@@ -27,24 +27,28 @@
 - `DBG PROBE L/S` still counts score-probe readiness even when probe arrows are hidden, so the diagnostic label remains useful without adding chart clutter.
 - v0.5.28 tightens the noisy v0.5.27 review layer by changing `setupReviewRefreshBars` from 13 to 21 and requiring directional follow-through before setup-review edge/refresh arrows paint.
 - Score-only 6/6 setup is no longer enough by itself to refresh review arrows during chop.
+- v0.5.29 keeps raw review counts intact but adds a final visual throttle through `reviewVisualMinBars = 8`, so repeated review pulses do not all become plotted magenta/cyan arrows.
+- `DBG REV L200/S200` remains the unthrottled review-pulse count; `DBG VIS L/S` is the actual throttled visible-arrow count. Tune chart noise from `DBG VIS`, not by hiding the raw diagnostic count.
 - Direct `RAW L/S` proof bubbles remain available but default off through `showRawProofBubbles = no`, because arrows are now the cleaner review path.
 - Compact `L/S` marker bubbles are optional only; the default review should focus on magenta/cyan review arrows. Turn `showScoreProbeArrows` on only when we need the green/red probe layer again.
 - `RAW SETUP: L/S/-` and `RAW CONT: L/S/-` remain visible through static labels so screenshots still show whether the source logic is firing.
 - `MARKER: NONE/L/S/BOTH` and `CONTRACT: OK/FAIL TRIGGER/MARKER` remain visible. Capture a screenshot if the contract fails.
-- A cyan `v0.5.28 TEST` bubble and `BuildProofDotV0513` point remain on the last loaded bar to prove the chart-bubble/point drawing paths are active independent of signal logic.
+- A cyan `v0.5.29 TEST` bubble and `BuildProofDotV0513` point remain on the last loaded bar to prove the chart-bubble/point drawing paths are active independent of signal logic.
 - Real trade entries and PT/SL tracking still use `realLongEntry` / `realShortEntry`; visual setup markers do not reset entry price, ATR, target, or stop.
 - RVOL remains a `CAUTION` source for qualified setups, not a hard blocker by itself.
 
 ## Current Manual Test Flow
 
 - Paste `_dk_codex_macro_micro_v1.ts` into the Thinkorswim study `_dk_codex_macro_micro_v1`.
-- If the `.ts` file does not open in Codex side panel, use the clipboard handoff or open `MacroMicro_Simplified_v0.5.28_READABLE.txt`; it is verified to match the `.ts` source exactly.
-- Confirm the pasted source header shows `# Version: v0.5.28`.
-- Confirm the chart labels show `BUILD: v0.5.28 TIGHT REVIEW`, `RAW SETUP`, `RAW CONT`, `DBG SET L200/S200`, `DBG REV L200/S200`, `DBG PROBE L/S`, and `CONTRACT: OK` or `FAIL TRIGGER/MARKER`.
+- If the `.ts` file does not open in Codex side panel, use the clipboard handoff or open `MacroMicro_Simplified_v0.5.29_READABLE.txt`; it is verified to match the `.ts` source exactly.
+- Confirm the pasted source header shows `# Version: v0.5.29`.
+- Confirm the chart labels show `BUILD: v0.5.29 THROTTLED VIS`, `RAW SETUP`, `RAW CONT`, `DBG SET L200/S200`, `DBG REV L200/S200`, `DBG VIS L/S`, `DBG PROBE L/S`, and `CONTRACT: OK` or `FAIL TRIGGER/MARKER`.
 - Confirm old `SPAM L` / `SPAM S` bubbles are gone.
 - Confirm direct `RAW L` / `RAW S` proof bubbles are hidden by default.
 - Confirm green/red score-probe arrows are hidden by default; if needed, enable `showScoreProbeArrows` only for a diagnostic pass.
-- If large `L/S` bubbles still appear, check whether `showSignalBubbles` was saved on in TOS; v0.5.28 gates those compact marker bubbles behind that existing toggle.
+- Confirm `DBG VIS L/S` is lower than `DBG REV L200/S200` in arrow-heavy areas; that proves the visible throttle is reducing chart clutter without erasing the raw review source.
+- If large `L/S` bubbles still appear, check whether `showSignalBubbles` was saved on in TOS; v0.5.29 gates those compact marker bubbles behind that existing toggle.
+- If v0.5.29 becomes too quiet, adjust `reviewVisualMinBars` from 8 before loosening source/review gates.
 - Review QQQ 5m first; defer 15m validation until 5m marker behavior is acceptable.
 
 ## Codex Link Note

@@ -104,3 +104,5 @@
 - Add v0.5.27 after v0.5.26 cleaned up marker bubbles but still showed green/red score-probe arrows as diagnostic noise: keep magenta/cyan NaN-safe review arrows default-on, make score-probe arrows opt-in through `showScoreProbeArrows = no`, and keep `DBG PROBE` counts based on probe readiness rather than the visual toggle.
 
 - Add v0.5.28 after v0.5.27 confirmed the `.ts` file can open cleanly and the review-arrow path works, but some sideways QQQ 5m regions were still noisy: slow setup-review refresh to 21 bars and require directional follow-through so score-only 6/6 does not keep painting arrows in chop.
+
+- Add v0.5.29 after v0.5.28 still showed repeated arrow clusters even though source diagnostics were useful: keep raw `DBG REV` counts unthrottled, add a final visible-arrow throttle with `reviewVisualMinBars = 8`, and expose `DBG VIS L/S` so chart-noise tuning does not hide raw review activity.

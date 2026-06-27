@@ -362,3 +362,10 @@ Use this after importing `MacroMicro_Simplified_v0.3.1.ts` into Thinkorswim.
 - Observation: User screenshot showed `BUILD: v0.5.27 REVIEW ONLY`, numeric `DBG REV`, no green/red score-probe arrows, and a readable `.ts` file. The chart still had too many magenta/cyan review arrows in sideways stretches.
 - Root-cause conclusion: the remaining noise came from the review gate, not rendering or file handoff. `setupReviewLongQuality` / `setupReviewShortQuality` still allowed score-only 6/6 refreshes, so sustained high score could keep painting arrows without directional follow-through.
 - Change: v0.5.28 slows setup-review refresh from 13 to 21 bars and qualifies both setup-review edges and refreshes with directional follow-through, so score-only 6/6 no longer refreshes arrows during chop.
+
+
+## 2026-06-27 v0.5.28 repeated-cluster follow-up
+
+- Observation: User screenshot showed `BUILD: v0.5.28 TIGHT REVIEW`, no score-probe arrows, and numeric diagnostics (`DBG REV L200: 12`, `DBG REV S200: 20`, `DBG PROBE L/S: 5/3`), but repeated same-side review arrows were still visible in sustained stretches.
+- Root-cause conclusion: v0.5.28's raw review gate was useful, but every raw review pulse still became a plotted arrow because `visibleLongSignal` / `visibleShortSignal` directly followed `reviewLongSignal` / `reviewShortSignal`.
+- Change: v0.5.29 adds a final visual-only throttle after raw review signals. `DBG REV` remains the unthrottled review count, while new `DBG VIS L/S` shows the actual plotted arrow count.
