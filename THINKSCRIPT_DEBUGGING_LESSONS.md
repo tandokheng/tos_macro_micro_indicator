@@ -39,6 +39,7 @@ def inWindow =
 - After arrow rendering and NaN-safe counts are proven, treat excessive arrows as review-gate tuning. Score-only 6/6 refreshes can still be noisy in chop; require directional follow-through or slow the refresh cadence before changing the rendering path again.
 - If raw review counts are useful but plotted arrows remain noisy, throttle only the final visible-arrow layer. Keep `DBG REV` as the unthrottled source count and add a separate plotted count such as `DBG VIS` so tuning does not hide diagnostics.
 - If arrows work in clear trends but remain noisy in chop, add a regime filter before the visible review layer rather than changing the arrow primitive. Keep a blocked-count label such as `DBG CHOP` so screenshots can prove whether the filter is active.
+- If `DBG CHOP` is high but plotted arrows are still noisy, inspect alternate visible-arrow sources that bypass the filter. In v0.5.30, setup-review arrows were chop-filtered but real-entry review arrows and low-volume momentum bypasses could still paint; v0.5.31 gates those paths too.
 
 Working primitive:
 

@@ -2,15 +2,15 @@
 
 ## Current Test Script
 
-- File: `MacroMicro_Simplified_v0.5.30.ts`
+- File: `MacroMicro_Simplified_v0.5.31.ts`
 - Import-ready file: `_dk_codex_macro_micro_v1.ts`
-- Side-panel readable copy: `MacroMicro_Simplified_v0.5.30_READABLE.txt`
+- Side-panel readable copy: `MacroMicro_Simplified_v0.5.31_READABLE.txt`
 - Thinkorswim study to replace: `_dk_codex_macro_micro_v1`
 - Primary chart for review: QQQ 5-minute, 20-day view
 
-## What v0.5.30 Is Testing
+## What v0.5.31 Is Testing
 
-- `BUILD: v0.5.30 CHOP FILTER` is always visible through a static `AddLabel(yes, ...)`; if absent, TOS is not running this pasted build or study labels are hidden.
+- `BUILD: v0.5.31 REAL CHOP` is always visible through a static `AddLabel(yes, ...)`; if absent, TOS is not running this pasted build or study labels are hidden.
 - v0.5.14 proved raw setup pressure can render, but it did so with intentionally noisy `SPAM L/S` bubbles. v0.5.15 removed those hardwired spam bubbles.
 - v0.5.19 proved the real missing-arrow issue was Thinkorswim arrow plot rendering/style state, not raw setup gating.
 - The working arrow primitive is now documented: fresh dedicated plot name, direct condition, `low/high +/- off`, `ARROW_UP/DOWN`, `AssignValueColor`, and line weight 5.
@@ -29,28 +29,29 @@
 - Score-only 6/6 setup is no longer enough by itself to refresh review arrows during chop.
 - v0.5.29 keeps raw review counts intact but adds a final visual throttle through `reviewVisualMinBars = 8`, so repeated review pulses do not all become plotted magenta/cyan arrows.
 - `DBG REV L200/S200` remains the unthrottled review-pulse count; `DBG VIS L/S` is the actual throttled visible-arrow count. Tune chart noise from `DBG VIS`, not by hiding the raw diagnostic count.
-- v0.5.30 adds a setup-review chop filter before arrows become visible: the move needs local trend efficiency, a 2-point score edge, and price on the correct side of EMA17 unless it is a fast break, low-volume momentum, or continuation-pressure move.
-- `DBG CHOP L/S` counts review-quality pulses blocked by the chop filter. If `DBG CHOP` rises while chop arrows disappear, the filter is doing its job.
+- v0.5.30 introduced a setup-review chop filter before arrows become visible.
+- v0.5.31 tightens that filter: review arrows need local trend efficiency, a 2-point score edge, and price on the correct side of EMA17 unless it is a fast break or continuation-pressure move. It also applies the same gate to real-entry review arrows and removes low-volume momentum as a direct review-arrow bypass.
+- `DBG CHOP L/S` counts setup-review and real-entry review pulses blocked by the chop filter. If `DBG CHOP` rises while chop arrows disappear, the filter is doing its job.
 - Direct `RAW L/S` proof bubbles remain available but default off through `showRawProofBubbles = no`, because arrows are now the cleaner review path.
 - Compact `L/S` marker bubbles are optional only; the default review should focus on magenta/cyan review arrows. Turn `showScoreProbeArrows` on only when we need the green/red probe layer again.
 - `RAW SETUP: L/S/-` and `RAW CONT: L/S/-` remain visible through static labels so screenshots still show whether the source logic is firing.
 - `MARKER: NONE/L/S/BOTH` and `CONTRACT: OK/FAIL TRIGGER/MARKER` remain visible. Capture a screenshot if the contract fails.
-- A cyan `v0.5.30 TEST` bubble and `BuildProofDotV0513` point remain on the last loaded bar to prove the chart-bubble/point drawing paths are active independent of signal logic.
-- Real trade entries and PT/SL tracking still use `realLongEntry` / `realShortEntry`; visual setup markers do not reset entry price, ATR, target, or stop.
+- A cyan `v0.5.31 TEST` bubble and `BuildProofDotV0513` point remain on the last loaded bar to prove the chart-bubble/point drawing paths are active independent of signal logic.
+- Real trade entries and PT/SL tracking still use `realLongEntry` / `realShortEntry`; v0.5.31 only filters the review-arrow display path.
 - RVOL remains a `CAUTION` source for qualified setups, not a hard blocker by itself.
 
 ## Current Manual Test Flow
 
 - Paste `_dk_codex_macro_micro_v1.ts` into the Thinkorswim study `_dk_codex_macro_micro_v1`.
-- If the `.ts` file does not open in Codex side panel, use the clipboard handoff or open `MacroMicro_Simplified_v0.5.30_READABLE.txt`; it is verified to match the `.ts` source exactly.
-- Confirm the pasted source header shows `# Version: v0.5.30`.
-- Confirm the chart labels show `BUILD: v0.5.30 CHOP FILTER`, `RAW SETUP`, `RAW CONT`, `DBG SET L200/S200`, `DBG REV L200/S200`, `DBG VIS L/S`, `DBG CHOP L/S`, `DBG PROBE L/S`, and `CONTRACT: OK` or `FAIL TRIGGER/MARKER`.
+- If the `.ts` file does not open in Codex side panel, use the clipboard handoff or open `MacroMicro_Simplified_v0.5.31_READABLE.txt`; it is verified to match the `.ts` source exactly.
+- Confirm the pasted source header shows `# Version: v0.5.31`.
+- Confirm the chart labels show `BUILD: v0.5.31 REAL CHOP`, `RAW SETUP`, `RAW CONT`, `DBG SET L200/S200`, `DBG REV L200/S200`, `DBG VIS L/S`, `DBG CHOP L/S`, `DBG PROBE L/S`, and `CONTRACT: OK` or `FAIL TRIGGER/MARKER`.
 - Confirm old `SPAM L` / `SPAM S` bubbles are gone.
 - Confirm direct `RAW L` / `RAW S` proof bubbles are hidden by default.
 - Confirm green/red score-probe arrows are hidden by default; if needed, enable `showScoreProbeArrows` only for a diagnostic pass.
-- Confirm `DBG VIS L/S` is lower than `DBG REV L200/S200` and that `DBG CHOP L/S` increases in sideways regions where v0.5.29 was noisy.
-- If large `L/S` bubbles still appear, check whether `showSignalBubbles` was saved on in TOS; v0.5.30 gates those compact marker bubbles behind that existing toggle.
-- If v0.5.30 becomes too quiet in clear trends, first lower `minReviewTrendEfficiency` from `0.30` or `minReviewScoreSeparation` from `2` before changing the working arrow renderer.
+- Confirm `DBG VIS L/S` is lower than `DBG REV L200/S200` and that `DBG CHOP L/S` increases in sideways regions where v0.5.29/v0.5.30 were noisy.
+- If large `L/S` bubbles still appear, check whether `showSignalBubbles` was saved on in TOS; v0.5.31 gates those compact marker bubbles behind that existing toggle.
+- If v0.5.31 becomes too quiet in clear trends, first lower `minReviewTrendEfficiency` from `0.30` or `minReviewScoreSeparation` from `2` before changing the working arrow renderer.
 - Review QQQ 5m first; defer 15m validation until 5m marker behavior is acceptable.
 
 ## Codex Link Note

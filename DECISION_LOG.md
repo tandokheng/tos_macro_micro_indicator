@@ -108,3 +108,5 @@
 - Add v0.5.29 after v0.5.28 still showed repeated arrow clusters even though source diagnostics were useful: keep raw `DBG REV` counts unthrottled, add a final visible-arrow throttle with `reviewVisualMinBars = 8`, and expose `DBG VIS L/S` so chart-noise tuning does not hide raw review activity.
 
 - Add v0.5.30 after v0.5.29 screenshots showed the indicator works in clean direction but still marks chop: filter setup-review arrows through local trend efficiency, side-specific score dominance, and EMA17 direction while leaving fast break, low-volume momentum, continuation pressure, and real-entry tracking intact.
+
+- Add v0.5.31 after v0.5.30 screenshots still showed noisy chop arrows while `DBG CHOP` was high: apply the same chop gate to real-entry review arrows and remove low-volume momentum as a direct review-arrow bypass, while leaving actual `realLongEntry` / `realShortEntry` trade tracking intact.

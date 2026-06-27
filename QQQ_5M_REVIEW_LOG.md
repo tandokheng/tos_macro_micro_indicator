@@ -376,3 +376,10 @@ Use this after importing `MacroMicro_Simplified_v0.3.1.ts` into Thinkorswim.
 - Observation: User screenshots showed `BUILD: v0.5.29 THROTTLED VIS`; arrows were useful in clear directional sections but still poor in sideways/choppy regions, with alternating markers around ParabolicSAR flip-flops.
 - Root-cause conclusion: v0.5.29 throttled repeated arrows but did not classify regime. In chop, alternating minor review pulses still passed after the throttle spacing elapsed.
 - Change: v0.5.30 keeps the proven arrow renderer and adds a setup-review chop filter using 12-bar trend efficiency, 2-point score dominance, and side-specific EMA17 direction. `DBG CHOP L/S` counts pulses blocked by this filter.
+
+
+## 2026-06-27 v0.5.30 chop-bypass follow-up
+
+- Observation: User screenshots showed `BUILD: v0.5.30 CHOP FILTER` with high `DBG CHOP L/S` counts, but visible arrows remained noisy in sideways regions.
+- Root-cause conclusion: the chop filter was active, but it did not cover every visible-arrow source. Real-entry review arrows still bypassed the setup-review chop gate, and low-volume momentum could bypass the review regime filter.
+- Change: v0.5.31 applies the chop filter to real-entry review arrows as well as setup-review arrows, removes low-volume momentum as a direct review-arrow bypass, and keeps actual trade entry/PT/SL tracking tied to the original `realLongEntry` / `realShortEntry` path.
