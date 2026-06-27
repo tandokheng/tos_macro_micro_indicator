@@ -60,6 +60,7 @@ Use an explicit version in every new indicator file and in the file header.
 - MacroMicro_Simplified_v0.5.24.ts adds debug count labels plus visual-only score-probe arrows to diagnose whether v0.5.23's no-arrow result came from setup source absence or an over-strict review gate.
 - MacroMicro_Simplified_v0.5.25.ts sanitizes review visual booleans after v0.5.24 showed `DBG REV: NaN`; probe arrows can now plot when setup/probe is alive and review is safely false.
 - MacroMicro_Simplified_v0.5.26.ts keeps v0.5.25's NaN-safe arrows but gates compact `L/S` marker bubbles behind `showSignalBubbles` so the default chart is arrow-first again.
+- MacroMicro_Simplified_v0.5.27.ts keeps the NaN-safe review arrows default-on, but makes green/red score-probe diagnostic arrows opt-in while keeping `DBG PROBE` counts ungated for troubleshooting.
 
 ## Version Meaning
 

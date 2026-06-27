@@ -348,3 +348,10 @@ Use this after importing `MacroMicro_Simplified_v0.3.1.ts` into Thinkorswim.
 - Observation: User screenshot showed `BUILD: v0.5.25 NAN SAFE`, numeric `DBG REV L200/S200`, and visible arrows that survived recalculation. The remaining issue was dense compact `L/S` marker bubbles cluttering and partially covering the arrows.
 - Root-cause conclusion: the NaN-safe review fix worked. The clutter came from legacy hardwired compact marker bubbles that still rendered whenever `arrowMarkerLong` / `arrowMarkerShort` was true.
 - Change: v0.5.26 keeps the NaN-safe review/probe arrows and freshens plot names, but gates compact `L/S` marker bubbles behind existing `showSignalBubbles`, which defaults off.
+
+
+## 2026-06-27 v0.5.26 probe-noise follow-up
+
+- Observation: User screenshot showed `BUILD: v0.5.26 CLEAN VISUALS`, numeric `DBG REV`, no large `L/S` marker bubbles, and stable magenta/cyan review arrows. The remaining clutter was the green/red score-probe arrows, which were meant as diagnostics rather than the default trading review layer.
+- Root-cause conclusion: v0.5.26 solved the marker-bubble clutter and kept arrows stable; score-probe visuals should be opt-in now that `DBG PROBE` can carry the diagnostic count.
+- Change: v0.5.27 keeps NaN-safe review arrows default-on, makes score-probe arrows default-off with `showScoreProbeArrows = no`, and counts score-probe readiness in `DBG PROBE` even when the visual probe arrows are hidden.

@@ -39,6 +39,7 @@ Rule for future debugging:
 - v0.5.24's intended diagnostic pattern is `DBG SET L200/S200`, `DBG REV L200/S200`, and `DBG PROBE L/S`: nonzero SET with zero REV means the review gate is too strict; zero SET means the setup source is absent in the loaded region. Green/red score-probe arrows are visual-only and must not feed entries, target/stop tracking, or alerts.
 - v0.5.24 screenshot showed a more specific trap: `DBG SET` and `DBG PROBE` were numeric but `DBG REV` / `DBG ANY` were `NaN`, and arrows disappeared after TOS recalculated. That means the visual review boolean was unsafe; sanitize booleans into 0/1 flags before using them in `Sum`, `HighestAll`, negation gates, or arrow plots.
 - v0.5.25 proved arrows survive after NaN-safe review sanitization, but hardwired compact `L/S` marker bubbles cluttered the chart. Keep proof bubbles optional/off by default once arrows are confirmed.
+- v0.5.26 proved the clean visual direction: marker bubbles can be gated behind `showSignalBubbles`, and NaN-safe review arrows remain visible. v0.5.27 then makes green/red score-probe arrows opt-in while keeping `DBG PROBE` counts based on probe readiness, not on the visual arrow toggle.
 
 General ThinkScript debugging rules:
 - Instrument first with on-chart state labels. If the study shows nothing, ask the human to read the bottom error line in the ThinkScript editor.
@@ -52,7 +53,7 @@ Current next direction:
 - Build from the latest versioned file.
 - Keep the working-style arrows as the default visible marker path.
 - Hide raw proof bubbles by default once arrows are confirmed.
-- Use v0.5.26's clean-visuals build as the starting point: NaN-safe review/probe arrows remain active, but compact `L/S` marker bubbles are optional through `showSignalBubbles`.
+- Use v0.5.27's review-only build as the starting point: NaN-safe magenta/cyan review arrows remain active, compact `L/S` marker bubbles are optional through `showSignalBubbles`, and green/red score-probe arrows are off by default through `showScoreProbeArrows`.
 - Update VERSIONING.md, TOS_INSTALL_NOTES.md, NEXT_TASKS.md, FOLLOW_UP.md, PROJECT_PLAN.md, QQQ_5M_REVIEW_LOG.md, and DECISION_LOG.md.
 - Commit and push useful checkpoints.
 ```

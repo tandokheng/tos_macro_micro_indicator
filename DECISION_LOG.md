@@ -100,3 +100,5 @@
 - Add v0.5.25 after v0.5.24 showed `DBG SET` and `DBG PROBE` counts but `DBG REV: NaN`: sanitize review visual booleans before counts and plot gates so probe arrows are not suppressed by an unsafe review state.
 
 - Add v0.5.26 after v0.5.25 confirmed arrows survive recalculation but the chart was cluttered by hardwired compact `L/S` bubbles: keep arrows and diagnostics, but gate compact marker bubbles behind existing `showSignalBubbles`.
+
+- Add v0.5.27 after v0.5.26 cleaned up marker bubbles but still showed green/red score-probe arrows as diagnostic noise: keep magenta/cyan NaN-safe review arrows default-on, make score-probe arrows opt-in through `showScoreProbeArrows = no`, and keep `DBG PROBE` counts based on probe readiness rather than the visual toggle.

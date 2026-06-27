@@ -35,6 +35,7 @@ def inWindow =
 - If the working arrow primitive has already been proven and a later build shows zero arrows after scrollback, instrument the source and review gates before loosening rules. Track recent setup counts, review counts, and probe counts so a screenshot can separate "setup source absent" from "review gate too strict."
 - If a debug count label shows `NaN`, treat the upstream boolean as unsafe, not merely false. Sanitize visual-layer booleans into 0/1 flags before using them in `Sum(...)`, `HighestAll(...)`, negation gates like `!reviewSignal`, or arrow plots.
 - Once arrows are proven stable, remove or gate proof bubbles. Hardwired compact `L/S` bubbles are useful diagnostics, but they can hide the cleaner arrow layer during review.
+- Keep diagnostic counts separate from visual toggles once a probe layer is proven. A default-off arrow toggle such as `showScoreProbeArrows` should not also zero the `DBG PROBE` count if that count is needed to explain whether the source cadence exists.
 
 Working primitive:
 
