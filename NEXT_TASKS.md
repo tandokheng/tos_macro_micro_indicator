@@ -2,15 +2,15 @@
 
 ## Doing
 
-- Install `MacroMicro_Simplified_v0.5.29.ts` into Thinkorswim study `_dk_codex_macro_micro_v1` and confirm every screenshot shows `BUILD: v0.5.29 THROTTLED VIS`, numeric `DBG REV`, lower `DBG VIS`, fewer repeated arrow clusters, no default large `L/S` marker bubbles, and no default green/red score-probe arrows.
+- Install `MacroMicro_Simplified_v0.5.30.ts` into Thinkorswim study `_dk_codex_macro_micro_v1` and confirm every screenshot shows `BUILD: v0.5.30 CHOP FILTER`, numeric `DBG REV`, lower `DBG VIS`, nonzero `DBG CHOP` in sideways regions, fewer chop arrows, no default large `L/S` marker bubbles, and no default green/red score-probe arrows.
 
 ## Todo
 
-- If v0.5.29 does not show `BUILD: v0.5.29 THROTTLED VIS`, remove duplicate/old `_dk_codex_macro_micro_v1` studies and re-add the pasted source once.
-- Confirm old `SPAM L/S`, default compact `L/S` marker bubbles, and green/red score-probe arrows are gone; v0.5.29 should emphasize fewer magenta/cyan review arrows.
-- If large `L/S` marker bubbles remain, check the saved `showSignalBubbles` setting in TOS because v0.5.29 gates those bubbles behind that existing toggle.
-- If the chart gets too quiet in v0.5.29, first reduce `reviewVisualMinBars` from 8 before loosening review-arrow source gates.
-- If `DBG REV` stays high but `DBG VIS` is low, the final visual throttle is working; tune `reviewVisualMinBars` rather than the raw review logic.
+- If v0.5.30 does not show `BUILD: v0.5.30 CHOP FILTER`, remove duplicate/old `_dk_codex_macro_micro_v1` studies and re-add the pasted source once.
+- Confirm old `SPAM L/S`, default compact `L/S` marker bubbles, and green/red score-probe arrows are gone; v0.5.30 should emphasize fewer magenta/cyan review arrows in chop.
+- If large `L/S` marker bubbles remain, check the saved `showSignalBubbles` setting in TOS because v0.5.30 gates those bubbles behind that existing toggle.
+- If clear-trend arrows become too sparse in v0.5.30, first lower `minReviewTrendEfficiency` from `0.30` or `minReviewScoreSeparation` from `2` before loosening source gates.
+- If `DBG REV` stays high, `DBG CHOP` rises, and `DBG VIS` is low in sideways areas, the chop filter is working; tune the filter thresholds rather than the raw review logic.
 - If `CONTRACT: FAIL TRIGGER/MARKER` appears, capture that screenshot because it proves dashboard trigger and marker logic diverged on the same bar.
 - If raw arrows disappear again while labels prove setup state, treat it as a Thinkorswim plot rendering/style-state issue and use the documented working-arrow primitive before changing gates.
 - Log 5 to 10 QQQ 5-minute examples where arrows were helpful, late, blocked correctly, or still noisy.
@@ -109,3 +109,4 @@
 - Added `MacroMicro_Simplified_v0.5.27.ts` after v0.5.26 showed the chart was cleaner but green/red score-probe arrows were still diagnostic noise; score-probe arrows now default off while `DBG PROBE` counts remain active.
 - Added `MacroMicro_Simplified_v0.5.28.ts` after v0.5.27 still showed noisy arrows in chop; setup-review refresh now uses 21 bars and requires directional follow-through instead of score-only 6/6.
 - Added `MacroMicro_Simplified_v0.5.29.ts` after v0.5.28 still showed repeated arrow clusters; final visible arrows now have an 8-bar throttle while raw `DBG REV` counts remain unthrottled and `DBG VIS` reports the plotted count.
+- Added `MacroMicro_Simplified_v0.5.30.ts` after v0.5.29 worked in clear direction but remained poor in chop; setup-review arrows now require local trend efficiency and score dominance, with `DBG CHOP` showing blocked pulses.

@@ -369,3 +369,10 @@ Use this after importing `MacroMicro_Simplified_v0.3.1.ts` into Thinkorswim.
 - Observation: User screenshot showed `BUILD: v0.5.28 TIGHT REVIEW`, no score-probe arrows, and numeric diagnostics (`DBG REV L200: 12`, `DBG REV S200: 20`, `DBG PROBE L/S: 5/3`), but repeated same-side review arrows were still visible in sustained stretches.
 - Root-cause conclusion: v0.5.28's raw review gate was useful, but every raw review pulse still became a plotted arrow because `visibleLongSignal` / `visibleShortSignal` directly followed `reviewLongSignal` / `reviewShortSignal`.
 - Change: v0.5.29 adds a final visual-only throttle after raw review signals. `DBG REV` remains the unthrottled review count, while new `DBG VIS L/S` shows the actual plotted arrow count.
+
+
+## 2026-06-27 v0.5.29 chop follow-up
+
+- Observation: User screenshots showed `BUILD: v0.5.29 THROTTLED VIS`; arrows were useful in clear directional sections but still poor in sideways/choppy regions, with alternating markers around ParabolicSAR flip-flops.
+- Root-cause conclusion: v0.5.29 throttled repeated arrows but did not classify regime. In chop, alternating minor review pulses still passed after the throttle spacing elapsed.
+- Change: v0.5.30 keeps the proven arrow renderer and adds a setup-review chop filter using 12-bar trend efficiency, 2-point score dominance, and side-specific EMA17 direction. `DBG CHOP L/S` counts pulses blocked by this filter.

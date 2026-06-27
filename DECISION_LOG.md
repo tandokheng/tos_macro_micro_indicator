@@ -106,3 +106,5 @@
 - Add v0.5.28 after v0.5.27 confirmed the `.ts` file can open cleanly and the review-arrow path works, but some sideways QQQ 5m regions were still noisy: slow setup-review refresh to 21 bars and require directional follow-through so score-only 6/6 does not keep painting arrows in chop.
 
 - Add v0.5.29 after v0.5.28 still showed repeated arrow clusters even though source diagnostics were useful: keep raw `DBG REV` counts unthrottled, add a final visible-arrow throttle with `reviewVisualMinBars = 8`, and expose `DBG VIS L/S` so chart-noise tuning does not hide raw review activity.
+
+- Add v0.5.30 after v0.5.29 screenshots showed the indicator works in clean direction but still marks chop: filter setup-review arrows through local trend efficiency, side-specific score dominance, and EMA17 direction while leaving fast break, low-volume momentum, continuation pressure, and real-entry tracking intact.

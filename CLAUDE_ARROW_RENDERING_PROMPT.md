@@ -42,6 +42,7 @@ Rule for future debugging:
 - v0.5.26 proved the clean visual direction: marker bubbles can be gated behind `showSignalBubbles`, and NaN-safe review arrows remain visible. v0.5.27 then makes green/red score-probe arrows opt-in while keeping `DBG PROBE` counts based on probe readiness, not on the visual arrow toggle.
 - v0.5.27 confirmed the `.ts` file can open fine and the review-arrow path works, but some sideways regions are still noisy. v0.5.28 tightened the review gate by slowing refresh and requiring directional follow-through. v0.5.29 adds a final visible-arrow throttle, keeps raw `DBG REV` counts unthrottled, and adds `DBG VIS L/S` for the actual plotted arrow count.
 - Do not "fix" noise by hiding raw diagnostics. Tune the visible layer first (`reviewVisualMinBars`) when `DBG REV` is high but `DBG VIS` is acceptably lower.
+- v0.5.29 screenshots showed clear-direction arrows are useful but chop is still poor. v0.5.30 adds a setup-review chop filter using trend efficiency, score dominance, and EMA17 direction, plus `DBG CHOP L/S` for blocked pulses. If `DBG CHOP` rises in sideways regions, tune those thresholds before touching the working arrow primitive.
 - Avoid forward self-reference traps in throttles. Keep self-referential state inside `CompoundValue`; do not define a separate `ready` boolean before the recursive state and then use it inside that same state expression.
 
 General ThinkScript debugging rules:
@@ -56,7 +57,7 @@ Current next direction:
 - Build from the latest versioned file.
 - Keep the working-style arrows as the default visible marker path.
 - Hide raw proof bubbles by default once arrows are confirmed.
-- Use v0.5.29's throttled-visual build as the starting point: NaN-safe raw review diagnostics remain active, compact `L/S` marker bubbles are optional through `showSignalBubbles`, green/red score-probe arrows are off by default through `showScoreProbeArrows`, setup-review arrows need directional follow-through, and the final plotted magenta/cyan arrows are throttled by `reviewVisualMinBars = 8`.
+- Use v0.5.30's chop-filter build as the starting point: NaN-safe raw review diagnostics remain active, compact `L/S` marker bubbles are optional through `showSignalBubbles`, green/red score-probe arrows are off by default through `showScoreProbeArrows`, setup-review arrows need directional follow-through plus chop filtering, and `DBG CHOP L/S` shows blocked review pulses.
 - Update VERSIONING.md, TOS_INSTALL_NOTES.md, NEXT_TASKS.md, FOLLOW_UP.md, PROJECT_PLAN.md, QQQ_5M_REVIEW_LOG.md, and DECISION_LOG.md.
 - Commit and push useful checkpoints.
 ```

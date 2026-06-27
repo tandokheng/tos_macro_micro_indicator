@@ -38,6 +38,7 @@ def inWindow =
 - Keep diagnostic counts separate from visual toggles once a probe layer is proven. A default-off arrow toggle such as `showScoreProbeArrows` should not also zero the `DBG PROBE` count if that count is needed to explain whether the source cadence exists.
 - After arrow rendering and NaN-safe counts are proven, treat excessive arrows as review-gate tuning. Score-only 6/6 refreshes can still be noisy in chop; require directional follow-through or slow the refresh cadence before changing the rendering path again.
 - If raw review counts are useful but plotted arrows remain noisy, throttle only the final visible-arrow layer. Keep `DBG REV` as the unthrottled source count and add a separate plotted count such as `DBG VIS` so tuning does not hide diagnostics.
+- If arrows work in clear trends but remain noisy in chop, add a regime filter before the visible review layer rather than changing the arrow primitive. Keep a blocked-count label such as `DBG CHOP` so screenshots can prove whether the filter is active.
 
 Working primitive:
 
