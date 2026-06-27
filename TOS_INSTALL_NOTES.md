@@ -41,6 +41,7 @@
 ## Codex Link Note
 
 - In chat, use clickable file links with `C:/Users/tan_d/...`; the `/mnt/c/...` form does not open reliably in the side panel.
+- Keep the current versioned `.ts` file compact. The side panel opened v0.5.17 reliably at about 47 KB; v0.5.24's long cumulative header pushed it above that range, so the header was trimmed and the full history stays in `VERSIONING.md`.
 
 ## Arrow Rendering Lesson
 

@@ -4,66 +4,12 @@
 # TOS Study: _dk_codex_macro_micro_v1
 # Label: 5-of-6 intraday simplified
 # Timeframe focus: 5m first, then 15m validation/tuning.
-# - One primary LONG / SHORT arrow
-# - Same-direction continuation signals are labeled ADD, not re-entry arrows
-# - Score-break danger bubbles when an active trade degrades
-# - Standby dots before trigger
-# - Stronger candle confirmation and RVOL trade gating
-# - Directional ATR ptarget / sloss
-# - Compact dashboard plus arrow-bar signal bubbles
-# - Confirmed score-cross entries so 5m momentum is not missed after a micro-cross
-# - Fresh 5/6 trigger window so entries can confirm shortly after the score turns
-# - Sustained 5/6 candle-confirmed entries so visible trends are not missed after the first cross
-# - Anti-starvation entry pulse so cooldown-blocked 5/6 setups can still arrow once eligible
-# - Explicit upper-chart declaration and WHY diagnostics for no-arrow troubleshooting
-# - 5m RVOL tuning: quiet bars become CAUTION, only extreme low RVOL blocks arrows
-# - 5m caution entries: strong 4/6 setups can arrow as CAUTION, while 5/6 remains the clean trigger
-# - Setup dashboard score displays as an integer, not 4.00/6
-# - Cooldown now resets from plotted entries, not candidate-ready edges that can starve arrows
-# - Same-side arrows can refresh after resetSameSideAfterBars during sustained strong trends
-# - Caution labels use amber instead of bright yellow for better white-text readability
-# - 5m remains the default profile; optional 15m profile adjusts timing windows only
-# - Same-side refresh waits for the next valid candidate after the reset window, not one exact bar
-# - Compile fix: entry state no longer references newLongEntry/newShortEntry/lastEntryDir before definition
-# - Fast break confirmation so 5/6 trade-OK impulse moves are not starved by strict candle filters
-# - Debug force arrows: temporary test mode plots 5/6 trade-OK arrows without candle/entry-state gating
-# - Debug force arrows now ignore TRADE/RVOL too, so this is a true plot-visibility test
-# - Debug big arrow: always paints one huge cyan arrow/bubble on the last visible bar
-# - Fresh primary arrow plot names avoid inherited hidden TOS plot settings from LongArrow/ShortArrow
-# - Forced short debug now uses the known-visible DebugBigArrow plot and ungated forced bubbles
-# - Forced long debug now has a mirrored big magenta DebugBigUpArrow plot
-# - Clean signal test: debug-force defaults off and real arrows no longer include forced debug conditions
-# - RVOL tuning: sub-0.35 RVOL is CAUTION, hard block is reserved for truly dead volume or non-impulse bars
-# - Practical real-entry layer: arrows can fire from qualified setup edges without waiting for full recursive entry-state alignment
-# - RVOL is now caution-only for qualified setups; structure/chop can still block trades
-# - Dashboard diagnostics split hard blocks from caution warnings and next trigger waits
-# - Fast bias-flip caution arrows catch hard breaks before the slower 6-point bias fully flips
-# - 4/6 continuation-pressure caution arrows reduce NEXT:CANDLE starvation in active trends
-# - 5/6 setup pulse fallback prevents sustained qualified setups from producing no arrows
-# - Fresh v0.5.5 arrow plot names plus dense setup pulses avoid inherited hidden TOS plot settings
-# - Known-visible big arrow plots now carry real entries when normal primary plots remain hidden
-# - Failsafe setup bubbles default off and setup pulses are throttled after v0.5.6 proved visibility but spammed the chart
-# - Arrows-first review: signal bubbles default off, setup pulses moderate, and real arrows plot closer to candles
-# - Continuation anchor arrows show persistent CONTINUE S/L states without resetting trade tracking
-# - Compact S/L marker bubbles are now the primary visible signal marker because TOS plot arrows are unreliable
-# - Setup-ready markers are visual-only so strong 5/6 states show without repeatedly resetting PT/SL
-# - Marker bubbles are hardwired instead of controlled by a new input, avoiding saved TOS input-value drift
-# - Fresh v0.5.11 marker dot plots and a MARKER dashboard label provide non-bubble visibility proof
-# - Always-visible BUILD and MARKER dashboard labels prove which pasted build TOS is actually running
-# - Last-loaded-bar build bubble proves AddChartBubble is active independent of signal conditions
-# - Spam diagnostic build: raw setup/continuation pressure paints hardwired markers without resetting trade tracking
-# - Dashboard trigger contract now uses named booleans and exposes trigger/marker mismatches
-# - Compile fix: split diagnostic MARKER/CONTRACT/RAW labels into static labels to avoid TOS parser failures
-# - Clean raw marker build: remove SPAM bubbles and route setup visibility through throttled setup-pulse markers
-# - Raw cadence marker build: raw setup markers print on first setup bar, every setupPulseBars bars, and the live bar
-# - Raw bubble build: direct raw setup bubbles use the proven v0.5.14 visual route without feeding trade tracking
-# - Raw thin build: direct RAW proof bubbles use a slower cadence after v0.5.17 proved visibility but was too noisy
-# - Raw arrow build: adds fresh dedicated raw setup arrows that mirror the known-working simple arrow script style
-# - Clean arrow build: working-style raw arrows default on, raw proof bubbles default off after v0.5.19 proved arrows render
-# - Quiet arrow build: raw setup remains diagnostic-only; working-style arrows now plot real trade-review entries only
-# - Balanced arrow build: first 5/6 setup edge or 6/6 upgrade can review-arrow without raw cadence spam
-# - Review refresh build: sustained 5/6 setup states can print slow quality-gated review arrows on historical candles
-# - Debug counts build: expose recent setup/review/probe counts and visual-only probe arrows for no-arrow diagnosis
+# Active build: v0.5.24 DEBUG COUNTS.
+# - Fresh working-style review arrows remain the default visible path.
+# - Visual-only score-probe arrows show whether 5/6 setup cadence exists when review arrows are silent.
+# - DBG SET / DBG REV / DBG PROBE labels separate setup source, review gate, and probe cadence.
+# - Real trade entries and PT/SL tracking still use realLongEntry / realShortEntry only.
+# Full version history lives in VERSIONING.md.
 # ============================================================
 
 declare upper;

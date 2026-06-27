@@ -77,5 +77,6 @@ rec x =
 
 - Every study build needs a `# Version: vX.Y.Z` header plus a short changelog note.
 - Always sync `_dk_codex_macro_micro_v1.ts` to the latest versioned file.
+- Keep the active `.ts` paste file compact enough to open reliably in the Codex side panel. Put cumulative history in `VERSIONING.md`, not in the ThinkScript header.
 - Re-read specifically for these traps before handing off: missing instrumentation, wrong same-day time-window `or`, `BOOLEAN_ARROW`, complex recursive self-references, and timezone assumptions.
 - Use an independent review pass when the visual behavior cannot be executed locally.
