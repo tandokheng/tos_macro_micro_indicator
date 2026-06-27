@@ -341,3 +341,10 @@ Use this after importing `MacroMicro_Simplified_v0.3.1.ts` into Thinkorswim.
 - Observation: User saw many arrows immediately after v0.5.24 loaded, then Thinkorswim recalculated and all arrows disappeared. The screenshot showed `DBG SET L200: 53`, `DBG SET S200: 80`, and `DBG PROBE L/S: 5/7`, but `DBG REV L200/S200` and `DBG ANY L/S` were `NaN`.
 - Root-cause conclusion: setup and probe cadence were alive, but the review visual signal was not a clean boolean. Because the probe plot was gated by `!reviewLongSignal` / `!reviewShortSignal`, a `NaN` review state also suppressed the probe arrows.
 - Change: v0.5.25 converts real-entry and setup-review components into NaN-safe 0/1 flags before building `reviewLongSignal` / `reviewShortSignal`, then uses fresh v0.5.25 review/probe arrow plot names.
+
+
+## 2026-06-27 v0.5.25 visual-clutter follow-up
+
+- Observation: User screenshot showed `BUILD: v0.5.25 NAN SAFE`, numeric `DBG REV L200/S200`, and visible arrows that survived recalculation. The remaining issue was dense compact `L/S` marker bubbles cluttering and partially covering the arrows.
+- Root-cause conclusion: the NaN-safe review fix worked. The clutter came from legacy hardwired compact marker bubbles that still rendered whenever `arrowMarkerLong` / `arrowMarkerShort` was true.
+- Change: v0.5.26 keeps the NaN-safe review/probe arrows and freshens plot names, but gates compact `L/S` marker bubbles behind existing `showSignalBubbles`, which defaults off.

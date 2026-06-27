@@ -2,15 +2,15 @@
 
 ## Current Test Script
 
-- File: `MacroMicro_Simplified_v0.5.25.ts`
+- File: `MacroMicro_Simplified_v0.5.26.ts`
 - Import-ready file: `_dk_codex_macro_micro_v1.ts`
-- Side-panel readable copy: `MacroMicro_Simplified_v0.5.25_READABLE.txt`
+- Side-panel readable copy: `MacroMicro_Simplified_v0.5.26_READABLE.txt`
 - Thinkorswim study to replace: `_dk_codex_macro_micro_v1`
 - Primary chart for review: QQQ 5-minute, 20-day view
 
-## What v0.5.25 Is Testing
+## What v0.5.26 Is Testing
 
-- `BUILD: v0.5.25 NAN SAFE` is always visible through a static `AddLabel(yes, ...)`; if absent, TOS is not running this pasted build or study labels are hidden.
+- `BUILD: v0.5.26 CLEAN VISUALS` is always visible through a static `AddLabel(yes, ...)`; if absent, TOS is not running this pasted build or study labels are hidden.
 - v0.5.14 proved raw setup pressure can render, but it did so with intentionally noisy `SPAM L/S` bubbles. v0.5.15 removed those hardwired spam bubbles.
 - v0.5.19 proved the real missing-arrow issue was Thinkorswim arrow plot rendering/style state, not raw setup gating.
 - The working arrow primitive is now documented: fresh dedicated plot name, direct condition, `low/high +/- off`, `ARROW_UP/DOWN`, `AssignValueColor`, and line weight 5.
@@ -22,23 +22,24 @@
 - v0.5.24 screenshot showed `DBG SET` and `DBG PROBE` counts were alive, but `DBG REV` and `DBG ANY` were `NaN`; that can suppress both review arrows and probe-arrow fallback after Thinkorswim recalculates.
 - v0.5.25 sanitizes review visual booleans into 0/1 flags before they drive counts, review arrows, and probe-arrow suppression.
 - v0.5.25 uses fresh dedicated `ReviewLongArrowV0525` / `ReviewShortArrowV0525` and `ScoreProbeLongArrowV0525` / `ScoreProbeShortArrowV0525` plots to avoid saved TOS plot-style drift.
+- v0.5.26 keeps the NaN-safe review/probe logic, refreshes arrow plot names again, and turns compact `L/S` marker bubbles off by default through `showSignalBubbles = no`.
 - Direct `RAW L/S` proof bubbles remain available but default off through `showRawProofBubbles = no`, because arrows are now the cleaner review path.
-- Compact `L/S` markers still render for comparison, but they now use a closer candle offset so TOS is less likely to clip them off-scale.
+- Compact `L/S` marker bubbles are optional only; the default review should focus on magenta/cyan review arrows plus green/red score-probe arrows.
 - `RAW SETUP: L/S/-` and `RAW CONT: L/S/-` remain visible through static labels so screenshots still show whether the source logic is firing.
 - `MARKER: NONE/L/S/BOTH` and `CONTRACT: OK/FAIL TRIGGER/MARKER` remain visible. Capture a screenshot if the contract fails.
-- A cyan `v0.5.25 TEST` bubble and `BuildProofDotV0513` point remain on the last loaded bar to prove the chart-bubble/point drawing paths are active independent of signal logic.
+- A cyan `v0.5.26 TEST` bubble and `BuildProofDotV0513` point remain on the last loaded bar to prove the chart-bubble/point drawing paths are active independent of signal logic.
 - Real trade entries and PT/SL tracking still use `realLongEntry` / `realShortEntry`; visual setup markers do not reset entry price, ATR, target, or stop.
 - RVOL remains a `CAUTION` source for qualified setups, not a hard blocker by itself.
 
 ## Current Manual Test Flow
 
 - Paste `_dk_codex_macro_micro_v1.ts` into the Thinkorswim study `_dk_codex_macro_micro_v1`.
-- If the `.ts` file does not open in Codex side panel, open `MacroMicro_Simplified_v0.5.25_READABLE.txt`; it is verified to match the `.ts` source exactly.
-- Confirm the pasted source header shows `# Version: v0.5.25`.
-- Confirm the chart labels show `BUILD: v0.5.25 NAN SAFE`, `RAW SETUP`, `RAW CONT`, `DBG SET L200/S200`, `DBG REV L200/S200`, `DBG PROBE L/S`, and `CONTRACT: OK` or `FAIL TRIGGER/MARKER`.
+- If the `.ts` file does not open in Codex side panel, use the clipboard handoff or open `MacroMicro_Simplified_v0.5.26_READABLE.txt`; it is verified to match the `.ts` source exactly.
+- Confirm the pasted source header shows `# Version: v0.5.26`.
+- Confirm the chart labels show `BUILD: v0.5.26 CLEAN VISUALS`, `RAW SETUP`, `RAW CONT`, `DBG SET L200/S200`, `DBG REV L200/S200`, `DBG PROBE L/S`, and `CONTRACT: OK` or `FAIL TRIGGER/MARKER`.
 - Confirm old `SPAM L` / `SPAM S` bubbles are gone.
 - Confirm direct `RAW L` / `RAW S` proof bubbles are hidden by default.
-- If magenta/cyan review arrows are absent, read the debug counts: `DBG REV` should no longer show `NaN`; nonzero `DBG PROBE` should show green/red probe arrows on some historical bars unless review arrows already consumed those bars.
+- If large `L/S` bubbles still appear, check whether `showSignalBubbles` was saved on in TOS; v0.5.26 gates those compact marker bubbles behind that existing toggle.
 - Review QQQ 5m first; defer 15m validation until 5m marker behavior is acceptable.
 
 ## Codex Link Note

@@ -34,6 +34,7 @@ def inWindow =
 - Market status does not suppress historical ThinkScript plots. If the market is closed and the build/test bubble renders but past arrows are missing, inspect sustained historical signal gates rather than assuming the chart is inactive.
 - If the working arrow primitive has already been proven and a later build shows zero arrows after scrollback, instrument the source and review gates before loosening rules. Track recent setup counts, review counts, and probe counts so a screenshot can separate "setup source absent" from "review gate too strict."
 - If a debug count label shows `NaN`, treat the upstream boolean as unsafe, not merely false. Sanitize visual-layer booleans into 0/1 flags before using them in `Sum(...)`, `HighestAll(...)`, negation gates like `!reviewSignal`, or arrow plots.
+- Once arrows are proven stable, remove or gate proof bubbles. Hardwired compact `L/S` bubbles are useful diagnostics, but they can hide the cleaner arrow layer during review.
 
 Working primitive:
 

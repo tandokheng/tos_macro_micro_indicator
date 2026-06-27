@@ -2,13 +2,13 @@
 
 ## Doing
 
-- Install `MacroMicro_Simplified_v0.5.25.ts` into Thinkorswim study `_dk_codex_macro_micro_v1` and confirm every screenshot shows `BUILD: v0.5.25 NAN SAFE`, `RAW SETUP`, `RAW CONT`, numeric `DBG REV`, `DBG PROBE`, and any historical review/probe arrows.
+- Install `MacroMicro_Simplified_v0.5.26.ts` into Thinkorswim study `_dk_codex_macro_micro_v1` and confirm every screenshot shows `BUILD: v0.5.26 CLEAN VISUALS`, numeric `DBG REV`, and arrows without default large `L/S` marker bubbles.
 
 ## Todo
 
-- If v0.5.25 does not show `BUILD: v0.5.25 NAN SAFE`, remove duplicate/old `_dk_codex_macro_micro_v1` studies and re-add the pasted source once.
-- Confirm old `SPAM L/S` bubbles are gone; v0.5.25 should hide direct `RAW L/S` proof bubbles by default and show review arrows or green/red score-probe arrows when the corresponding gate fires.
-- If arrows are absent, capture the debug counts: `DBG REV` should be numeric now, and `DBG PROBE` should point to fallback bars when review arrows are silent.
+- If v0.5.26 does not show `BUILD: v0.5.26 CLEAN VISUALS`, remove duplicate/old `_dk_codex_macro_micro_v1` studies and re-add the pasted source once.
+- Confirm old `SPAM L/S` and default compact `L/S` marker bubbles are gone; v0.5.26 should emphasize review/probe arrows rather than bubble labels.
+- If large `L/S` marker bubbles remain, check the saved `showSignalBubbles` setting in TOS because v0.5.26 gates those bubbles behind that existing toggle.
 - If `CONTRACT: FAIL TRIGGER/MARKER` appears, capture that screenshot because it proves dashboard trigger and marker logic diverged on the same bar.
 - If raw arrows disappear again while labels prove setup state, treat it as a Thinkorswim plot rendering/style-state issue and use the documented working-arrow primitive before changing gates.
 - Log 5 to 10 QQQ 5-minute examples where arrows were helpful, late, blocked correctly, or still noisy.
@@ -103,3 +103,4 @@
 - Added `tests/verify_review_signal_fixture.ps1`, `.gitattributes`, and v0.5.24 verifier checks for diagnostic arrows/counts and stable line endings.
 - Added `MacroMicro_Simplified_v0.5.25.ts` after v0.5.24 showed live setup/probe counts but `DBG REV: NaN`; review visual booleans are now sanitized before counts and plot gates.
 - Added `tests/verify_nan_safe_review_fixture.ps1` and verifier checks to keep score-probe arrows from being suppressed by NaN review state.
+- Added `MacroMicro_Simplified_v0.5.26.ts` after v0.5.25 proved arrows persist but hardwired compact `L/S` marker bubbles cluttered the chart; marker bubbles are now optional through `showSignalBubbles`.

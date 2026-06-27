@@ -59,6 +59,7 @@ Use an explicit version in every new indicator file and in the file header.
 - MacroMicro_Simplified_v0.5.23.ts adds a slow quality-gated sustained setup review refresh so historical 5/6 regions can show arrows without returning to raw cadence spam.
 - MacroMicro_Simplified_v0.5.24.ts adds debug count labels plus visual-only score-probe arrows to diagnose whether v0.5.23's no-arrow result came from setup source absence or an over-strict review gate.
 - MacroMicro_Simplified_v0.5.25.ts sanitizes review visual booleans after v0.5.24 showed `DBG REV: NaN`; probe arrows can now plot when setup/probe is alive and review is safely false.
+- MacroMicro_Simplified_v0.5.26.ts keeps v0.5.25's NaN-safe arrows but gates compact `L/S` marker bubbles behind `showSignalBubbles` so the default chart is arrow-first again.
 
 ## Version Meaning
 

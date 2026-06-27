@@ -98,3 +98,5 @@
 - Trim the v0.5.24 ThinkScript header after the user reported `.ts` files were not readable again: keep the active paste file near the v0.5.17 size that opened successfully and store cumulative history in `VERSIONING.md`.
 
 - Add v0.5.25 after v0.5.24 showed `DBG SET` and `DBG PROBE` counts but `DBG REV: NaN`: sanitize review visual booleans before counts and plot gates so probe arrows are not suppressed by an unsafe review state.
+
+- Add v0.5.26 after v0.5.25 confirmed arrows survive recalculation but the chart was cluttered by hardwired compact `L/S` bubbles: keep arrows and diagnostics, but gate compact marker bubbles behind existing `showSignalBubbles`.
