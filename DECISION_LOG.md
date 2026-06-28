@@ -120,3 +120,7 @@
 - Add v0.5.35 after v0.5.34 showed `DBG BOTH L/S: 1/4` but `DBG MIX L/S: 0/2`: keep the proven arrow renderer and 21-bar conflict lookback, add `DBG ESC L/S`, and require stricter mixed-conflict escape (`0.45` trend efficiency and 3-point score separation) before a conflicted review candidate can still plot.
 
 - Add v0.5.36 after v0.5.35 still showed too many arrows during chop and a cyan down arrow that could cause a stop-out in a pullback: keep the proven renderer, but stop raw continuation pressure from directly bypassing the review chop gate unless it breaks a wider 5-bar structure window with 2-point score dominance; add `DBG CONT L/S` to count blocked continuation bypasses.
+
+- Add v0.5.37 after v0.5.36 screenshots showed trend and reversal behavior working but chop still leaking through: keep raw fast-break logic for real trend/reversal detection, but require a stronger review-only 5-bar fast break and 1.60 range proof before raw fast breaks can bypass review chop or escape mixed-direction conflict; add `DBG FAST L/S` to count suppressed raw fast breaks.
+
+- Add v0.5.38 after v0.5.37 showed `DBG FAST L/S` was catching raw fast-break chop but visible arrows remained through the normal efficient-score path: keep trend/reversal and fast-break guards intact, but require the normal efficient-score review path to break 5-bar local structure before painting; add `DBG STRUCT L/S`.

@@ -1,10 +1,10 @@
 # ============================================================
 # Macro Micro Simplified 5-of-6 Intraday Study
-# Version: v0.5.38
+# Version: v0.5.37
 # TOS Study: _dk_codex_macro_micro_v1
 # Label: 5-of-6 intraday simplified
 # Timeframe focus: 5m first, then 15m validation/tuning.
-# Active build: v0.5.38 STRUCT GUARD.
+# Active build: v0.5.37 FAST GUARD.
 # - Fresh working-style review arrows remain the default visible path.
 # - Visual-only score-probe arrows are optional via showScoreProbeArrows and default off after v0.5.26 cleanup.
 # - Setup-review arrows require directional follow-through instead of score-only 6/6 refreshes.
@@ -13,8 +13,7 @@
 # - Mixed-direction review candidates use a wider 21-bar conflict horizon before fast-break or stricter efficient VWAP/EMA-aligned escapes.
 # - Review continuation arrows require a wider local structure break before continuation pressure can bypass the chop gate.
 # - Review fast-break arrows require stronger range expansion and a wider local structure break before raw fast breaks can bypass chop.
-# - Normal efficient-score review arrows require local structure break before they can paint in chop.
-# - DBG SET / DBG REV / DBG CHOP / DBG CONT / DBG FAST / DBG STRUCT / DBG BOTH / DBG ESC / DBG MIX / DBG PROBE labels separate setup, review, chop block, continuation block, fast-break block, structure block, detected conflict, escaped conflict, blocked conflict, and probe cadence.
+# - DBG SET / DBG REV / DBG CHOP / DBG CONT / DBG FAST / DBG BOTH / DBG ESC / DBG MIX / DBG PROBE labels separate setup, review, chop block, continuation block, fast-break block, detected conflict, escaped conflict, blocked conflict, and probe cadence.
 # - Review/probe visual booleans sanitize NaN states so debug counts and arrows do not disappear after recalculation.
 # - Compact L/S marker bubbles are optional via showSignalBubbles and default off to keep arrows readable.
 # - Real trade entries and PT/SL tracking still use realLongEntry / realShortEntry only.
@@ -73,7 +72,6 @@ input reviewContinuationBreakLookbackBars = 5;
 input minReviewContinuationScoreSeparation = 2;
 input reviewFastBreakLookbackBars = 5;
 input reviewFastBreakTRFactor = 1.60;
-input reviewTrendBreakLookbackBars = 5;
 input reviewDebugLookbackBars = 200;
 input showScoreProbeArrows = no;
 input showRawProofBubbles = no;
@@ -548,21 +546,16 @@ def reviewFastBreakoutOK = fastBreakoutConfirm and candleTR >= avgTR20 * reviewF
 def reviewFastBreakdownOK = fastBreakdownConfirm and candleTR >= avgTR20 * reviewFastBreakTRFactor and close < Lowest(low[1], reviewFastBreakBars);
 def reviewFastBreakBlockedLong = fastBreakoutConfirm and !reviewFastBreakoutOK;
 def reviewFastBreakBlockedShort = fastBreakdownConfirm and !reviewFastBreakdownOK;
-def reviewTrendBreakBars = Max(2, reviewTrendBreakLookbackBars);
-def reviewLongTrendBreakOK = reviewEfficientMove and reviewLongScoreDominant and close > emaSlow and close > Highest(high[1], reviewTrendBreakBars);
-def reviewShortTrendBreakOK = reviewEfficientMove and reviewShortScoreDominant and close < emaSlow and close < Lowest(low[1], reviewTrendBreakBars);
-def reviewTrendBlockedLong = reviewEfficientMove and reviewLongScoreDominant and close > emaSlow and !reviewLongTrendBreakOK;
-def reviewTrendBlockedShort = reviewEfficientMove and reviewShortScoreDominant and close < emaSlow and !reviewShortTrendBreakOK;
 def reviewLongRegimeOK =
     !reviewChopFilterEnabled or
     reviewFastBreakoutOK or
     reviewLongContinuationBreakOK or
-    reviewLongTrendBreakOK;
+    (reviewEfficientMove and reviewLongScoreDominant and close > emaSlow);
 def reviewShortRegimeOK =
     !reviewChopFilterEnabled or
     reviewFastBreakdownOK or
     reviewShortContinuationBreakOK or
-    reviewShortTrendBreakOK;
+    (reviewEfficientMove and reviewShortScoreDominant and close < emaSlow);
 def setupReviewLongQualityRaw = longEntryConfirm or lowVolumeLongMomentum or longContinuationPressure or (longScore >= 6 and setupReviewLongDirectional);
 def setupReviewShortQualityRaw = shortEntryConfirm or lowVolumeShortMomentum or shortContinuationPressure or (shortScore >= 6 and setupReviewShortDirectional);
 def setupReviewLongQuality = setupReviewLongQualityRaw and reviewLongRegimeOK;
@@ -642,8 +635,6 @@ def reviewContinuationBlockedLongRecentCount = Sum(if reviewContinuationBlockedL
 def reviewContinuationBlockedShortRecentCount = Sum(if reviewContinuationBlockedShort then 1 else 0, reviewDebugLookbackBars);
 def reviewFastBreakBlockedLongRecentCount = Sum(if reviewFastBreakBlockedLong then 1 else 0, reviewDebugLookbackBars);
 def reviewFastBreakBlockedShortRecentCount = Sum(if reviewFastBreakBlockedShort then 1 else 0, reviewDebugLookbackBars);
-def reviewTrendBlockedLongRecentCount = Sum(if reviewTrendBlockedLong then 1 else 0, reviewDebugLookbackBars);
-def reviewTrendBlockedShortRecentCount = Sum(if reviewTrendBlockedShort then 1 else 0, reviewDebugLookbackBars);
 def reviewBothSidesLongRecentCount = Sum(if reviewBothSidesRecentLong then 1 else 0, reviewDebugLookbackBars);
 def reviewBothSidesShortRecentCount = Sum(if reviewBothSidesRecentShort then 1 else 0, reviewDebugLookbackBars);
 def reviewConflictEscapedLongRecentCount = Sum(if reviewConflictEscapedLong then 1 else 0, reviewDebugLookbackBars);
@@ -777,27 +768,27 @@ DebugBigUpArrow.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
 DebugBigUpArrow.SetLineWeight(5);
 DebugBigUpArrow.SetDefaultColor(Color.MAGENTA);
 
-plot ReviewLongArrowV0538 =
+plot ReviewLongArrowV0537 =
     if showReviewSignalArrows and visibleLongSignal then low - off else Double.NaN;
-plot ReviewShortArrowV0538 =
+plot ReviewShortArrowV0537 =
     if showReviewSignalArrows and visibleShortSignal then high + off else Double.NaN;
-ReviewLongArrowV0538.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
-ReviewShortArrowV0538.SetPaintingStrategy(PaintingStrategy.ARROW_DOWN);
-ReviewLongArrowV0538.AssignValueColor(Color.MAGENTA);
-ReviewShortArrowV0538.AssignValueColor(Color.CYAN);
-ReviewLongArrowV0538.SetLineWeight(5);
-ReviewShortArrowV0538.SetLineWeight(5);
+ReviewLongArrowV0537.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
+ReviewShortArrowV0537.SetPaintingStrategy(PaintingStrategy.ARROW_DOWN);
+ReviewLongArrowV0537.AssignValueColor(Color.MAGENTA);
+ReviewShortArrowV0537.AssignValueColor(Color.CYAN);
+ReviewLongArrowV0537.SetLineWeight(5);
+ReviewShortArrowV0537.SetLineWeight(5);
 
-plot ScoreProbeLongArrowV0538 =
+plot ScoreProbeLongArrowV0537 =
     if scoreProbeLongSignal and !reviewLongSignal then low - off * 2 else Double.NaN;
-plot ScoreProbeShortArrowV0538 =
+plot ScoreProbeShortArrowV0537 =
     if scoreProbeShortSignal and !reviewShortSignal then high + off * 2 else Double.NaN;
-ScoreProbeLongArrowV0538.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
-ScoreProbeShortArrowV0538.SetPaintingStrategy(PaintingStrategy.ARROW_DOWN);
-ScoreProbeLongArrowV0538.AssignValueColor(Color.GREEN);
-ScoreProbeShortArrowV0538.AssignValueColor(Color.RED);
-ScoreProbeLongArrowV0538.SetLineWeight(3);
-ScoreProbeShortArrowV0538.SetLineWeight(3);
+ScoreProbeLongArrowV0537.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
+ScoreProbeShortArrowV0537.SetPaintingStrategy(PaintingStrategy.ARROW_DOWN);
+ScoreProbeLongArrowV0537.AssignValueColor(Color.GREEN);
+ScoreProbeShortArrowV0537.AssignValueColor(Color.RED);
+ScoreProbeLongArrowV0537.SetLineWeight(3);
+ScoreProbeShortArrowV0537.SetLineWeight(3);
 
 plot MarkerLongDotV0513 =
     if arrowMarkerLong then low - compactMarkerOff else Double.NaN;
@@ -948,7 +939,7 @@ AddChartBubble(
     Color.CYAN,
     yes
 );
-AddChartBubble(lastVisibleBar, high + liveArrowOff * 1.3, "v0.5.38 TEST", Color.CYAN, yes);
+AddChartBubble(lastVisibleBar, high + liveArrowOff * 1.3, "v0.5.37 TEST", Color.CYAN, yes);
 
 AddChartBubble(showContinuationBubbles and continuationLongSignal, low - off * 1.1, "ADD L " + (if longScore >= 6 then "6" else if longScore >= 5 then "5" else if longScore >= 4 then "4" else if longScore >= 3 then "3" else if longScore >= 2 then "2" else if longScore >= 1 then "1" else "0") + "/6", Color.GREEN, no);
 AddChartBubble(showContinuationBubbles and continuationShortSignal, high + off * 1.1, "ADD S " + (if shortScore >= 6 then "6" else if shortScore >= 5 then "5" else if shortScore >= 4 then "4" else if shortScore >= 3 then "3" else if shortScore >= 2 then "2" else if shortScore >= 1 then "1" else "0") + "/6", Color.RED, yes);
@@ -981,7 +972,7 @@ def dashTradeCaution = !dashTradeBlocked and ((if dashDir == 1 then longTradeCau
 def dashTradeOK = !dashTradeBlocked and !dashTradeCaution;
 
 AddLabel(dashOK, "PROFILE: " + (if useFifteenMinuteProfile then "15m TEST" else "5m"), if useFifteenMinuteProfile then GlobalColor("CautionAmber") else Color.GRAY);
-AddLabel(yes, "BUILD: v0.5.38 STRUCT GUARD", Color.BLACK);
+AddLabel(yes, "BUILD: v0.5.37 FAST GUARD", Color.BLACK);
 AddLabel(arrowMarkerLong and arrowMarkerShort, "MARKER: BOTH", if markerContractFail then Color.RED else Color.GRAY);
 AddLabel(arrowMarkerLong and !arrowMarkerShort, "MARKER: L", if markerContractFail then Color.RED else Color.MAGENTA);
 AddLabel(!arrowMarkerLong and arrowMarkerShort, "MARKER: S", if markerContractFail then Color.RED else Color.CYAN);
@@ -1002,7 +993,6 @@ AddLabel(showDebugLabel, "DBG VIS L/S: " + AsText(visibleLongRecentCount) + "/" 
 AddLabel(showDebugLabel, "DBG CHOP L/S: " + AsText(reviewChopBlockedLongRecentCount) + "/" + AsText(reviewChopBlockedShortRecentCount), Color.GRAY);
 AddLabel(showDebugLabel, "DBG CONT L/S: " + AsText(reviewContinuationBlockedLongRecentCount) + "/" + AsText(reviewContinuationBlockedShortRecentCount), Color.GRAY);
 AddLabel(showDebugLabel, "DBG FAST L/S: " + AsText(reviewFastBreakBlockedLongRecentCount) + "/" + AsText(reviewFastBreakBlockedShortRecentCount), Color.GRAY);
-AddLabel(showDebugLabel, "DBG STRUCT L/S: " + AsText(reviewTrendBlockedLongRecentCount) + "/" + AsText(reviewTrendBlockedShortRecentCount), Color.GRAY);
 AddLabel(showDebugLabel, "DBG BOTH L/S: " + AsText(reviewBothSidesLongRecentCount) + "/" + AsText(reviewBothSidesShortRecentCount), Color.GRAY);
 AddLabel(showDebugLabel, "DBG ESC L/S: " + AsText(reviewConflictEscapedLongRecentCount) + "/" + AsText(reviewConflictEscapedShortRecentCount), Color.GRAY);
 AddLabel(showDebugLabel, "DBG MIX L/S: " + AsText(reviewConflictBlockedLongRecentCount) + "/" + AsText(reviewConflictBlockedShortRecentCount), Color.GRAY);

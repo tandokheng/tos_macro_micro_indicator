@@ -45,6 +45,9 @@ def inWindow =
 - If `DBG BOTH` is nonzero but low while visible arrows still alternate, tune the mixed-conflict lookback before changing the renderer or source gate. v0.5.34 widens the lookback from 13 to 21 to match the slower visible chop cycle.
 - If `DBG BOTH` rises but `DBG MIX` stays modest, the conflict is being detected but escaping. Add or inspect an escape counter such as `DBG ESC`; then tighten only the mixed-conflict escape thresholds before touching the proven arrow renderer. v0.5.35 keeps the broad conflict lookback and raises escape requirements to 0.45 trend efficiency and 3-point score separation.
 - If `DBG CHOP`, `DBG BOTH`, and `DBG ESC` explain much of the chop but visible arrows still leak through, inspect continuation-pressure bypasses in the review gate. v0.5.36 keeps raw continuation diagnostics alive but requires review continuation arrows to break a wider 5-bar structure window with 2-point side dominance, and adds `DBG CONT` for blocked continuation pullbacks.
+- If trend/reversal arrows work but chop still leaks after continuation bypasses are guarded, inspect raw fast-break bypasses next. v0.5.37 keeps raw fast breaks for the trading model but only lets them paint review arrows or escape mixed chop after a stronger review-only 5-bar break and 1.60 range proof, and adds `DBG FAST` for blocked raw fast-break pulses.
+- If `DBG FAST` is nonzero but `DBG VIS` still shows chop arrows, inspect the normal efficient-score path. v0.5.38 requires that path to break local 5-bar structure before it can paint, and adds `DBG STRUCT` for score/efficiency candidates blocked because they lacked structure.
+- Different screenshot locations are useful anti-overfitting evidence. Tune only when the same failure mode appears across multiple chart regions; do not overfit a single visible window.
 
 Working primitive:
 

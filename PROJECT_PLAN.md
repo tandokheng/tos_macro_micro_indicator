@@ -25,7 +25,7 @@ Candidate hierarchy:
 ## Milestones
 
 - Done: Create `MacroMicro_Simplified_v0.2.0.ts` with stronger RVOL gating, candle confirmation, cleaner target/stop display, and compact signal bubbles.
-- Doing: Review/import `MacroMicro_Simplified_v0.5.36.ts`, a QQQ 5m continuation-guard build that keeps the v0.5.35 strict mixed-conflict filter but blocks review-arrow continuation pullbacks unless they break a wider 5-bar structure window with 2-point side dominance.
+- Doing: Review/import `MacroMicro_Simplified_v0.5.38.ts`, a QQQ 5m structure-guard build that keeps v0.5.37's fast-break guard and requires normal efficient-score review arrows to break 5-bar local structure before painting in chop.
 - Todo: Build a separate Python/Yahoo Finance backtest only after agreeing on scope, using `BACKTESTING_GUARDRAILS.md` as the safety checklist.
 - Todo: Decide whether a higher-timeframe context filter improves 5-minute entries.
 - Todo: Validate/tune the indicator on QQQ 15-minute charts after 5-minute behavior is acceptable.

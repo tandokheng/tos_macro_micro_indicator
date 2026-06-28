@@ -418,3 +418,17 @@ Use this after importing `MacroMicro_Simplified_v0.3.1.ts` into Thinkorswim.
 - Observation: User screenshot showed `BUILD: v0.5.35 STRICT MIX`, high chop diagnostics, and a remaining cyan down arrow during a pullback/chop region that could cause a stop-out.
 - Root-cause conclusion: the proven arrow renderer was fine. The remaining leakage path was the review regime gate: raw `longContinuationPressure` / `shortContinuationPressure` still bypassed the review chop filter directly, even after mixed-conflict escape had been tightened.
 - Change: v0.5.36 adds a review-only continuation guard. Continuation-pressure review arrows now need a wider 5-bar structure break and 2-point side dominance before they can bypass the chop gate, while raw continuation labels and real trade-entry tracking remain unchanged. `DBG CONT L/S` counts continuation-pressure candidates blocked by this guard.
+
+
+## 2026-06-28 v0.5.36 fast-break-bypass follow-up
+
+- Observation: User screenshots showed `BUILD: v0.5.36 CONT GUARD`. Trending and reversal areas looked useful, but sideways/chop shelves still had magenta/cyan arrows. The labels showed high `DBG CHOP L/S` and `DBG CONT L/S`, while `DBG VIS L/S` remained nonzero.
+- Root-cause conclusion: the continuation bypass was now guarded, but raw `fastBreakoutConfirm` / `fastBreakdownConfirm` could still directly bypass the review chop gate and directly escape mixed-direction conflict. In chop, a 3-bar high/low poke can qualify as a raw fast break without being a clean trend or reversal.
+- Change: v0.5.37 adds a review-only fast-break guard. Raw fast breaks still feed the trading model, but review arrows and mixed-conflict escapes now need a stronger 5-bar structure break and `reviewFastBreakTRFactor = 1.60`. `DBG FAST L/S` counts raw fast-break pulses blocked by this guard. Screenshots from different parts of the day remain useful anti-overfitting evidence; judge the repeated failure mode, not only one visible window.
+
+
+## 2026-06-28 v0.5.37 structure-bypass follow-up
+
+- Observation: User screenshots showed `BUILD: v0.5.37 FAST GUARD`, `DBG FAST L/S: 4/4`, and `DBG VIS L/S: 4/4`. This confirmed the raw fast-break guard was active, but some arrows still appeared in sideways shelves.
+- Root-cause conclusion: the remaining visible arrows were no longer coming through the raw fast-break bypass. The normal efficient-score path could still paint when score dominance and local trend efficiency were present, even if price had not broken local structure.
+- Change: v0.5.38 adds a review-only structure guard. Normal efficient-score review arrows now need a 5-bar local structure break before they can paint, while fast-break and continuation guards remain intact. `DBG STRUCT L/S` counts score/efficiency candidates blocked because they lacked structure.

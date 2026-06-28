@@ -70,6 +70,8 @@ Use an explicit version in every new indicator file and in the file header.
 - MacroMicro_Simplified_v0.5.34.ts widens `reviewConflictLookbackBars` from 13 to 21 after v0.5.33 screenshots showed `DBG BOTH L/S` was alive but too low to catch the visible chop cycle.
 - MacroMicro_Simplified_v0.5.35.ts keeps the 21-bar mixed-conflict lookback but tightens mixed-conflict escape to `minConflictEscapeTrendEfficiency = 0.45` and `minConflictEscapeScoreSeparation = 3`, plus `DBG ESC L/S` so screenshots separate detected conflict, escaped conflict, and blocked conflict.
 - MacroMicro_Simplified_v0.5.36.ts keeps the proven v0.5.35 renderer but blocks review-arrow continuation-pressure pullbacks unless they also break a wider 5-bar structure window with 2-point side dominance, plus `DBG CONT L/S` to count blocked continuation bypasses.
+- MacroMicro_Simplified_v0.5.37.ts keeps v0.5.36 trend/reversal behavior but blocks raw fast-break review arrows unless they also pass a stronger review-only 5-bar structure break and 1.60 ATR-range proof, plus `DBG FAST L/S` to count raw fast breaks suppressed in chop.
+- MacroMicro_Simplified_v0.5.38.ts blocks normal efficient-score review arrows unless they also break 5-bar local structure, adding `DBG STRUCT L/S` so screenshots can separate score/efficiency candidates that lacked structure from true review arrows.
 
 ## Version Meaning
 
