@@ -432,3 +432,10 @@ Use this after importing `MacroMicro_Simplified_v0.3.1.ts` into Thinkorswim.
 - Observation: User screenshots showed `BUILD: v0.5.37 FAST GUARD`, `DBG FAST L/S: 4/4`, and `DBG VIS L/S: 4/4`. This confirmed the raw fast-break guard was active, but some arrows still appeared in sideways shelves.
 - Root-cause conclusion: the remaining visible arrows were no longer coming through the raw fast-break bypass. The normal efficient-score path could still paint when score dominance and local trend efficiency were present, even if price had not broken local structure.
 - Change: v0.5.38 adds a review-only structure guard. Normal efficient-score review arrows now need a 5-bar local structure break before they can paint, while fast-break and continuation guards remain intact. `DBG STRUCT L/S` counts score/efficiency candidates blocked because they lacked structure.
+
+
+## 2026-06-28 v0.5.38 follow-through structure follow-up
+
+- Observation: User screenshots showed `BUILD: v0.5.38 STRUCT GUARD`, `DBG STRUCT L/S` alive, and lower but still present magenta/cyan arrows in sideways shelves. The clear trend and reversal regions still looked useful, but local chop could still poke through the 5-bar high/low structure test and create stop-out-looking opposite arrows.
+- Root-cause conclusion: local structure break by itself was too easy in whippy 5m ranges. A candle can briefly break a recent high/low while still lacking directional close follow-through, so the normal efficient-score review path needed one more quality check instead of another renderer change.
+- Change: v0.5.39 widens `reviewTrendBreakLookbackBars` from 5 to 8 and adds directional close confirmation for the normal efficient-score review path. Long review arrows now need close above the prior close, above EMA fast, nonnegative fast slope, and a close in the upper candle zone; short review arrows need the mirror condition. Fast-break, continuation, and real trade-entry logic remain unchanged.

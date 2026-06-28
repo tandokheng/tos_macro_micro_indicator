@@ -72,6 +72,7 @@ Use an explicit version in every new indicator file and in the file header.
 - MacroMicro_Simplified_v0.5.36.ts keeps the proven v0.5.35 renderer but blocks review-arrow continuation-pressure pullbacks unless they also break a wider 5-bar structure window with 2-point side dominance, plus `DBG CONT L/S` to count blocked continuation bypasses.
 - MacroMicro_Simplified_v0.5.37.ts keeps v0.5.36 trend/reversal behavior but blocks raw fast-break review arrows unless they also pass a stronger review-only 5-bar structure break and 1.60 ATR-range proof, plus `DBG FAST L/S` to count raw fast breaks suppressed in chop.
 - MacroMicro_Simplified_v0.5.38.ts blocks normal efficient-score review arrows unless they also break 5-bar local structure, adding `DBG STRUCT L/S` so screenshots can separate score/efficiency candidates that lacked structure from true review arrows.
+- MacroMicro_Simplified_v0.5.39.ts tightens the normal efficient-score review path again: it now uses an 8-bar structure break plus directional close follow-through against EMA fast before painting, while fast-break, continuation, and real trade-entry logic remain unchanged.
 
 ## Version Meaning
 

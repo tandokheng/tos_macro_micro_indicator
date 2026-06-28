@@ -2,15 +2,15 @@
 
 ## Doing
 
-- Install `MacroMicro_Simplified_v0.5.38.ts` into Thinkorswim study `_dk_codex_macro_micro_v1` and confirm every screenshot shows `BUILD: v0.5.38 STRUCT GUARD`, numeric `DBG REV`, lower `DBG VIS`, useful `DBG CHOP`, `DBG CONT`, `DBG FAST`, `DBG STRUCT`, `DBG BOTH`, `DBG ESC`, or `DBG MIX` in sideways regions, fewer stop-out chop arrows, no default large `L/S` marker bubbles, and no default green/red score-probe arrows.
+- Install `MacroMicro_Simplified_v0.5.39.ts` into Thinkorswim study `_dk_codex_macro_micro_v1` and confirm every screenshot shows `BUILD: v0.5.39 FOLLOW STRUCT`, numeric `DBG REV`, lower `DBG VIS`, useful `DBG CHOP`, `DBG CONT`, `DBG FAST`, `DBG STRUCT`, `DBG BOTH`, `DBG ESC`, or `DBG MIX` in sideways regions, fewer stop-out chop arrows, no default large `L/S` marker bubbles, and no default green/red score-probe arrows.
 
 ## Todo
 
-- If v0.5.38 does not show `BUILD: v0.5.38 STRUCT GUARD`, remove duplicate/old `_dk_codex_macro_micro_v1` studies and re-add the pasted source once.
-- Confirm old `SPAM L/S`, default compact `L/S` marker bubbles, and green/red score-probe arrows are gone; v0.5.38 should emphasize fewer magenta/cyan review arrows in structure-less chop.
-- If large `L/S` marker bubbles remain, check the saved `showSignalBubbles` setting in TOS because v0.5.38 gates those bubbles behind that existing toggle.
-- If clear trend arrows become too sparse in v0.5.38, lower `reviewTrendBreakLookbackBars` from `5` to `4` for one screenshot before loosening source gates.
-- If `DBG STRUCT` rises while chop arrows disappear, the new structure guard is doing its job; if `DBG STRUCT` is zero and arrows still alternate, inspect a different bypass path.
+- If v0.5.39 does not show `BUILD: v0.5.39 FOLLOW STRUCT`, remove duplicate/old `_dk_codex_macro_micro_v1` studies and re-add the pasted source once.
+- Confirm old `SPAM L/S`, default compact `L/S` marker bubbles, and green/red score-probe arrows are gone; v0.5.39 should emphasize fewer magenta/cyan review arrows in structure-less or weak-close chop.
+- If large `L/S` marker bubbles remain, check the saved `showSignalBubbles` setting in TOS because v0.5.39 gates those bubbles behind that existing toggle.
+- If clear trend arrows become too sparse in v0.5.39, first lower `reviewTrendBreakLookbackBars` from `8` to `6` for one screenshot before loosening the close-follow-through rule.
+- If `DBG STRUCT` rises while chop arrows disappear, the wider structure/follow-through guard is doing its job; if `DBG STRUCT` is zero and arrows still alternate, inspect a different bypass path.
 - If `CONTRACT: FAIL TRIGGER/MARKER` appears, capture that screenshot because it proves dashboard trigger and marker logic diverged on the same bar.
 - If raw arrows disappear again while labels prove setup state, treat it as a Thinkorswim plot rendering/style-state issue and use the documented working-arrow primitive before changing gates.
 - Log 5 to 10 QQQ 5-minute examples where arrows were helpful, late, blocked correctly, or still noisy.
@@ -118,3 +118,4 @@
 - Added `MacroMicro_Simplified_v0.5.36.ts` after v0.5.35 still showed stop-out continuation arrows during chop; review continuation pressure now needs a wider structure break and score dominance, with `DBG CONT` reporting blocked continuation bypasses.
 - Added `MacroMicro_Simplified_v0.5.37.ts` after v0.5.36 still showed useful trend/reversal arrows but remaining chop arrows; raw fast-break review arrows now need stronger review-only range and structure proof, with `DBG FAST` reporting blocked raw fast-break bypasses.
 - Added `MacroMicro_Simplified_v0.5.38.ts` after v0.5.37 showed `DBG FAST` working but visible arrows still came through the normal efficient-score path; efficient-score review arrows now need a 5-bar local structure break, with `DBG STRUCT` reporting blocked no-structure candidates.
+- Added `MacroMicro_Simplified_v0.5.39.ts` after v0.5.38 showed `DBG STRUCT` alive but too permissive in whippy shelves; normal efficient-score review arrows now need an 8-bar structure break plus directional close follow-through before they can paint.
