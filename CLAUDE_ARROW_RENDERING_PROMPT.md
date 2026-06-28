@@ -47,6 +47,7 @@ Rule for future debugging:
 - v0.5.31 follow-up showed a third chop lesson: even after all visible sources pass the same chop gate, alternating long/short review candidates can still survive the visual throttle. v0.5.32 adds a mixed-direction conflict filter and `DBG MIX L/S`; if `DBG MIX` rises while `DBG VIS` drops in sideways regions, the filter is working.
 - v0.5.32 follow-up showed a fourth chop lesson: `DBG MIX` counted blocked mixed-conflict pulses only, so `DBG MIX: 0/0` did not prove no conflict was detected. v0.5.33 adds `DBG BOTH L/S` for detected long/short conflict and removes continuation pressure as an automatic mixed-conflict escape.
 - v0.5.33 follow-up showed a fifth chop lesson: if `DBG BOTH` is nonzero but still low while arrows alternate, tune the mixed-conflict lookback before changing the renderer. v0.5.34 widens `reviewConflictLookbackBars` from 13 to 21.
+- v0.5.34 follow-up showed a sixth chop lesson: if `DBG BOTH` rises but `DBG MIX` remains modest, the conflict is being detected but escaping. Add/read `DBG ESC L/S`, then tighten the mixed-conflict escape threshold before touching the proven arrow renderer. v0.5.35 keeps the 21-bar lookback, adds `DBG ESC L/S`, and requires `minConflictEscapeTrendEfficiency = 0.45` plus `minConflictEscapeScoreSeparation = 3` for non-fast-break mixed-conflict escapes.
 - Avoid forward self-reference traps in throttles. Keep self-referential state inside `CompoundValue`; do not define a separate `ready` boolean before the recursive state and then use it inside that same state expression.
 
 General ThinkScript debugging rules:
@@ -61,7 +62,7 @@ Current next direction:
 - Build from the latest versioned file.
 - Keep the working-style arrows as the default visible marker path.
 - Hide raw proof bubbles by default once arrows are confirmed.
-- Use v0.5.34's wide-mix build as the starting point: NaN-safe raw review diagnostics remain active, compact `L/S` marker bubbles are optional through `showSignalBubbles`, green/red score-probe arrows are off by default through `showScoreProbeArrows`, setup-review and real-entry review arrows need chop-filter approval, `DBG BOTH L/S` shows detected mixed long/short conflict, `DBG MIX L/S` shows blocked mixed-conflict review pulses, and `reviewConflictLookbackBars` defaults to 21.
+- Use v0.5.35's strict-mix build as the starting point: NaN-safe raw review diagnostics remain active, compact `L/S` marker bubbles are optional through `showSignalBubbles`, green/red score-probe arrows are off by default through `showScoreProbeArrows`, setup-review and real-entry review arrows need chop-filter approval, `DBG BOTH L/S` shows detected mixed long/short conflict, `DBG ESC L/S` shows detected conflicts that escaped, `DBG MIX L/S` shows blocked mixed-conflict review pulses, `reviewConflictLookbackBars` defaults to 21, and mixed-conflict escape is stricter than the general chop gate.
 - Update VERSIONING.md, TOS_INSTALL_NOTES.md, NEXT_TASKS.md, FOLLOW_UP.md, PROJECT_PLAN.md, QQQ_5M_REVIEW_LOG.md, and DECISION_LOG.md.
 - Commit and push useful checkpoints.
 ```

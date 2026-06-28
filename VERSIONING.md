@@ -68,6 +68,7 @@ Use an explicit version in every new indicator file and in the file header.
 - MacroMicro_Simplified_v0.5.32.ts adds a mixed-direction review filter: when long and short review candidates both appear within 13 bars, visible review arrows are blocked unless a fast break, continuation pressure, or efficient VWAP/EMA-aligned move escapes the range.
 - MacroMicro_Simplified_v0.5.33.ts tightens the mixed-direction review filter by removing continuation pressure as an automatic conflict escape, and adds `DBG BOTH L/S` so screenshots can separate detected long/short conflict from actually blocked `DBG MIX` pulses.
 - MacroMicro_Simplified_v0.5.34.ts widens `reviewConflictLookbackBars` from 13 to 21 after v0.5.33 screenshots showed `DBG BOTH L/S` was alive but too low to catch the visible chop cycle.
+- MacroMicro_Simplified_v0.5.35.ts keeps the 21-bar mixed-conflict lookback but tightens mixed-conflict escape to `minConflictEscapeTrendEfficiency = 0.45` and `minConflictEscapeScoreSeparation = 3`, plus `DBG ESC L/S` so screenshots separate detected conflict, escaped conflict, and blocked conflict.
 
 ## Version Meaning
 

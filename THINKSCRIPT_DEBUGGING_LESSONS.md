@@ -43,6 +43,7 @@ def inWindow =
 - If `DBG CHOP` is high and arrows are still noisy after all visible sources pass the same chop gate, look for alternating long/short candidates. A mixed-direction lookback filter plus `DBG MIX` can suppress range flip-flops without touching the working arrow primitive.
 - If `DBG MIX` is zero while alternating arrows remain, split mixed-conflict detection from mixed-conflict blocking. v0.5.33 adds `DBG BOTH` because v0.5.32 could detect a conflict but let continuation pressure auto-escape, leaving `DBG MIX` at zero.
 - If `DBG BOTH` is nonzero but low while visible arrows still alternate, tune the mixed-conflict lookback before changing the renderer or source gate. v0.5.34 widens the lookback from 13 to 21 to match the slower visible chop cycle.
+- If `DBG BOTH` rises but `DBG MIX` stays modest, the conflict is being detected but escaping. Add or inspect an escape counter such as `DBG ESC`; then tighten only the mixed-conflict escape thresholds before touching the proven arrow renderer. v0.5.35 keeps the broad conflict lookback and raises escape requirements to 0.45 trend efficiency and 3-point score separation.
 
 Working primitive:
 

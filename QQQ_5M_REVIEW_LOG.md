@@ -404,3 +404,10 @@ Use this after importing `MacroMicro_Simplified_v0.3.1.ts` into Thinkorswim.
 - Observation: User screenshots showed `BUILD: v0.5.33 MIX ESCAPE`, `DBG VIS L/S: 4/7`, `DBG BOTH L/S: 1/2`, and `DBG MIX L/S: 0/2`.
 - Root-cause conclusion: v0.5.33's stricter mixed-conflict escape was working on a few short-side pulses, but the 13-bar conflict lookback was too narrow relative to the visible chop cycle and final arrow spacing.
 - Change: v0.5.34 widens `reviewConflictLookbackBars` from 13 to 21 while leaving the arrow renderer, chop filter, and mixed-conflict escape rules unchanged.
+
+
+## 2026-06-28 v0.5.34 strict-mix follow-up
+
+- Observation: User screenshot showed `BUILD: v0.5.34 WIDE MIX`, `DBG VIS L/S: 4/7`, `DBG BOTH L/S: 1/4`, and `DBG MIX L/S: 0/2`. The wider lookback detected more conflict, but too many mixed-conflict candidates still escaped.
+- Root-cause conclusion: this was not an arrow-rendering issue. The remaining chop noise was in the mixed-conflict escape path: the same 0.30 trend-efficiency and 2-point score-separation thresholds used by the general chop gate were too permissive once both directions had fired.
+- Change: v0.5.35 keeps `reviewConflictLookbackBars = 21`, adds stricter mixed-conflict escape thresholds (`minConflictEscapeTrendEfficiency = 0.45`, `minConflictEscapeScoreSeparation = 3`), and adds `DBG ESC L/S` to show conflict candidates that escaped instead of being blocked by `DBG MIX`.

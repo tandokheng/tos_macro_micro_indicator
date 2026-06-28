@@ -116,3 +116,5 @@
 - Add v0.5.33 after v0.5.32 still showed alternating chop arrows with `DBG MIX L/S: 0/0`: remove continuation pressure as an automatic mixed-conflict escape and add `DBG BOTH L/S` to distinguish conflict detection from actual blocked `DBG MIX` pulses.
 
 - Add v0.5.34 after v0.5.33 showed `DBG BOTH L/S: 1/2` and `DBG MIX L/S: 0/2` while arrows still alternated: widen `reviewConflictLookbackBars` from 13 to 21 before changing the arrow renderer or review source gate.
+
+- Add v0.5.35 after v0.5.34 showed `DBG BOTH L/S: 1/4` but `DBG MIX L/S: 0/2`: keep the proven arrow renderer and 21-bar conflict lookback, add `DBG ESC L/S`, and require stricter mixed-conflict escape (`0.45` trend efficiency and 3-point score separation) before a conflicted review candidate can still plot.
