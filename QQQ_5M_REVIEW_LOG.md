@@ -397,3 +397,10 @@ Use this after importing `MacroMicro_Simplified_v0.3.1.ts` into Thinkorswim.
 - Observation: User screenshot showed `BUILD: v0.5.32 MIX FILTER` with alternating arrows still present, `DBG CHOP L/S` high, and `DBG MIX L/S: 0/0`.
 - Root-cause conclusion: `DBG MIX` only counted blocked conflicts, not detected conflicts. v0.5.32 also let continuation pressure auto-escape the mixed-direction filter, so chop-like continuation pulses could survive after both the chop gate and mixed gate.
 - Change: v0.5.33 removes continuation pressure as a direct mixed-conflict escape; only fast breakouts/breakdowns or efficient VWAP/EMA-aligned movement can escape. It adds `DBG BOTH L/S` so future screenshots can show whether mixed-direction conflict is detected before `DBG MIX` blocks it.
+
+
+## 2026-06-28 v0.5.33 mixed-lookback follow-up
+
+- Observation: User screenshots showed `BUILD: v0.5.33 MIX ESCAPE`, `DBG VIS L/S: 4/7`, `DBG BOTH L/S: 1/2`, and `DBG MIX L/S: 0/2`.
+- Root-cause conclusion: v0.5.33's stricter mixed-conflict escape was working on a few short-side pulses, but the 13-bar conflict lookback was too narrow relative to the visible chop cycle and final arrow spacing.
+- Change: v0.5.34 widens `reviewConflictLookbackBars` from 13 to 21 while leaving the arrow renderer, chop filter, and mixed-conflict escape rules unchanged.

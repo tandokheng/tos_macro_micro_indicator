@@ -42,6 +42,7 @@ def inWindow =
 - If `DBG CHOP` is high but plotted arrows are still noisy, inspect alternate visible-arrow sources that bypass the filter. In v0.5.30, setup-review arrows were chop-filtered but real-entry review arrows and low-volume momentum bypasses could still paint; v0.5.31 gates those paths too.
 - If `DBG CHOP` is high and arrows are still noisy after all visible sources pass the same chop gate, look for alternating long/short candidates. A mixed-direction lookback filter plus `DBG MIX` can suppress range flip-flops without touching the working arrow primitive.
 - If `DBG MIX` is zero while alternating arrows remain, split mixed-conflict detection from mixed-conflict blocking. v0.5.33 adds `DBG BOTH` because v0.5.32 could detect a conflict but let continuation pressure auto-escape, leaving `DBG MIX` at zero.
+- If `DBG BOTH` is nonzero but low while visible arrows still alternate, tune the mixed-conflict lookback before changing the renderer or source gate. v0.5.34 widens the lookback from 13 to 21 to match the slower visible chop cycle.
 
 Working primitive:
 

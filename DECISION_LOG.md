@@ -114,3 +114,5 @@
 - Add v0.5.32 after v0.5.31 still showed too many arrows in sideways regions: add a mixed-direction conflict filter that blocks visible review arrows when both long and short candidates fired within 13 bars, unless a fast break, continuation, or efficient VWAP/EMA-aligned move escapes the range.
 
 - Add v0.5.33 after v0.5.32 still showed alternating chop arrows with `DBG MIX L/S: 0/0`: remove continuation pressure as an automatic mixed-conflict escape and add `DBG BOTH L/S` to distinguish conflict detection from actual blocked `DBG MIX` pulses.
+
+- Add v0.5.34 after v0.5.33 showed `DBG BOTH L/S: 1/2` and `DBG MIX L/S: 0/2` while arrows still alternated: widen `reviewConflictLookbackBars` from 13 to 21 before changing the arrow renderer or review source gate.

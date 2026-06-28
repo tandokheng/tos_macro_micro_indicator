@@ -25,7 +25,7 @@ Candidate hierarchy:
 ## Milestones
 
 - Done: Create `MacroMicro_Simplified_v0.2.0.ts` with stronger RVOL gating, candle confirmation, cleaner target/stop display, and compact signal bubbles.
-- Doing: Review/import `MacroMicro_Simplified_v0.5.33.ts`, a QQQ 5m mixed-escape build that removes continuation-pressure as a mixed-conflict bypass and adds `DBG BOTH` so chop screenshots can distinguish conflict detection from blocked arrows.
+- Doing: Review/import `MacroMicro_Simplified_v0.5.34.ts`, a QQQ 5m wide-mix build that keeps v0.5.33's stricter mixed-conflict escape but widens `reviewConflictLookbackBars` to 21 after `DBG BOTH` was alive but too low.
 - Todo: Build a separate Python/Yahoo Finance backtest only after agreeing on scope, using `BACKTESTING_GUARDRAILS.md` as the safety checklist.
 - Todo: Decide whether a higher-timeframe context filter improves 5-minute entries.
 - Todo: Validate/tune the indicator on QQQ 15-minute charts after 5-minute behavior is acceptable.
