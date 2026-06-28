@@ -2,15 +2,15 @@
 
 ## Doing
 
-- Install `MacroMicro_Simplified_v0.5.32.ts` into Thinkorswim study `_dk_codex_macro_micro_v1` and confirm every screenshot shows `BUILD: v0.5.32 MIX FILTER`, numeric `DBG REV`, lower `DBG VIS`, nonzero `DBG CHOP` or `DBG MIX` in sideways regions, fewer alternating chop arrows, no default large `L/S` marker bubbles, and no default green/red score-probe arrows.
+- Install `MacroMicro_Simplified_v0.5.33.ts` into Thinkorswim study `_dk_codex_macro_micro_v1` and confirm every screenshot shows `BUILD: v0.5.33 MIX ESCAPE`, numeric `DBG REV`, lower `DBG VIS`, `DBG BOTH`, `DBG CHOP` or `DBG MIX` in sideways regions, fewer alternating chop arrows, no default large `L/S` marker bubbles, and no default green/red score-probe arrows.
 
 ## Todo
 
-- If v0.5.32 does not show `BUILD: v0.5.32 MIX FILTER`, remove duplicate/old `_dk_codex_macro_micro_v1` studies and re-add the pasted source once.
-- Confirm old `SPAM L/S`, default compact `L/S` marker bubbles, and green/red score-probe arrows are gone; v0.5.32 should emphasize fewer magenta/cyan review arrows in mixed chop.
-- If large `L/S` marker bubbles remain, check the saved `showSignalBubbles` setting in TOS because v0.5.32 gates those bubbles behind that existing toggle.
-- If clear-trend arrows become too sparse in v0.5.32, first reduce `reviewConflictLookbackBars` from `13` or turn `reviewConflictFilterEnabled` off for one screenshot before loosening source gates.
-- If `DBG REV` stays high, `DBG CHOP` or `DBG MIX` rises, and `DBG VIS` is low in sideways areas, the filters are working; tune thresholds rather than the raw review logic.
+- If v0.5.33 does not show `BUILD: v0.5.33 MIX ESCAPE`, remove duplicate/old `_dk_codex_macro_micro_v1` studies and re-add the pasted source once.
+- Confirm old `SPAM L/S`, default compact `L/S` marker bubbles, and green/red score-probe arrows are gone; v0.5.33 should emphasize fewer magenta/cyan review arrows in mixed chop.
+- If large `L/S` marker bubbles remain, check the saved `showSignalBubbles` setting in TOS because v0.5.33 gates those bubbles behind that existing toggle.
+- If clear-trend arrows become too sparse in v0.5.33, first reduce `reviewConflictLookbackBars` from `13` or turn `reviewConflictFilterEnabled` off for one screenshot before loosening source gates.
+- If `DBG BOTH` rises but `DBG MIX` stays low in sideways areas, the conflict is being detected but escaping; inspect fast-break/efficient-move escape conditions before changing the arrow renderer.
 - If `CONTRACT: FAIL TRIGGER/MARKER` appears, capture that screenshot because it proves dashboard trigger and marker logic diverged on the same bar.
 - If raw arrows disappear again while labels prove setup state, treat it as a Thinkorswim plot rendering/style-state issue and use the documented working-arrow primitive before changing gates.
 - Log 5 to 10 QQQ 5-minute examples where arrows were helpful, late, blocked correctly, or still noisy.
@@ -112,3 +112,4 @@
 - Added `MacroMicro_Simplified_v0.5.30.ts` after v0.5.29 worked in clear direction but remained poor in chop; setup-review arrows now require local trend efficiency and score dominance, with `DBG CHOP` showing blocked pulses.
 - Added `MacroMicro_Simplified_v0.5.31.ts` after v0.5.30 still allowed noisy chop arrows; real-entry review arrows now pass through the same chop gate and low-volume momentum no longer bypasses review-arrow filtering.
 - Added `MacroMicro_Simplified_v0.5.32.ts` after v0.5.31 still showed too many alternating arrows in chop; mixed long/short review candidates are now blocked unless a breakout, continuation, or efficient VWAP/EMA-aligned move escapes the range.
+- Added `MacroMicro_Simplified_v0.5.33.ts` after v0.5.32 still showed alternating arrows with `DBG MIX` at zero; continuation pressure no longer auto-escapes mixed conflict and `DBG BOTH` reports detected long/short conflict separately.

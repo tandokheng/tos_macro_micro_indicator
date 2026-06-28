@@ -390,3 +390,10 @@ Use this after importing `MacroMicro_Simplified_v0.3.1.ts` into Thinkorswim.
 - Observation: User screenshots showed `BUILD: v0.5.31 REAL CHOP`; `DBG CHOP` was high, but `DBG VIS L/S` still showed too many alternating arrows in sideways regions.
 - Root-cause conclusion: the remaining noise was not an uncovered real-entry bypass. It was alternating long/short review candidates surviving after the chop gate and visual throttle.
 - Change: v0.5.32 adds a mixed-direction filter: when both long and short review candidates appear within 13 bars, visible review arrows are blocked unless a fast break, continuation, or efficient VWAP/EMA-aligned move escapes the range. `DBG MIX L/S` reports these blocks.
+
+
+## 2026-06-28 v0.5.32 continuation-escape follow-up
+
+- Observation: User screenshot showed `BUILD: v0.5.32 MIX FILTER` with alternating arrows still present, `DBG CHOP L/S` high, and `DBG MIX L/S: 0/0`.
+- Root-cause conclusion: `DBG MIX` only counted blocked conflicts, not detected conflicts. v0.5.32 also let continuation pressure auto-escape the mixed-direction filter, so chop-like continuation pulses could survive after both the chop gate and mixed gate.
+- Change: v0.5.33 removes continuation pressure as a direct mixed-conflict escape; only fast breakouts/breakdowns or efficient VWAP/EMA-aligned movement can escape. It adds `DBG BOTH L/S` so future screenshots can show whether mixed-direction conflict is detected before `DBG MIX` blocks it.

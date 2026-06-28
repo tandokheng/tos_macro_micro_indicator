@@ -112,3 +112,5 @@
 - Add v0.5.31 after v0.5.30 screenshots still showed noisy chop arrows while `DBG CHOP` was high: apply the same chop gate to real-entry review arrows and remove low-volume momentum as a direct review-arrow bypass, while leaving actual `realLongEntry` / `realShortEntry` trade tracking intact.
 
 - Add v0.5.32 after v0.5.31 still showed too many arrows in sideways regions: add a mixed-direction conflict filter that blocks visible review arrows when both long and short candidates fired within 13 bars, unless a fast break, continuation, or efficient VWAP/EMA-aligned move escapes the range.
+
+- Add v0.5.33 after v0.5.32 still showed alternating chop arrows with `DBG MIX L/S: 0/0`: remove continuation pressure as an automatic mixed-conflict escape and add `DBG BOTH L/S` to distinguish conflict detection from actual blocked `DBG MIX` pulses.
