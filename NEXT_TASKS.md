@@ -2,14 +2,15 @@
 
 ## Doing
 
-- Install `MacroMicro_Simplified_v0.5.40.ts` into Thinkorswim study `_dk_codex_macro_micro_v1` and confirm every screenshot shows `BUILD: v0.5.40 FLIP GUARD`, numeric `DBG REV`, lower `DBG VIS`, useful `DBG CHOP`, `DBG CONT`, `DBG FAST`, `DBG STRUCT`, `DBG BOTH`, `DBG ESC`, `DBG MIX`, or `DBG FLIP` in sideways regions, fewer stop-out chop arrows, no default large `L/S` marker bubbles, and no default green/red score-probe arrows.
+- Install `MacroMicro_Simplified_v0.5.41.ts` into Thinkorswim study `_dk_codex_macro_micro_v1` and confirm every screenshot shows `BUILD: v0.5.41 REVIEW RISK`, visible `R-TP` / `R-SL` review context, numeric `DBG REV`, lower `DBG VIS`, useful `DBG CHOP`, `DBG CONT`, `DBG FAST`, `DBG STRUCT`, `DBG BOTH`, `DBG ESC`, `DBG MIX`, or `DBG FLIP` in sideways regions, fewer stop-out chop arrows, no default large `L/S` marker bubbles, and no default green/red score-probe arrows.
 
 ## Todo
 
-- If v0.5.40 does not show `BUILD: v0.5.40 FLIP GUARD`, remove duplicate/old `_dk_codex_macro_micro_v1` studies and re-add the pasted source once.
-- Confirm old `SPAM L/S`, default compact `L/S` marker bubbles, and green/red score-probe arrows are gone; v0.5.40 should emphasize fewer magenta/cyan review arrows in alternating raw-pressure chop.
-- If large `L/S` marker bubbles remain, check the saved `showSignalBubbles` setting in TOS because v0.5.40 gates those bubbles behind that existing toggle.
-- If clear trend arrows become too sparse in v0.5.40, first lower `minPressureConflictEscapeTrendEfficiency` from `0.55` to `0.50` for one screenshot before loosening the follow-through or structure rules.
+- If v0.5.41 does not show `BUILD: v0.5.41 REVIEW RISK`, remove duplicate/old `_dk_codex_macro_micro_v1` studies and re-add the pasted source once.
+- Confirm old `SPAM L/S`, default compact `L/S` marker bubbles, and green/red score-probe arrows are gone; v0.5.41 should emphasize fewer magenta/cyan review arrows in alternating raw-pressure chop.
+- Confirm review-only `R-TP` / `R-SL` lines and bubbles appear from visible review arrows, and that they do not change real `ENTRY`, `PT`, or `SL` tracking.
+- If review TP/SL bubbles clutter the chart, set `showReviewTargetStopBubbles = no` before disabling `showReviewTargetStopLines`.
+- If clear trend arrows become too sparse in v0.5.41, first lower `minPressureConflictEscapeTrendEfficiency` from `0.60` to `0.55` for one screenshot before loosening the follow-through or structure rules.
 - If `DBG FLIP` rises while chop arrows disappear, the raw-pressure conflict guard is doing its job; if `DBG FLIP` is zero and arrows still alternate, inspect the real-entry bypass path next.
 - If `CONTRACT: FAIL TRIGGER/MARKER` appears, capture that screenshot because it proves dashboard trigger and marker logic diverged on the same bar.
 - If raw arrows disappear again while labels prove setup state, treat it as a Thinkorswim plot rendering/style-state issue and use the documented working-arrow primitive before changing gates.
@@ -120,3 +121,4 @@
 - Added `MacroMicro_Simplified_v0.5.38.ts` after v0.5.37 showed `DBG FAST` working but visible arrows still came through the normal efficient-score path; efficient-score review arrows now need a 5-bar local structure break, with `DBG STRUCT` reporting blocked no-structure candidates.
 - Added `MacroMicro_Simplified_v0.5.39.ts` after v0.5.38 showed `DBG STRUCT` alive but too permissive in whippy shelves; normal efficient-score review arrows now need an 8-bar structure break plus directional close follow-through before they can paint.
 - Added `MacroMicro_Simplified_v0.5.40.ts` after v0.5.39 showed `DBG VIS` unchanged and `DBG BOTH/MIX` too low; final review arrows now remember recent opposite raw pressure before earlier guards suppress candidates, with `DBG FLIP` reporting blocked chop-flip arrows.
+- Added `MacroMicro_Simplified_v0.5.41.ts` after v0.5.40 made arrows quieter but still needed stop/target judgment; fast-break conflict escapes now require score dominance, final review spacing is 10 bars, and review-only `R-TP` / `R-SL` overlays show risk without feeding real trade tracking.

@@ -8,7 +8,7 @@ Build a cleaner Thinkorswim macro/micro intraday indicator that is practical for
 
 - Optimize the simplified 5-of-6 model on 5-minute charts first.
 - Treat 15-minute tuning as the next validation pass, not as a simultaneous target.
-- Keep the chart readable: one visible long marker, one visible short marker, standby dots, compact optional signal bubbles, and optional target/stop bubbles.
+- Keep the chart readable: one visible long marker, one visible short marker, standby dots, compact optional signal bubbles, optional target/stop bubbles, and review-only `R-TP` / `R-SL` overlays when judging arrow quality.
 - Use static verifier checks to catch accidental regressions in versioning, thresholds, arrow count, and old visual spam.
 - If/when a Yahoo Finance Python backtest is built, follow `BACKTESTING_GUARDRAILS.md`: probe data coverage first, avoid look-ahead, use pessimistic fills, report costs/statistical uncertainty, and disclose limitations.
 
@@ -25,7 +25,7 @@ Candidate hierarchy:
 ## Milestones
 
 - Done: Create `MacroMicro_Simplified_v0.2.0.ts` with stronger RVOL gating, candle confirmation, cleaner target/stop display, and compact signal bubbles.
-- Doing: Review/import `MacroMicro_Simplified_v0.5.40.ts`, a QQQ 5m flip-guard build that keeps the proven arrow renderer but blocks final review arrows when recent opposite raw pressure suggests alternating chop, unless stronger breakout or confirmed trend structure appears.
+- Doing: Review/import `MacroMicro_Simplified_v0.5.41.ts`, a QQQ 5m review-risk build that keeps the proven arrow renderer, tightens conflict escapes, and adds review-only `R-TP` / `R-SL` overlays so remaining chop arrows can be judged against stop/target behavior.
 - Todo: Build a separate Python/Yahoo Finance backtest only after agreeing on scope, using `BACKTESTING_GUARDRAILS.md` as the safety checklist.
 - Todo: Decide whether a higher-timeframe context filter improves 5-minute entries.
 - Todo: Validate/tune the indicator on QQQ 15-minute charts after 5-minute behavior is acceptable.

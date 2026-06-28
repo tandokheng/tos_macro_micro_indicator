@@ -446,3 +446,10 @@ Use this after importing `MacroMicro_Simplified_v0.3.1.ts` into Thinkorswim.
 - Observation: User screenshots showed `BUILD: v0.5.39 FOLLOW STRUCT`; trend and reversal examples were acceptable, but the visible arrow count did not materially improve. `DBG VIS L/S` stayed around `5/5`, while `DBG BOTH/MIX` stayed low even in alternating chop.
 - Root-cause conclusion: the mixed-direction conflict guard was looking too late. It summed opposite `reviewLongCandidate` / `reviewShortCandidate` values after chop, continuation, fast-break, and structure guards had already suppressed many opposite pulses. That meant the chart still had recent opposite raw pressure, but the final conflict detector had almost no memory of it.
 - Change: v0.5.40 adds a raw-pressure flip guard. Final review arrows now check recent opposite raw pressure (`setupReview*QualityRaw` plus raw real-entry review pulses) over a 34-bar window, and only escape that conflict on a stronger review fast-break or confirmed trend structure. `DBG FLIP L/S` counts blocked chop-flip arrows so screenshots can show whether the new guard is doing real work.
+
+
+## 2026-06-28 v0.5.40 review-risk follow-up
+
+- Observation: User screenshots showed `BUILD: v0.5.40 FLIP GUARD`; arrows were much quieter in the reviewed windows, but remaining chop arrows still needed visible TP/SL context to judge whether they would stop out quickly.
+- Root-cause conclusion: the remaining issue is no longer the arrow renderer. Some mixed/raw-pressure conflict escapes still allowed review fast-break arrows without enough side score dominance, and review arrows had no separate TP/SL plan for visual judgment.
+- Change: v0.5.41 requires side score dominance for fast-break escapes inside mixed/raw-pressure conflict, increases review visual spacing to 10 bars, and adds review-only `R-TP` / `R-SL` lines and bubbles keyed to visible review arrows. Real trade entries, PT/SL, and alerts remain unchanged.

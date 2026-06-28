@@ -74,6 +74,7 @@ Use an explicit version in every new indicator file and in the file header.
 - MacroMicro_Simplified_v0.5.38.ts blocks normal efficient-score review arrows unless they also break 5-bar local structure, adding `DBG STRUCT L/S` so screenshots can separate score/efficiency candidates that lacked structure from true review arrows.
 - MacroMicro_Simplified_v0.5.39.ts tightens the normal efficient-score review path again: it now uses an 8-bar structure break plus directional close follow-through against EMA fast before painting, while fast-break, continuation, and real trade-entry logic remain unchanged.
 - MacroMicro_Simplified_v0.5.40.ts adds a raw-pressure flip guard after v0.5.39 screenshots showed candidate-level `DBG BOTH/MIX` stayed too low. Final review arrows now check recent opposite raw pressure over 34 bars and only escape on stronger fast-break or confirmed trend structure, with `DBG FLIP L/S` counting blocked chop flips.
+- MacroMicro_Simplified_v0.5.41.ts tightens v0.5.40 by requiring score dominance even for fast-break escapes inside mixed/raw-pressure conflict, lengthens final review-arrow spacing to 10 bars, and adds review-only `R-TP` / `R-SL` lines and bubbles from visible review arrows without feeding real trade tracking.
 
 ## Version Meaning
 

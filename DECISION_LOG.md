@@ -126,3 +126,5 @@
 - Add v0.5.38 after v0.5.37 showed `DBG FAST L/S` was catching raw fast-break chop but visible arrows remained through the normal efficient-score path: keep trend/reversal and fast-break guards intact, but require the normal efficient-score review path to break 5-bar local structure before painting; add `DBG STRUCT L/S`.
 
 - Add v0.5.40 after v0.5.39 screenshots showed `DBG VIS L/S` unchanged while candidate-level `DBG BOTH/MIX` remained too low: keep the proven arrow renderer and real trade engine, but add a final raw-pressure flip guard that remembers recent opposite pressure before earlier guards suppress it; add `DBG FLIP L/S` to prove whether chop flips are being blocked.
+
+- Add v0.5.41 after v0.5.40 made arrows quieter but still needed risk context: require score dominance for fast-break conflict escapes and add review-only `R-TP` / `R-SL` overlays from visible review arrows, independent from real trade tracking and alerts.
