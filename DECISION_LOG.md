@@ -124,3 +124,5 @@
 - Add v0.5.37 after v0.5.36 screenshots showed trend and reversal behavior working but chop still leaking through: keep raw fast-break logic for real trend/reversal detection, but require a stronger review-only 5-bar fast break and 1.60 range proof before raw fast breaks can bypass review chop or escape mixed-direction conflict; add `DBG FAST L/S` to count suppressed raw fast breaks.
 
 - Add v0.5.38 after v0.5.37 showed `DBG FAST L/S` was catching raw fast-break chop but visible arrows remained through the normal efficient-score path: keep trend/reversal and fast-break guards intact, but require the normal efficient-score review path to break 5-bar local structure before painting; add `DBG STRUCT L/S`.
+
+- Add v0.5.40 after v0.5.39 screenshots showed `DBG VIS L/S` unchanged while candidate-level `DBG BOTH/MIX` remained too low: keep the proven arrow renderer and real trade engine, but add a final raw-pressure flip guard that remembers recent opposite pressure before earlier guards suppress it; add `DBG FLIP L/S` to prove whether chop flips are being blocked.

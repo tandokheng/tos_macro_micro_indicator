@@ -25,7 +25,7 @@ Candidate hierarchy:
 ## Milestones
 
 - Done: Create `MacroMicro_Simplified_v0.2.0.ts` with stronger RVOL gating, candle confirmation, cleaner target/stop display, and compact signal bubbles.
-- Doing: Review/import `MacroMicro_Simplified_v0.5.38.ts`, a QQQ 5m structure-guard build that keeps v0.5.37's fast-break guard and requires normal efficient-score review arrows to break 5-bar local structure before painting in chop.
+- Doing: Review/import `MacroMicro_Simplified_v0.5.40.ts`, a QQQ 5m flip-guard build that keeps the proven arrow renderer but blocks final review arrows when recent opposite raw pressure suggests alternating chop, unless stronger breakout or confirmed trend structure appears.
 - Todo: Build a separate Python/Yahoo Finance backtest only after agreeing on scope, using `BACKTESTING_GUARDRAILS.md` as the safety checklist.
 - Todo: Decide whether a higher-timeframe context filter improves 5-minute entries.
 - Todo: Validate/tune the indicator on QQQ 15-minute charts after 5-minute behavior is acceptable.
