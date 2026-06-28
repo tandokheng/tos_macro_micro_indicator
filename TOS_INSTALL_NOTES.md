@@ -2,15 +2,15 @@
 
 ## Current Test Script
 
-- File: `MacroMicro_Simplified_v0.5.35.ts`
+- File: `MacroMicro_Simplified_v0.5.36.ts`
 - Import-ready file: `_dk_codex_macro_micro_v1.ts`
-- Side-panel readable copy: `MacroMicro_Simplified_v0.5.35_READABLE.txt`
+- Side-panel readable copy: `MacroMicro_Simplified_v0.5.36_READABLE.txt`
 - Thinkorswim study to replace: `_dk_codex_macro_micro_v1`
 - Primary chart for review: QQQ 5-minute, 20-day view
 
-## What v0.5.35 Is Testing
+## What v0.5.36 Is Testing
 
-- `BUILD: v0.5.35 STRICT MIX` is always visible through a static `AddLabel(yes, ...)`; if absent, TOS is not running this pasted build or study labels are hidden.
+- `BUILD: v0.5.36 CONT GUARD` is always visible through a static `AddLabel(yes, ...)`; if absent, TOS is not running this pasted build or study labels are hidden.
 - v0.5.14 proved raw setup pressure can render, but it did so with intentionally noisy `SPAM L/S` bubbles. v0.5.15 removed those hardwired spam bubbles.
 - v0.5.19 proved the real missing-arrow issue was Thinkorswim arrow plot rendering/style state, not raw setup gating.
 - The working arrow primitive is now documented: fresh dedicated plot name, direct condition, `low/high +/- off`, `ARROW_UP/DOWN`, `AssignValueColor`, and line weight 5.
@@ -36,27 +36,28 @@
 - v0.5.33 tightens that mixed-direction filter: continuation pressure no longer auto-escapes mixed chop. Only fast breakouts/breakdowns or efficient VWAP/EMA-aligned movement can escape.
 - v0.5.34 widens `reviewConflictLookbackBars` from 13 to 21 because v0.5.33 screenshots showed `DBG BOTH L/S` was alive but too low relative to the visible chop cycle.
 - v0.5.35 keeps the 21-bar conflict lookback but tightens mixed-conflict escape to `minConflictEscapeTrendEfficiency = 0.45` and `minConflictEscapeScoreSeparation = 3`, because v0.5.34 screenshots showed conflict was detected but some candidates still escaped.
-- `DBG BOTH L/S` counts candidates where both directions were detected within the mixed lookback. `DBG ESC L/S` counts detected-conflict candidates that escaped the mixed filter. `DBG MIX L/S` counts candidates actually blocked by that mixed-direction filter.
+- v0.5.36 fixes the next chop leakage path: continuation pressure can no longer bypass the review chop gate unless it breaks a wider 5-bar structure window and has 2-point side dominance.
+- `DBG BOTH L/S` counts candidates where both directions were detected within the mixed lookback. `DBG ESC L/S` counts detected-conflict candidates that escaped the mixed filter. `DBG MIX L/S` counts candidates actually blocked by that mixed-direction filter. `DBG CONT L/S` counts continuation-pressure candidates blocked because they did not make the wider structure break.
 - Direct `RAW L/S` proof bubbles remain available but default off through `showRawProofBubbles = no`, because arrows are now the cleaner review path.
 - Compact `L/S` marker bubbles are optional only; the default review should focus on magenta/cyan review arrows. Turn `showScoreProbeArrows` on only when we need the green/red probe layer again.
 - `RAW SETUP: L/S/-` and `RAW CONT: L/S/-` remain visible through static labels so screenshots still show whether the source logic is firing.
 - `MARKER: NONE/L/S/BOTH` and `CONTRACT: OK/FAIL TRIGGER/MARKER` remain visible. Capture a screenshot if the contract fails.
-- A cyan `v0.5.35 TEST` bubble and `BuildProofDotV0513` point remain on the last loaded bar to prove the chart-bubble/point drawing paths are active independent of signal logic.
-- Real trade entries and PT/SL tracking still use `realLongEntry` / `realShortEntry`; v0.5.35 only filters the review-arrow display path.
+- A cyan `v0.5.36 TEST` bubble and `BuildProofDotV0513` point remain on the last loaded bar to prove the chart-bubble/point drawing paths are active independent of signal logic.
+- Real trade entries and PT/SL tracking still use `realLongEntry` / `realShortEntry`; v0.5.36 only filters the review-arrow display path.
 - RVOL remains a `CAUTION` source for qualified setups, not a hard blocker by itself.
 
 ## Current Manual Test Flow
 
 - Paste `_dk_codex_macro_micro_v1.ts` into the Thinkorswim study `_dk_codex_macro_micro_v1`.
-- If the `.ts` file does not open in Codex side panel, use the clipboard handoff or open `MacroMicro_Simplified_v0.5.35_READABLE.txt`; it is verified to match the `.ts` source exactly.
-- Confirm the pasted source header shows `# Version: v0.5.35`.
-- Confirm the chart labels show `BUILD: v0.5.35 STRICT MIX`, `RAW SETUP`, `RAW CONT`, `DBG SET L200/S200`, `DBG REV L200/S200`, `DBG VIS L/S`, `DBG CHOP L/S`, `DBG BOTH L/S`, `DBG ESC L/S`, `DBG MIX L/S`, `DBG PROBE L/S`, and `CONTRACT: OK` or `FAIL TRIGGER/MARKER`.
+- If the `.ts` file does not open in Codex side panel, use the clipboard handoff or open `MacroMicro_Simplified_v0.5.36_READABLE.txt`; it is verified to match the `.ts` source exactly.
+- Confirm the pasted source header shows `# Version: v0.5.36`.
+- Confirm the chart labels show `BUILD: v0.5.36 CONT GUARD`, `RAW SETUP`, `RAW CONT`, `DBG SET L200/S200`, `DBG REV L200/S200`, `DBG VIS L/S`, `DBG CHOP L/S`, `DBG CONT L/S`, `DBG BOTH L/S`, `DBG ESC L/S`, `DBG MIX L/S`, `DBG PROBE L/S`, and `CONTRACT: OK` or `FAIL TRIGGER/MARKER`.
 - Confirm old `SPAM L` / `SPAM S` bubbles are gone.
 - Confirm direct `RAW L` / `RAW S` proof bubbles are hidden by default.
 - Confirm green/red score-probe arrows are hidden by default; if needed, enable `showScoreProbeArrows` only for a diagnostic pass.
-- Confirm `DBG VIS L/S` is lower than `DBG REV L200/S200` and that `DBG CHOP L/S`, `DBG BOTH L/S`, `DBG ESC L/S`, or `DBG MIX L/S` explains sideways regions where v0.5.34 was noisy.
-- If large `L/S` bubbles still appear, check whether `showSignalBubbles` was saved on in TOS; v0.5.35 gates those compact marker bubbles behind that existing toggle.
-- If v0.5.35 becomes too quiet in clear trends, first lower `minConflictEscapeTrendEfficiency` from `0.45` toward `0.40` for one screenshot before changing the working arrow renderer.
+- Confirm `DBG VIS L/S` is lower than `DBG REV L200/S200` and that `DBG CHOP L/S`, `DBG CONT L/S`, `DBG BOTH L/S`, `DBG ESC L/S`, or `DBG MIX L/S` explains sideways regions where v0.5.35 was still noisy.
+- If large `L/S` bubbles still appear, check whether `showSignalBubbles` was saved on in TOS; v0.5.36 gates those compact marker bubbles behind that existing toggle.
+- If v0.5.36 becomes too quiet in clear trends, first lower `reviewContinuationBreakLookbackBars` from `5` to `4` for one screenshot before changing the working arrow renderer.
 - Review QQQ 5m first; defer 15m validation until 5m marker behavior is acceptable.
 
 ## Codex Link Note

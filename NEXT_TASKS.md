@@ -2,14 +2,14 @@
 
 ## Doing
 
-- Install `MacroMicro_Simplified_v0.5.35.ts` into Thinkorswim study `_dk_codex_macro_micro_v1` and confirm every screenshot shows `BUILD: v0.5.35 STRICT MIX`, numeric `DBG REV`, lower `DBG VIS`, useful `DBG BOTH`, `DBG ESC`, `DBG CHOP` or `DBG MIX` in sideways regions, fewer alternating chop arrows, no default large `L/S` marker bubbles, and no default green/red score-probe arrows.
+- Install `MacroMicro_Simplified_v0.5.36.ts` into Thinkorswim study `_dk_codex_macro_micro_v1` and confirm every screenshot shows `BUILD: v0.5.36 CONT GUARD`, numeric `DBG REV`, lower `DBG VIS`, useful `DBG CHOP`, `DBG CONT`, `DBG BOTH`, `DBG ESC`, or `DBG MIX` in sideways regions, fewer stop-out continuation arrows, no default large `L/S` marker bubbles, and no default green/red score-probe arrows.
 
 ## Todo
 
-- If v0.5.35 does not show `BUILD: v0.5.35 STRICT MIX`, remove duplicate/old `_dk_codex_macro_micro_v1` studies and re-add the pasted source once.
-- Confirm old `SPAM L/S`, default compact `L/S` marker bubbles, and green/red score-probe arrows are gone; v0.5.35 should emphasize fewer magenta/cyan review arrows in mixed chop.
-- If large `L/S` marker bubbles remain, check the saved `showSignalBubbles` setting in TOS because v0.5.35 gates those bubbles behind that existing toggle.
-- If clear-trend arrows become too sparse in v0.5.35, lower `minConflictEscapeTrendEfficiency` from `0.45` toward `0.40` for one screenshot before loosening source gates.
+- If v0.5.36 does not show `BUILD: v0.5.36 CONT GUARD`, remove duplicate/old `_dk_codex_macro_micro_v1` studies and re-add the pasted source once.
+- Confirm old `SPAM L/S`, default compact `L/S` marker bubbles, and green/red score-probe arrows are gone; v0.5.36 should emphasize fewer magenta/cyan review arrows in continuation pullback chop.
+- If large `L/S` marker bubbles remain, check the saved `showSignalBubbles` setting in TOS because v0.5.36 gates those bubbles behind that existing toggle.
+- If clear-trend arrows become too sparse in v0.5.36, lower `reviewContinuationBreakLookbackBars` from `5` to `4` for one screenshot before loosening source gates.
 - If `DBG BOTH` rises but `DBG MIX` stays low in sideways areas, check `DBG ESC`; high `DBG ESC` means the conflict is being detected but escaping through the stricter fast-break/efficient-move escape path.
 - If `CONTRACT: FAIL TRIGGER/MARKER` appears, capture that screenshot because it proves dashboard trigger and marker logic diverged on the same bar.
 - If raw arrows disappear again while labels prove setup state, treat it as a Thinkorswim plot rendering/style-state issue and use the documented working-arrow primitive before changing gates.
@@ -115,3 +115,4 @@
 - Added `MacroMicro_Simplified_v0.5.33.ts` after v0.5.32 still showed alternating arrows with `DBG MIX` at zero; continuation pressure no longer auto-escapes mixed conflict and `DBG BOTH` reports detected long/short conflict separately.
 - Added `MacroMicro_Simplified_v0.5.34.ts` after v0.5.33 showed `DBG BOTH` alive but too low; mixed-conflict lookback now uses 21 bars to match the visible chop cycle.
 - Added `MacroMicro_Simplified_v0.5.35.ts` after v0.5.34 showed wider mixed-conflict detection but too many escaped conflicts; mixed-conflict escape now needs stricter trend efficiency and score dominance, with `DBG ESC` reporting escaped conflicts separately.
+- Added `MacroMicro_Simplified_v0.5.36.ts` after v0.5.35 still showed stop-out continuation arrows during chop; review continuation pressure now needs a wider structure break and score dominance, with `DBG CONT` reporting blocked continuation bypasses.

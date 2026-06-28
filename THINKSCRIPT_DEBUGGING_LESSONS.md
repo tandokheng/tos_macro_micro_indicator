@@ -44,6 +44,7 @@ def inWindow =
 - If `DBG MIX` is zero while alternating arrows remain, split mixed-conflict detection from mixed-conflict blocking. v0.5.33 adds `DBG BOTH` because v0.5.32 could detect a conflict but let continuation pressure auto-escape, leaving `DBG MIX` at zero.
 - If `DBG BOTH` is nonzero but low while visible arrows still alternate, tune the mixed-conflict lookback before changing the renderer or source gate. v0.5.34 widens the lookback from 13 to 21 to match the slower visible chop cycle.
 - If `DBG BOTH` rises but `DBG MIX` stays modest, the conflict is being detected but escaping. Add or inspect an escape counter such as `DBG ESC`; then tighten only the mixed-conflict escape thresholds before touching the proven arrow renderer. v0.5.35 keeps the broad conflict lookback and raises escape requirements to 0.45 trend efficiency and 3-point score separation.
+- If `DBG CHOP`, `DBG BOTH`, and `DBG ESC` explain much of the chop but visible arrows still leak through, inspect continuation-pressure bypasses in the review gate. v0.5.36 keeps raw continuation diagnostics alive but requires review continuation arrows to break a wider 5-bar structure window with 2-point side dominance, and adds `DBG CONT` for blocked continuation pullbacks.
 
 Working primitive:
 

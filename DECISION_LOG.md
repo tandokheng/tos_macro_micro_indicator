@@ -118,3 +118,5 @@
 - Add v0.5.34 after v0.5.33 showed `DBG BOTH L/S: 1/2` and `DBG MIX L/S: 0/2` while arrows still alternated: widen `reviewConflictLookbackBars` from 13 to 21 before changing the arrow renderer or review source gate.
 
 - Add v0.5.35 after v0.5.34 showed `DBG BOTH L/S: 1/4` but `DBG MIX L/S: 0/2`: keep the proven arrow renderer and 21-bar conflict lookback, add `DBG ESC L/S`, and require stricter mixed-conflict escape (`0.45` trend efficiency and 3-point score separation) before a conflicted review candidate can still plot.
+
+- Add v0.5.36 after v0.5.35 still showed too many arrows during chop and a cyan down arrow that could cause a stop-out in a pullback: keep the proven renderer, but stop raw continuation pressure from directly bypassing the review chop gate unless it breaks a wider 5-bar structure window with 2-point score dominance; add `DBG CONT L/S` to count blocked continuation bypasses.

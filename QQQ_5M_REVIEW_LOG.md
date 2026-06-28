@@ -411,3 +411,10 @@ Use this after importing `MacroMicro_Simplified_v0.3.1.ts` into Thinkorswim.
 - Observation: User screenshot showed `BUILD: v0.5.34 WIDE MIX`, `DBG VIS L/S: 4/7`, `DBG BOTH L/S: 1/4`, and `DBG MIX L/S: 0/2`. The wider lookback detected more conflict, but too many mixed-conflict candidates still escaped.
 - Root-cause conclusion: this was not an arrow-rendering issue. The remaining chop noise was in the mixed-conflict escape path: the same 0.30 trend-efficiency and 2-point score-separation thresholds used by the general chop gate were too permissive once both directions had fired.
 - Change: v0.5.35 keeps `reviewConflictLookbackBars = 21`, adds stricter mixed-conflict escape thresholds (`minConflictEscapeTrendEfficiency = 0.45`, `minConflictEscapeScoreSeparation = 3`), and adds `DBG ESC L/S` to show conflict candidates that escaped instead of being blocked by `DBG MIX`.
+
+
+## 2026-06-28 v0.5.35 continuation-bypass follow-up
+
+- Observation: User screenshot showed `BUILD: v0.5.35 STRICT MIX`, high chop diagnostics, and a remaining cyan down arrow during a pullback/chop region that could cause a stop-out.
+- Root-cause conclusion: the proven arrow renderer was fine. The remaining leakage path was the review regime gate: raw `longContinuationPressure` / `shortContinuationPressure` still bypassed the review chop filter directly, even after mixed-conflict escape had been tightened.
+- Change: v0.5.36 adds a review-only continuation guard. Continuation-pressure review arrows now need a wider 5-bar structure break and 2-point side dominance before they can bypass the chop gate, while raw continuation labels and real trade-entry tracking remain unchanged. `DBG CONT L/S` counts continuation-pressure candidates blocked by this guard.
