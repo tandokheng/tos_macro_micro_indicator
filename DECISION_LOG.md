@@ -132,3 +132,5 @@
 - Add v0.5.42 after v0.5.41 showed useful review TP/SL context but the bubbles could cover arrows and the 1.5 ATR review TP looked too conservative for follow-through evaluation: keep real `targetATRFactor` / `stopATRFactor` unchanged, but move review arrows beyond the review stop zone and use separate review-only 2 ATR target / 1 ATR stop factors.
 
 - Add v0.5.43 after clarifying the marker contract: compact dots should warn at 4/6 that setup is coming, while visible review arrows should appear on the next candle after a completed 5/6 trigger. Use a review-only entry plan with TP1=1R, TP2=2R, and a structure-aware stop capped by ATR risk so screenshots can judge both signal quality and risk/reward.
+
+- Add v0.5.44 after v0.5.43 screenshots showed setup-coming dots flip-flopping in chop: keep the 4/6 early-warning idea, but make dots one-sided and stateful so the first side arms until 5/6 trigger, failure below 3/6, opposite 5/6 trigger, or a 21-bar timeout.

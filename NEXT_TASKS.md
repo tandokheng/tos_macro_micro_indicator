@@ -2,12 +2,12 @@
 
 ## Doing
 
-- Install `MacroMicro_Simplified_v0.5.43.ts` into Thinkorswim study `_dk_codex_macro_micro_v1` and confirm screenshots show `BUILD: v0.5.43 ENTRY PLAN`. Dots should appear as 4/6 setup-coming warnings, while magenta/cyan review arrows should appear on the next candle after a completed 5/6 trigger.
+- Install `MacroMicro_Simplified_v0.5.44.ts` into Thinkorswim study `_dk_codex_macro_micro_v1` and confirm screenshots show `BUILD: v0.5.44 ARMED DOTS`. A 4/6 setup-coming dot should arm one side once, not flip-flop between long and short during chop.
 
 ## Todo
 
-- If v0.5.43 does not show `BUILD: v0.5.43 ENTRY PLAN`, remove duplicate/old `_dk_codex_macro_micro_v1` studies and re-add the pasted source once.
-- Confirm old `SPAM L/S`, default compact `L/S` marker bubbles, and green/red score-probe arrows are gone; v0.5.43 should keep magenta/cyan review arrows readable with TP1/TP2/SL overlays on.
+- If v0.5.44 does not show `BUILD: v0.5.44 ARMED DOTS`, remove duplicate/old `_dk_codex_macro_micro_v1` studies and re-add the pasted source once.
+- Confirm old `SPAM L/S`, default compact `L/S` marker bubbles, and green/red score-probe arrows are gone; v0.5.44 should keep magenta/cyan review arrows readable with TP1/TP2/SL overlays on.
 - Confirm review-only `R-TP1`, `R-TP2`, and `R-SL` lines and bubbles appear from visible review arrows, sit away from the arrow body, and do not change real `ENTRY`, `PT`, or `SL` tracking.
 - Decide whether TP1 at 1R is too conservative in clean trends and whether TP2 at 2R better captures the useful stretch. If TP1 still clutters screenshots, hide review bubbles before changing risk math.
 - If review TP/SL bubbles still clutter the chart, set `showReviewTargetStopBubbles = no` before disabling `showReviewTargetStopLines`.
@@ -125,3 +125,4 @@
 - Added `MacroMicro_Simplified_v0.5.41.ts` after v0.5.40 made arrows quieter but still needed stop/target judgment; fast-break conflict escapes now require score dominance, final review spacing is 10 bars, and review-only `R-TP` / `R-SL` overlays show risk without feeding real trade tracking.
 - Added `MacroMicro_Simplified_v0.5.42.ts` after v0.5.41 showed useful TP/SL context but bubbles could cover arrows and review TP looked quick; review arrows now use risk-aware spacing and review-only TP defaults to 2 ATR while real PT/SL math remains unchanged.
 - Added `MacroMicro_Simplified_v0.5.43.ts` after clarifying marker semantics; compact dots now mean 4/6 setup-coming, review arrows are next-candle 5/6 trigger confirmations, and review-only TP1/TP2/SL overlays use R-multiple risk planning from the arrow candle open.
+- Added `MacroMicro_Simplified_v0.5.44.ts` after v0.5.43 setup-coming dots flip-flopped in chop; dots now arm the first 4/6 side and suppress opposite 4/6 warnings until trigger, failure, opposite trigger, or timeout.

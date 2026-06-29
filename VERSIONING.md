@@ -77,6 +77,7 @@ Use an explicit version in every new indicator file and in the file header.
 - MacroMicro_Simplified_v0.5.41.ts tightens v0.5.40 by requiring score dominance even for fast-break escapes inside mixed/raw-pressure conflict, lengthens final review-arrow spacing to 10 bars, and adds review-only `R-TP` / `R-SL` lines and bubbles from visible review arrows without feeding real trade tracking.
 - MacroMicro_Simplified_v0.5.42.ts keeps real trade PT/SL unchanged but separates review-risk visuals: review arrows move outside the review stop zone with a risk-aware ATR offset, and review-only `R-TP` uses a wider 2 ATR follow-through target so screenshots can judge whether v0.5.41 was taking profit too early.
 - MacroMicro_Simplified_v0.5.43.ts clarifies the visual contract: compact dots are 4/6 setup-coming warnings, review arrows paint on the next candle after a 5/6 trigger, and review risk now shows TP1/TP2 plus a structure-aware stop capped by ATR risk.
+- MacroMicro_Simplified_v0.5.44.ts makes setup-coming dots stateful: the first 4/6 side arms one warning dot, opposite 4/6 chop noise is ignored until trigger/failure/timeout, and review arrows plus TP1/TP2/SL overlays stay unchanged.
 
 ## Version Meaning
 

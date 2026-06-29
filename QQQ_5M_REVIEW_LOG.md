@@ -466,3 +466,17 @@ Use this after importing `MacroMicro_Simplified_v0.3.1.ts` into Thinkorswim.
 - Observation: User screenshots showed `BUILD: v0.5.41 REVIEW RISK`; `R-TP` / `R-SL` overlays were useful, but TP/SL bubbles and hit bubbles could cover the magenta/cyan arrows. Several examples also showed the review TP getting tagged quickly in clean trends.
 - Root-cause conclusion: review arrows were plotted near the candle (`low - off` / `high + off`) while the review stop was about 1 ATR from entry, so the arrow could sit inside the stop-bubble zone. The review TP reused the real 1.5 ATR target, which is useful as a quick TP1 but too conservative for judging arrow follow-through.
 - Change: v0.5.42 adds a review-only risk-aware arrow offset (`reviewStopATRFactor + reviewArrowRiskBufferATR`) so arrows sit beyond the review stop bubble, and separates review TP/SL math from the real trade engine. Review `R-TP` now defaults to 2.0 ATR, review `R-SL` stays 1.0 ATR, and real `targetATRFactor` / `stopATRFactor` remain unchanged.
+
+
+## 2026-06-29 v0.5.43 entry-plan follow-up
+
+- Observation: User clarified that compact dots should mean a setup is coming at 4/6, while the arrow should wait until the next candle after a completed 5/6 trigger. Screenshots also showed TP/SL context is needed to judge whether a marked arrow has enough risk/reward.
+- Root-cause conclusion: dots, arrows, and review risk need separate contracts. A dot is an early warning, an arrow is the review entry marker, and TP1/TP2/SL are review-only context rather than live trade-state resets.
+- Change: v0.5.43 adds 4/6 setup-coming dots, next-candle 5/6 review arrows, and a review-only entry plan with TP1=1R, TP2=2R, and a structure-aware stop capped by ATR risk.
+
+
+## 2026-06-29 v0.5.44 armed-dot follow-up
+
+- Observation: User screenshots of v0.5.43 showed cyan/magenta setup-coming dots flip-flopping in chop. That made the study look like it was saying "get ready both ways" before either side truly triggered.
+- Root-cause conclusion: v0.5.43 treated each 4/6 readiness state as an independent raw edge. That was correct as a score-event diagnostic but wrong for the setup-coming contract.
+- Change: v0.5.44 turns setup-coming dots into a one-sided arm. The first valid 4/6 side prints one dot; opposite 4/6 requests are suppressed until the armed side reaches 5/6, fades below 3/6, the opposite side reaches 5/6, or the 21-bar arm timeout expires. Review arrows and TP1/TP2/SL math are unchanged.

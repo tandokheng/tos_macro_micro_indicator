@@ -49,6 +49,7 @@ def inWindow =
 - If `DBG FAST` is nonzero but `DBG VIS` still shows chop arrows, inspect the normal efficient-score path. v0.5.38 requires that path to break local 5-bar structure before it can paint, and adds `DBG STRUCT` for score/efficiency candidates blocked because they lacked structure.
 - Different screenshot locations are useful anti-overfitting evidence. Tune only when the same failure mode appears across multiple chart regions; do not overfit a single visible window.
 - Keep setup-coming markers and entry arrows semantically separate. In v0.5.43, compact dots mean a 4/6 setup is approaching; magenta/cyan review arrows mean the next candle after a completed 5/6 trigger. Do not judge TP/SL from the dot bar.
+- Setup-coming dots should be armed state, not raw 4/6 edge pulses. If long and short 4/6 scores alternate in chop, raw dots will flip-flop and imply conflicting readiness; v0.5.44 prints only the first side's dot until that side triggers, fails, gets overridden by an opposite 5/6 trigger, or times out.
 
 Working primitive:
 

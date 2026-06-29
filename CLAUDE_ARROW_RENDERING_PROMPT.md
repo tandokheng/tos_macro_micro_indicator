@@ -53,6 +53,7 @@ Rule for future debugging:
 - v0.5.37 follow-up showed a ninth chop lesson: if `DBG FAST` is active but visible arrows still leak, the normal efficient-score path may still be too permissive. v0.5.38 requires that path to break 5-bar local structure and adds `DBG STRUCT L/S`.
 - Screenshots may show different parts of the day or prior days. Treat that as anti-overfitting evidence: tune repeated failure modes across locations, not a single window.
 - Avoid forward self-reference traps in throttles. Keep self-referential state inside `CompoundValue`; do not define a separate `ready` boolean before the recursive state and then use it inside that same state expression.
+- v0.5.43 clarified the marker contract: compact dots are early 4/6 setup-coming warnings, while magenta/cyan arrows are next-candle 5/6 trigger confirmations. v0.5.44 fixes the next trap: setup-coming dots must be armed state, not raw 4/6 edges. If long and short 4/6 scores alternate in chop, print only the first side's dot until that side triggers, fails below 3/6, gets overridden by an opposite 5/6 trigger, or times out.
 
 General ThinkScript debugging rules:
 - Instrument first with on-chart state labels. If the study shows nothing, ask the human to read the bottom error line in the ThinkScript editor.
@@ -66,7 +67,7 @@ Current next direction:
 - Build from the latest versioned file.
 - Keep the working-style arrows as the default visible marker path.
 - Hide raw proof bubbles by default once arrows are confirmed.
-- Use v0.5.38's structure-guard build as the starting point: NaN-safe raw review diagnostics remain active, compact `L/S` marker bubbles are optional through `showSignalBubbles`, green/red score-probe arrows are off by default through `showScoreProbeArrows`, setup-review and real-entry review arrows need chop-filter approval, `DBG CONT L/S` shows continuation pullbacks blocked before they can bypass chop, `DBG FAST L/S` shows raw fast-break pulses blocked before they can bypass chop or escape mixed conflict, `DBG STRUCT L/S` shows score/efficiency candidates blocked because they lacked a 5-bar structure break, `DBG BOTH L/S` shows detected mixed long/short conflict, `DBG ESC L/S` shows detected conflicts that escaped, `DBG MIX L/S` shows blocked mixed-conflict review pulses, `reviewConflictLookbackBars` defaults to 21, and mixed-conflict escape is stricter than the general chop gate.
+- Use v0.5.44's armed-dot build as the starting point: setup-coming dots arm one 4/6 side at a time, magenta/cyan review arrows remain next-candle 5/6 trigger confirmations, review-only TP1/TP2/SL overlays are independent from real trade tracking, NaN-safe raw review diagnostics remain active, compact `L/S` marker bubbles are optional through `showSignalBubbles`, green/red score-probe arrows are off by default through `showScoreProbeArrows`, and the chop/debug counters (`DBG CHOP`, `DBG CONT`, `DBG FAST`, `DBG STRUCT`, `DBG BOTH`, `DBG ESC`, `DBG MIX`, `DBG FLIP`) remain available for screenshot-driven tuning.
 - Update VERSIONING.md, TOS_INSTALL_NOTES.md, NEXT_TASKS.md, FOLLOW_UP.md, PROJECT_PLAN.md, QQQ_5M_REVIEW_LOG.md, and DECISION_LOG.md.
 - Commit and push useful checkpoints.
 ```
