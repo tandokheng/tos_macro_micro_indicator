@@ -453,3 +453,10 @@ Use this after importing `MacroMicro_Simplified_v0.3.1.ts` into Thinkorswim.
 - Observation: User screenshots showed `BUILD: v0.5.40 FLIP GUARD`; arrows were much quieter in the reviewed windows, but remaining chop arrows still needed visible TP/SL context to judge whether they would stop out quickly.
 - Root-cause conclusion: the remaining issue is no longer the arrow renderer. Some mixed/raw-pressure conflict escapes still allowed review fast-break arrows without enough side score dominance, and review arrows had no separate TP/SL plan for visual judgment.
 - Change: v0.5.41 requires side score dominance for fast-break escapes inside mixed/raw-pressure conflict, increases review visual spacing to 10 bars, and adds review-only `R-TP` / `R-SL` lines and bubbles keyed to visible review arrows. Real trade entries, PT/SL, and alerts remain unchanged.
+
+
+## 2026-06-29 v0.5.41 review-risk spacing follow-up
+
+- Observation: User screenshots showed `BUILD: v0.5.41 REVIEW RISK`; `R-TP` / `R-SL` overlays were useful, but TP/SL bubbles and hit bubbles could cover the magenta/cyan arrows. Several examples also showed the review TP getting tagged quickly in clean trends.
+- Root-cause conclusion: review arrows were plotted near the candle (`low - off` / `high + off`) while the review stop was about 1 ATR from entry, so the arrow could sit inside the stop-bubble zone. The review TP reused the real 1.5 ATR target, which is useful as a quick TP1 but too conservative for judging arrow follow-through.
+- Change: v0.5.42 adds a review-only risk-aware arrow offset (`reviewStopATRFactor + reviewArrowRiskBufferATR`) so arrows sit beyond the review stop bubble, and separates review TP/SL math from the real trade engine. Review `R-TP` now defaults to 2.0 ATR, review `R-SL` stays 1.0 ATR, and real `targetATRFactor` / `stopATRFactor` remain unchanged.
