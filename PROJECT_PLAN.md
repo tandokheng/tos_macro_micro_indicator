@@ -8,7 +8,7 @@ Build a cleaner Thinkorswim macro/micro intraday indicator that is practical for
 
 - Optimize the simplified 5-of-6 model on 5-minute charts first.
 - Treat 15-minute tuning as the next validation pass, not as a simultaneous target.
-- Keep the chart readable: one visible long marker, one visible short marker, standby dots, compact optional signal bubbles, optional target/stop bubbles, and review-only `R-TP` / `R-SL` overlays with arrows spaced outside the risk bubbles when judging arrow quality.
+- Keep the chart readable: 4/6 setup-coming dots, next-candle 5/6 review arrows, compact optional signal bubbles, optional target/stop bubbles, and review-only `R-TP1` / `R-TP2` / `R-SL` overlays with arrows spaced outside the risk bubbles when judging arrow quality.
 - Use static verifier checks to catch accidental regressions in versioning, thresholds, arrow count, and old visual spam.
 - If/when a Yahoo Finance Python backtest is built, follow `BACKTESTING_GUARDRAILS.md`: probe data coverage first, avoid look-ahead, use pessimistic fills, report costs/statistical uncertainty, and disclose limitations.
 
@@ -25,7 +25,7 @@ Candidate hierarchy:
 ## Milestones
 
 - Done: Create `MacroMicro_Simplified_v0.2.0.ts` with stronger RVOL gating, candle confirmation, cleaner target/stop display, and compact signal bubbles.
-- Doing: Review/import `MacroMicro_Simplified_v0.5.42.ts`, a QQQ 5m review-risk build that keeps the proven arrow renderer, offsets arrows away from review TP/SL bubbles, and uses a review-only 2 ATR target so remaining arrows can be judged against less conservative follow-through.
+- Doing: Review/import `MacroMicro_Simplified_v0.5.43.ts`, a QQQ 5m entry-plan build where dots mean 4/6 setup-coming, arrows mean next-candle 5/6 trigger confirmation, and TP1/TP2/SL review overlays help judge whether signals have enough follow-through.
 - Todo: Build a separate Python/Yahoo Finance backtest only after agreeing on scope, using `BACKTESTING_GUARDRAILS.md` as the safety checklist.
 - Todo: Decide whether a higher-timeframe context filter improves 5-minute entries.
 - Todo: Validate/tune the indicator on QQQ 15-minute charts after 5-minute behavior is acceptable.

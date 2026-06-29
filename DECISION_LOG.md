@@ -130,3 +130,5 @@
 - Add v0.5.41 after v0.5.40 made arrows quieter but still needed risk context: require score dominance for fast-break conflict escapes and add review-only `R-TP` / `R-SL` overlays from visible review arrows, independent from real trade tracking and alerts.
 
 - Add v0.5.42 after v0.5.41 showed useful review TP/SL context but the bubbles could cover arrows and the 1.5 ATR review TP looked too conservative for follow-through evaluation: keep real `targetATRFactor` / `stopATRFactor` unchanged, but move review arrows beyond the review stop zone and use separate review-only 2 ATR target / 1 ATR stop factors.
+
+- Add v0.5.43 after clarifying the marker contract: compact dots should warn at 4/6 that setup is coming, while visible review arrows should appear on the next candle after a completed 5/6 trigger. Use a review-only entry plan with TP1=1R, TP2=2R, and a structure-aware stop capped by ATR risk so screenshots can judge both signal quality and risk/reward.

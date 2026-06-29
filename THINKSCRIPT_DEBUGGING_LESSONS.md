@@ -48,6 +48,7 @@ def inWindow =
 - If trend/reversal arrows work but chop still leaks after continuation bypasses are guarded, inspect raw fast-break bypasses next. v0.5.37 keeps raw fast breaks for the trading model but only lets them paint review arrows or escape mixed chop after a stronger review-only 5-bar break and 1.60 range proof, and adds `DBG FAST` for blocked raw fast-break pulses.
 - If `DBG FAST` is nonzero but `DBG VIS` still shows chop arrows, inspect the normal efficient-score path. v0.5.38 requires that path to break local 5-bar structure before it can paint, and adds `DBG STRUCT` for score/efficiency candidates blocked because they lacked structure.
 - Different screenshot locations are useful anti-overfitting evidence. Tune only when the same failure mode appears across multiple chart regions; do not overfit a single visible window.
+- Keep setup-coming markers and entry arrows semantically separate. In v0.5.43, compact dots mean a 4/6 setup is approaching; magenta/cyan review arrows mean the next candle after a completed 5/6 trigger. Do not judge TP/SL from the dot bar.
 
 Working primitive:
 

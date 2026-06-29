@@ -2,6 +2,12 @@
 
 Use this after importing `MacroMicro_Simplified_v0.3.1.ts` into Thinkorswim.
 
+## 2026-06-29 v0.5.43 Entry-plan pass
+
+- Observation: v0.5.42 made TP/SL context visible, but the marker meaning needed correction and bubbles could still be confused with entry arrows.
+- Decision: A compact magenta/cyan dot is now only a 4/6 setup-coming warning. A review arrow is the next-candle visual entry after a completed 5/6 trigger.
+- Change: v0.5.43 adds review-only TP1/TP2/SL planning from the arrow candle open, using structure-aware stops capped by ATR risk. Use screenshots to judge whether TP1 is too conservative and whether TP2 better captures trend follow-through.
+
 ## Review Fields
 
 - Date/session:
