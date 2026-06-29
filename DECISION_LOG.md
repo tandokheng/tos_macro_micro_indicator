@@ -134,3 +134,5 @@
 - Add v0.5.43 after clarifying the marker contract: compact dots should warn at 4/6 that setup is coming, while visible review arrows should appear on the next candle after a completed 5/6 trigger. Use a review-only entry plan with TP1=1R, TP2=2R, and a structure-aware stop capped by ATR risk so screenshots can judge both signal quality and risk/reward.
 
 - Add v0.5.44 after v0.5.43 screenshots showed setup-coming dots flip-flopping in chop: keep the 4/6 early-warning idea, but make dots one-sided and stateful so the first side arms until 5/6 trigger, failure below 3/6, opposite 5/6 trigger, or a 21-bar timeout.
+- Add v0.5.45 after v0.5.44 screenshots still showed setup-coming dots flip-flopping: remove timeout rearming and use a neutral-reset campaign latch, so 4/6 warning dots only re-arm after both sides cool off or a real 5/6 trigger resolves the campaign.
+- Use QQQ for regular-session ETF/options validation and `/NQ` or `/MNQ` for extended-hours futures validation; do not tune one session/instrument as if it proves the other.

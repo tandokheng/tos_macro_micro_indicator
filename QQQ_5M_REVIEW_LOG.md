@@ -480,3 +480,12 @@ Use this after importing `MacroMicro_Simplified_v0.3.1.ts` into Thinkorswim.
 - Observation: User screenshots of v0.5.43 showed cyan/magenta setup-coming dots flip-flopping in chop. That made the study look like it was saying "get ready both ways" before either side truly triggered.
 - Root-cause conclusion: v0.5.43 treated each 4/6 readiness state as an independent raw edge. That was correct as a score-event diagnostic but wrong for the setup-coming contract.
 - Change: v0.5.44 turns setup-coming dots into a one-sided arm. The first valid 4/6 side prints one dot; opposite 4/6 requests are suppressed until the armed side reaches 5/6, fades below 3/6, the opposite side reaches 5/6, or the 21-bar arm timeout expires. Review arrows and TP1/TP2/SL math are unchanged.
+
+
+## 2026-06-29 v0.5.45 quiet-dot follow-up
+
+- Observation: User screenshots of v0.5.44 still showed setup-coming dots alternating during chop, especially when long and short 4/6 readiness kept reappearing without a clean trigger.
+- Root-cause conclusion: the 21-bar timeout allowed the same noisy campaign to re-arm even though the market never returned to a true neutral setup state.
+- Change: v0.5.45 removes timeout-based rearming. Setup-coming dots now use a one-sided campaign latch: one 4/6 dot prints from neutral, recent opposite 4/6 readiness blocks immediate side flips, and a new dot requires either both sides cooling to 3/6 or lower for several bars or a real 5/6 trigger resolving the campaign.
+- Review note: on QQQ shares, visible TP1/TP2 examples look roughly $0.70/$1.40 per share on a conservative lower estimate; options and futures need their own contract math.
+- Validation note: keep QQQ regular-session validation separate from `/NQ` or `/MNQ` extended-hours futures validation.
