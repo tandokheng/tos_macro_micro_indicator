@@ -79,6 +79,7 @@ Use an explicit version in every new indicator file and in the file header.
 - MacroMicro_Simplified_v0.5.43.ts clarifies the visual contract: compact dots are 4/6 setup-coming warnings, review arrows paint on the next candle after a 5/6 trigger, and review risk now shows TP1/TP2 plus a structure-aware stop capped by ATR risk.
 - MacroMicro_Simplified_v0.5.44.ts makes setup-coming dots stateful: the first 4/6 side arms one warning dot, opposite 4/6 chop noise is ignored until trigger/failure/timeout, and review arrows plus TP1/TP2/SL overlays stay unchanged.
 - MacroMicro_Simplified_v0.5.45.ts removes timeout-based setup-dot rearming and uses a neutral-reset campaign latch so a 4/6 warning dot prints once per setup campaign, with fresh dots allowed only after both sides cool off or a real 5/6 trigger resolves the campaign.
+- MacroMicro_Simplified_v0.5.46.ts adds /NQ-friendly review risk display: planned TP/SL bubbles remain visible, hit-result bubbles are optional/default off, and a point-based RISK PTS label shows risk/TP1/TP2 for futures/options validation.
 
 ## Version Meaning
 

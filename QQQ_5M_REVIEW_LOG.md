@@ -489,3 +489,11 @@ Use this after importing `MacroMicro_Simplified_v0.3.1.ts` into Thinkorswim.
 - Change: v0.5.45 removes timeout-based rearming. Setup-coming dots now use a one-sided campaign latch: one 4/6 dot prints from neutral, recent opposite 4/6 readiness blocks immediate side flips, and a new dot requires either both sides cooling to 3/6 or lower for several bars or a real 5/6 trigger resolving the campaign.
 - Review note: on QQQ shares, visible TP1/TP2 examples look roughly $0.70/$1.40 per share on a conservative lower estimate; options and futures need their own contract math.
 - Validation note: keep QQQ regular-session validation separate from `/NQ` or `/MNQ` extended-hours futures validation.
+
+
+## 2026-06-29 v0.5.46 /NQ risk-display follow-up
+
+- Observation: User shifted validation to `/NQ` because they may trade `/NQ` options; screenshots showed review TP/SL and hit-result bubbles cluttering charts while underlying futures point risk was the only stable thing visible from screenshots.
+- Root-cause conclusion: Signal logic did not need another loosen/tighten pass. The next useful change is presentation: keep entry/target/stop context but separate planned levels from hit-result bubbles and expose point distances.
+- Change: v0.5.46 keeps v0.5.45 arrows/dots, adds `RISK PTS` label for underlying risk/TP1/TP2, leaves planned `R-TP1/R-TP2/R-SL` bubbles default-on, and turns review hit-result bubbles off by default.
+- Validation note: `/NQ` and QQQ validation are now separate tracks. `/NQ` option P/L must be checked against the actual option contract quote/delta/spread, not inferred directly from chart points.

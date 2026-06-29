@@ -2,17 +2,19 @@
 
 ## Doing
 
-- Install `MacroMicro_Simplified_v0.5.45.ts` into Thinkorswim study `_dk_codex_macro_micro_v1` and confirm screenshots show `BUILD: v0.5.45 QUIET DOTS`. A 4/6 setup-coming dot should print once per campaign, then re-arm only after neutral cooldown or a real 5/6 trigger.
+- Install `MacroMicro_Simplified_v0.5.46.ts` into Thinkorswim study `_dk_codex_macro_micro_v1` and confirm screenshots show `BUILD: v0.5.46 NQ RISK`. For `/NQ` options validation, confirm planned TP/SL levels remain visible, hit-result bubbles are quiet by default, and `RISK PTS` appears when a review plan is active.
 
 ## Todo
 
-- If v0.5.45 does not show `BUILD: v0.5.45 QUIET DOTS`, remove duplicate/old `_dk_codex_macro_micro_v1` studies and re-add the pasted source once.
-- Confirm old `SPAM L/S`, default compact `L/S` marker bubbles, and green/red score-probe arrows are gone; v0.5.45 should keep magenta/cyan review arrows readable with TP1/TP2/SL overlays on.
+- If v0.5.46 does not show `BUILD: v0.5.46 NQ RISK`, remove duplicate/old `_dk_codex_macro_micro_v1` studies and re-add the pasted source once.
+- Confirm old `SPAM L/S`, default compact `L/S` marker bubbles, and green/red score-probe arrows are gone; v0.5.46 should keep magenta/cyan review arrows readable with planned TP1/TP2/SL overlays on.
 - Confirm setup-coming dots do not re-arm during the same chop campaign unless both sides cool to neutral for several bars or a 5/6 trigger resolves the campaign.
 - Confirm review-only `R-TP1`, `R-TP2`, and `R-SL` lines and bubbles appear from visible review arrows, sit away from the arrow body, and do not change real `ENTRY`, `PT`, or `SL` tracking.
-- Decide whether the next validation pass should remain QQQ regular session or use `/NQ` / `/MNQ` as a separate extended-hours futures track.
+- For `/NQ` options validation, record the exact option contract, strike, expiry, bid/ask, delta, spread, and screenshot time before estimating dollar P/L from the point-risk label.
+- Keep QQQ regular-session validation and `/NQ` / `/MNQ` futures validation as separate tracks; do not tune one as proof of the other.
 - Decide whether TP1 at 1R is too conservative in clean trends and whether TP2 at 2R better captures the useful stretch. If TP1 still clutters screenshots, hide review bubbles before changing risk math.
-- If review TP/SL bubbles still clutter the chart, set `showReviewTargetStopBubbles = no` before disabling `showReviewTargetStopLines`.
+- If review hit-result bubbles are needed for an audit, temporarily set `showReviewHitBubbles = yes`; leave them off for normal screenshot review.
+- If review TP/SL plan bubbles still clutter the chart, set `showReviewEntryPlanBubbles = no` before disabling `showReviewTargetStopLines`.
 - If clear trend arrows become too sparse in v0.5.43, first lower `minPressureConflictEscapeTrendEfficiency` from `0.60` to `0.55` for one screenshot before loosening the follow-through, structure, or TP/SL review rules.
 - If `DBG FLIP` rises while chop arrows disappear, the raw-pressure conflict guard is doing its job; if `DBG FLIP` is zero and arrows still alternate, inspect the real-entry bypass path next.
 - If `CONTRACT: FAIL TRIGGER/MARKER` appears, capture that screenshot because it proves dashboard trigger and marker logic diverged on the same bar.
@@ -129,3 +131,4 @@
 - Added `MacroMicro_Simplified_v0.5.43.ts` after clarifying marker semantics; compact dots now mean 4/6 setup-coming, review arrows are next-candle 5/6 trigger confirmations, and review-only TP1/TP2/SL overlays use R-multiple risk planning from the arrow candle open.
 - Added `MacroMicro_Simplified_v0.5.44.ts` after v0.5.43 setup-coming dots flip-flopped in chop; dots now arm the first 4/6 side and suppress opposite 4/6 warnings until trigger, failure, opposite trigger, or timeout.
 - Added `MacroMicro_Simplified_v0.5.45.ts` after v0.5.44 still re-armed dots during long chop; timeout rearming is removed and setup-coming dots now require neutral cooldown or a real 5/6 trigger to start a fresh campaign.
+- Added `MacroMicro_Simplified_v0.5.46.ts` after `/NQ` validation screenshots showed TP/SL context was useful but hit-result bubbles were too noisy; review risk now exposes point distances and keeps hit-result bubbles optional/default off.
