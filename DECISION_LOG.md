@@ -137,3 +137,7 @@
 - Add v0.5.45 after v0.5.44 screenshots still showed setup-coming dots flip-flopping: remove timeout rearming and use a neutral-reset campaign latch, so 4/6 warning dots only re-arm after both sides cool off or a real 5/6 trigger resolves the campaign.
 - Use QQQ for regular-session ETF/options validation and `/NQ` or `/MNQ` for extended-hours futures validation; do not tune one session/instrument as if it proves the other.
 - For `/NQ` options, keep indicator risk labels in underlying futures points only. Estimate option dollars separately from the actual option chain quote, delta/gamma, IV, spread, expiry, and fees; do not convert chart points directly to option P/L.
+
+## 2026-06-30
+
+- Add v0.5.47 after `/NQ` review screenshots: keep multiple TP lines while a condition is active, show one `R-INV` bubble for non-TP/non-SL invalidation, and use PSAR alignment/gradient as review-management context rather than a replacement for hard stops.
