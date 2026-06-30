@@ -81,6 +81,7 @@ Use an explicit version in every new indicator file and in the file header.
 - MacroMicro_Simplified_v0.5.45.ts removes timeout-based setup-dot rearming and uses a neutral-reset campaign latch so a 4/6 warning dot prints once per setup campaign, with fresh dots allowed only after both sides cool off or a real 5/6 trigger resolves the campaign.
 - MacroMicro_Simplified_v0.5.46.ts adds /NQ-friendly review risk display: planned TP/SL bubbles remain visible, hit-result bubbles are optional/default off, and a point-based RISK PTS label shows risk/TP1/TP2 for futures/options validation.
 - MacroMicro_Simplified_v0.5.47.ts adds /NQ review management: explicit side-locked 4/6 ready-dot state, one optional R-INV invalidation bubble, PSAR gradient context, and PSAR-aligned TP2 runner handling while keeping hard stops intact.
+- MacroMicro_Simplified_v0.6.0.ts is a clean reset toward the original macro-confluence script: one soft 4/6-ready dot family, one confirmed macro arrow family, compact labels, and R-based TP1/TP2/SL management with PSAR runner context.
 
 ## Version Meaning
 
