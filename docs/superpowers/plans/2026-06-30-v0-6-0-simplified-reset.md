@@ -56,6 +56,6 @@ Record the v0.6.0 reset and make v0.6.0 the active install target.
 Run: `powershell -NoProfile -ExecutionPolicy Bypass -File tests\verify_simplified_indicator.ps1`
 Expected: `Simplified indicator verification passed.`
 
-- [ ] **Step 3: Commit and push**
+- [x] **Step 3: Commit and push**
 
 Commit with `Add simplified macro reset build` and push `main`.
