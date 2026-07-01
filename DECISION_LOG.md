@@ -142,3 +142,7 @@
 
 - Add v0.5.47 after `/NQ` review screenshots: keep multiple TP lines while a condition is active, show one `R-INV` bubble for non-TP/non-SL invalidation, and use PSAR alignment/gradient as review-management context rather than a replacement for hard stops.
 - Add v0.6.0 as a model reset after comparing v0.5.47 with the original script: return entry arrows to original-style macro confluence, keep ready dots as soft 4/6 warnings only, and remove v0.5 diagnostic/review-arrow layers from the default user experience.
+
+## 2026-07-01
+
+- Add Original_Comparison_NonRepainting_v1.ts after identifying repainting in the original comparison script. Keep it separate from v0.6.0 so the original model can be evaluated honestly with completed-candle signals.

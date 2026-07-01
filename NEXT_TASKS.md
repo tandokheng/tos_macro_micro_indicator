@@ -6,6 +6,7 @@
 
 ## Todo
 
+- Install `Original_Comparison_NonRepainting_v1.ts` as a separate Thinkorswim study and compare it with `MacroMicro_Simplified_v0.6.0.ts` on the same `/NQ` 5m windows. Expect arrows to be one candle later than the repainting original.
 - If v0.6.0 does not show `BUILD: v0.6.0 CLEAN`, remove duplicate/old `_dk_codex_macro_micro_v1` studies and re-add the pasted source once.
 - Confirm old `DBG` labels, raw setup labels, score-probe arrows, compact `L/S` marker bubbles, and extra neutral/confluence arrow families are gone from the default chart.
 - Confirm ready dots fire as early warnings near 4/6 alignment and do not alternate up/down every few candles during chop.
@@ -135,3 +136,5 @@
 - Added `MacroMicro_Simplified_v0.5.46.ts` after `/NQ` validation screenshots showed TP/SL context was useful but hit-result bubbles were too noisy; review risk now exposes point distances and keeps hit-result bubbles optional/default off.
 - Added `MacroMicro_Simplified_v0.5.47.ts` after `/NQ` screenshots showed ready-dot flip risk, unclear condition invalidation, and early TP2 exits during PSAR-aligned trends; v0.5.47 adds explicit ready-dot side lock, `R-INV`, PSAR gradient labels, and PSAR runner handling.
 - Added `MacroMicro_Simplified_v0.6.0.ts` as a clean reset back toward the original macro-confluence model: soft 4/6 ready dots, one confirmed macro arrow family, compact dashboard labels, and R-based TP1/TP2/SL management.
+
+- Added Original_Comparison_NonRepainting_v1.ts as a separate non-repainting copy of the original comparison script, plus a verifier that locks visible signals to completed candles.

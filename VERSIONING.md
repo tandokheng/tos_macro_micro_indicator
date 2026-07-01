@@ -83,6 +83,8 @@ Use an explicit version in every new indicator file and in the file header.
 - MacroMicro_Simplified_v0.5.47.ts adds /NQ review management: explicit side-locked 4/6 ready-dot state, one optional R-INV invalidation bubble, PSAR gradient context, and PSAR-aligned TP2 runner handling while keeping hard stops intact.
 - MacroMicro_Simplified_v0.6.0.ts is a clean reset toward the original macro-confluence script: one soft 4/6-ready dot family, one confirmed macro arrow family, compact labels, and R-based TP1/TP2/SL management with PSAR runner context.
 
+- Original_Comparison_NonRepainting_v1.ts is a non-repainting copy of the original comparison script: macro, neutral, confluence, entry-bubble, TP, early-TP, and alert signals use completed candles and print on the next bar.
+
 ## Version Meaning
 
 - Patch: compile fix, typo, small parameter/default change.

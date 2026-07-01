@@ -3,7 +3,7 @@
 ## High Leverage
 
 - FU-001 - Replace `_dk_codex_macro_micro_v1` with `MacroMicro_Simplified_v0.6.0.ts` and confirm `BUILD: v0.6.0 CLEAN`.
-- FU-002 - Compare one `/NQ` 5m clean trend against the original script and v0.6.0 to confirm the reset keeps useful macro arrows while removing extra arrow families.
+- FU-002 - Compare one `/NQ` 5m clean trend using three studies: repainting original, `Original_Comparison_NonRepainting_v1.ts`, and `MacroMicro_Simplified_v0.6.0.ts`.
 
 ## Easy To Complete
 
